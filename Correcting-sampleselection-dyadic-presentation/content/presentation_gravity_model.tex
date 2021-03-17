@@ -1,0 +1,120 @@
+\begin{frame}[label=Gravity model]
+    \frametitle{Gravity model of \cite{helpman2008estimating} : Features}
+    \begin{block}{Definition}
+        Multilateral resistance term: country's average trade barrier with all its trading partners (\cite{anderson2003gravity}).
+    \end{block} 
+    Two main features:
+    \begin{itemize}
+        \item Multilateral resistance terms.
+        \item Theoretical framework that takes into account sample selection. 
+        \begin{itemize}
+            \item A fraction of firms in country $i$ decides to export to country $j$. 
+            \item Firms have individual heterogeneous productivity and face variable and fixed costs when exporting.
+        \end{itemize}
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Gravity model of \cite{helpman2008estimating}}
+    Considering that:
+    \begin{enumerate}
+        \item Country $i$ has $N_i$ heterogeneous firms.
+        \item Productivity is firm-specific given by $\frac{1}{a}$, $a$ follows a cumulative distribution function $G(a)$, with support $[a_L, a_H]$.
+        \item Firm in country $i$ has input costs $c_ia$ per unit of output.
+        \item If it sells in country $j$, it incurs:
+        \begin{itemize}
+            \item Fixed costs $c_i f_{ij}$.
+            \item Variable costs (melting iceberg): $\tau_{ij}$ units of a product needs to be shipped from country $i$ to $j$ for one unit to arrive.
+        \end{itemize} 
+        \item CES preferences.
+        \item Products are differentiated according to country of origin.
+        \item Monopolistic competition in the final products.
+        \item Economy of $I$ countries indexed by $i=1,...I$
+    \end{enumerate}
+  \end{frame}
+  
+  \begin{frame}
+    \frametitle{Gravity model of \cite{helpman2008estimating}}
+    Model delivers the system of equations:
+    \begin{align}
+        (1-\alpha)\left(\frac{\tau_{i j} c_{i} a_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j}=c_{i} f_{i j}
+        \label{eq:MHR1}
+    \end{align}
+    \noindent where : $a_{ij}$ is defined as the point where profits are exactly zero, $P_j$ the price index of the economy of country $j$, $Y_j$ the size of its economy and $\sigma = 1/(1-\alpha)$ is the elasticity of substitution across products. 
+    \\~\\
+    The fraction of country $i$'s $N_i$ firms that export to country $j$, is given by $G(a_{ij})$.
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Gravity model of \cite{helpman2008estimating}}
+    \begin{align}
+        V_{i j}=\left\{\begin{array}{cc}
+    \int_{a_{L}}^{a_{i j}} a^{1-\sigma} d G(a) & \text { for } a_{i j} \geq a_{L} \\
+    0 & \text { otherwise }
+    \end{array}\right.
+    \label{eq:MHR2}
+    \end{align}
+    \noindent where $V_{ij}$ determines the bilateral trade volume. 
+    \begin{align}
+        Y_{1,i j}=\left(\frac{c_{i} \tau_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j} N_{i} V_{i j}
+        \label{eq:MHR3}
+    \end{align}
+    defines the value of country $j$'s imports from $i$ ($Y_{1,ij}$). 
+    \begin{align} \label{eq:MHR4}
+        P_{j}^{1-\sigma}=\sum_{i=1}^{I}\left(\frac{c_{i} \tau_{i j}}{\alpha}\right)^{1-\sigma} N_{i} V_{i j}
+    \end{align}
+    defines the price indices of country $j$.
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Estimation method of \cite{helpman2008estimating}}
+    \begin{block}{Assumption 1:}
+      Firm productivity $\frac{1}{a}$ is Pareto distributed, with support $[a_L,a_H]$.
+    \end{block} 
+    \begin{block}{Assumption 2:}
+        There are i.i.d. unmeasured country-pair specific trade frictions $u_{ij,t} \sim N(0, \sigma_u^2)$ such that: $\tau_{i j,t}^{\sigma-1} \equiv D_{i j,t}^{\gamma} e^{-u_{i j,t}} $ \\
+    where $D_{ij,t}$ is the symmetric distance between $i$ and $j$. 
+      \end{block} 
+      \begin{block}{Assumption 3:}
+        There are i.i.d. unmeasured country-pair specific trade frictions $\nu_{ij,t}\sim N(0, \sigma_\nu^2)$ that may be correlated with $u_{ij,t}$, such that: $f_{i j,t} \equiv \exp \left(\phi_{E X, i}+\phi_{I M, j}+\kappa \phi_{i j,t}-\nu_{i j,t}\right)$ \\
+        where $\phi_{I M, j}$ is a fixed trade barrier imposed by the importing country, $\phi_{E X, i}$ is a measure of fixed export costs, and $\phi_{i j,t}$ is an observed measure of country-pair specific fixed trade costs.
+      \end{block} 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Estimation method of \cite{helpman2008estimating}}
+    Given Assumptions 1, 2 and 3, and by log-linearizing the gravity equation, which defines the export volume from country $i$ to $j$:
+\begin{align}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + w_{ij,t} + u_{ij,t},
+    \label{eq:est_MHR_wage}
+\end{align}
+
+\noindent where: \\
+(i) $y_{1,ij,t} = \ln Y_{1,ij,t}$ \\
+(ii) $w_{ij,t} = \ln W_{ij,t}$ \\
+(iii) $\beta_1$ is a vector that collects the coefficients of the remaining structural parameters, $\beta_1 = (\beta_0, \gamma_1')'$\\
+(iv) $x_{1,ij,t}$ is a vector that collects 1 and the vector $ d_{ij,t} = \ln D_{ij,t}$\\
+(v) $\chi_j = (\sigma -1) \ln P_j + \ln Y_j$, which is an importer fixed effects\\
+(vi) $\vartheta_i = -(\sigma - 1) \ln c_i + \ln N_i$, which is an exporter fixed effects.
+\\~\\
+Important difference to the equation derived in previous studies: the new variable $w_{ij,t}$, which controls for the fraction of firms exporting. 
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Estimation method of \cite{helpman2008estimating}}
+    Latent variable $Y_{2,ij,t}^*$ is given by the ratio of variable export profits for the most productive firm (with productivity $1/a_L$) to the fixed export costs for exports from $i$ to $j$ (expressions that are given by the zero profit condition). Then, in this case, positive exports are observed if $Y_{2,ij,t}^* > 1$.\\~\\
+    
+    By log-linearizing the equation for the latent variable $Y_{2,ij,t}^*$, and given Assumption 3, we have that:
+\begin{align}
+    y_{2,i j,t}^*= x_{2,ij,t}'\beta_2 +\xi_{i}+\zeta_{j} +\eta_{i j,t},
+    \label{eq:est_MHR_sampleselection}
+\end{align}
+
+\noindent where: \\
+(i) $\eta_{ij,t} \equiv u_{ij,t} + \nu_{ij,t} \sim N(0, \sigma_u^2 + \sigma_\nu^2)$ is i.i.d., but correlated with $u_{ij,t}$ \\
+ (ii) $\xi_{i}=-\sigma \ln c_{i}+\phi_{E X, i}$ is an exporter fixed effect \\
+ (iii) $\zeta_{j}=(\sigma-1) \ln P_{j}+ \ln Y_{j}-\phi_{I M, j}$ is an importer fixed effect\\
+  (iv) $\beta_2$ is a vector that collects the coefficients of the remaining structural parameters, $\beta_2 = (\gamma_0, \gamma_2')'$ \\
+   (iv) $x_{2,ij,t}$ is a vector that collects 1, and the vectors $ d_{ij,t} = \ln D_{ij,t}$, and $\phi_{ij,t}$.
+   \\~\\
+    $x_{2,ij,t}$ includes both the regressors in $x_{1,ij,t}$ and additional regressors that affect only the decision to export, but not the volume of exports (exclusion restriction). 
+  \end{frame}

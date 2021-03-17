@@ -1,0 +1,85 @@
+\begin{frame}
+    \frametitle{Our proposed methods: Outline}
+    \begin{enumerate}
+        \item First stage: conditional logit estimation of \cite{charbonneau2017multiple}.
+        \begin{itemize}
+            \item Differences out the fixed effects $\xrightarrow[]{}$ free of incidental parameter problem.\\~\\ 
+        \end{itemize}
+        \item \textbf{Second stage: given estimates of first stage, we propose two methods.}
+        \begin{itemize}
+            \item \textbf{Hybrid approach to retrieve FE of first stage + Lee's transformation to apply Heckman even when errors are logistic distributed.}
+            \item A modification to the \cite{kyriazidou1997estimation} approach that relies on the idea of differencing out the selection effects.
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{First approach: Hybrid estimates}
+    \cite{martin2018bls}: the fixed effects $\xi^*$ and $\zeta^*$ are estimated from the unconditional maximum likelihood when the slope parameters are set to $\hat{\beta}_{2,CL}^*$.
+        $$\hat{\omega}_{NN}^*(\hat{\beta}_{2,CL}^*) = \argmax_{\omega_{NN}^* \in \mathbb{R}^{\text{dim} \omega_{NN}^*}} \mathcal{L} (\hat{\beta}_{2,CL}^*, \omega_{NN}^*)  $$ 
+      where:
+      \begin{align*} 
+        &\mathcal{L} (\hat{\beta}_{2,CL}^*, \omega_{NN}^*) \\ &= (N(N-1))^{-1} \Big\{ \sum_{i=1}^{N}\sum_{j\neq i} \log f_{Y_2} ( y_{2,ij} \rvert  x_{2,ij}, \xi^*, \zeta^*, \beta_2^*) - b(\iota'_{NN} \omega_{NN}^*)^2/2 \Big\} \nonumber
+    \end{align*}
+    \begin{align*}
+        f_{Y_2} ( y_{2,ij} \rvert  x_{2,ij}, \xi^*, \zeta^*, \beta_2^*) &= F(x_{2,ij}'\hat{\beta}_{2,CL}^*  +\xi_{i}^*+\zeta_{j}^*)^{y_{2,ij}} \nonumber\\ 
+        &\times [1 - F(x_{2,ij}'\hat{\beta}_{2,CL}^*  +\xi_{i}^*+\zeta_{j}^*)]^{1-y_{2,ij}}, 
+     \end{align*}
+     with: $\omega_{NN}^*$ a vector that collects the fixed effects, $F$ a standard logistic distribution function, $b>0$ is an arbitrary constant, $\iota_{NN} = (1_N', - 1_N')'$ and $1_N$ denotes a vector of ones of dimension $N$.\pause \\
+\textbf{We should also control for the perfect prediction problem.}    
+\end{frame}
+
+\begin{frame}
+    \frametitle{First approach: Lee's transformation}
+    First, we rewrite the observation equation as:
+    \begin{align*}
+        y_{1,ij,t} = x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + \sigma_u u_{ij}^*
+    \end{align*}
+\noindent where $u_{i j}^* \sim N(0,1)$ and $\sigma_u > 0$. \pause
+\\~\\ 
+Conditional on $x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*$ the errors have continuous distribution functions $\Phi(u^*)$ and $F(\eta^*)$, and are \textbf{allowed to be correlated, suposing a correlation of $\rho$}. \pause
+\\~\\ 
+\textbf{Main idea of \cite{lee1983generalized}:} suggest a proper bivariate distribution that can be applied to the Heckman method with the specified marginal distributions.
+\end{frame}
+
+\begin{frame}
+    \frametitle{First approach: Lee's transformation}
+    \begin{enumerate}
+        \item Apply a transformation to the error term such that it is distributed as a standard normal: $ \eta^{**} = J(\eta^*) = \Phi^{-1} (F (\eta^*)) $ \pause
+        \begin{block}{Assumption:}
+            The transformed random variables $\eta^{**}$ and $u^{*}$ are jointly normally distributed with zero means, unit variances and correlation of $\rho$.
+        \end{block} \pause
+
+        \item A proper bivariate distribution of $(\eta^*, u^*)$, denoted by $H$, is derived such that:
+        \begin{align*}
+        H(\eta^*, u^*, \rho) = B ( J(\eta^*), u^*; \rho)
+        \end{align*} \pause
+
+        \item $F(\cdot)$ is absolutely continuous, thus, the transformation $J(\cdot) = \Phi^{-1}(F(\cdot))$ is strictly increasing, such that $y_{2,ij}=1$ if and only if: 
+        \begin{align*}
+            J(-x_{2,ij}'{\beta_2^*}  -\xi_{i}^*-\zeta_{j}^* ) < J(\eta^*_{i j})
+        \end{align*}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{First approach: Lee's transformation}
+    Then, the previous model is statistically equivalent to:
+    \begin{align*}
+        &y_{1,ij,t} =  x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + \sigma_u u_{ij}^* \\
+            &y_{2,i j}^{***}= J(x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* )+\eta^{**}_{i j}
+    \end{align*}
+    \noindent where $y_{2,i j}^{***}=J(y_{2,i j}^{**})$. \pause
+    We can apply the Heckman approach to this model, with the inverse Mills-ratio:
+    \begin{align*}
+        \lambda_{ij} (z_{ij}) = \frac{\phi(J(z_{ij}))}{1 - \Phi(J(z_{ij}))} = \frac{\phi(J(z_{ij}))}{F(-z_{ij})}
+      \end{align*} \pause
+    Equation to be estimated by OLS (or FGLS): 
+    \begin{align*}
+        y_{1,ij} = x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + (\sigma_u\rho) \lambda_{ij} (z_{ij}) + \nu_{ij}
+    \end{align*}
+    By construction : $\mathbbm{E}[\nu_{ij} \rvert x_{1,ij}, \vartheta_i, \chi_j, \lambda_{ij} (z_{ij}), y_{2,i j}^{***} > 0] = 0$.
+
+    
+\end{frame}

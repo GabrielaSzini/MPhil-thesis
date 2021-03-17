@@ -1,0 +1,23 @@
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{itemize}
+        \item Accounting for sample selection in dyadic settings requires more involved methods than the standard \cite{heckman1979sample} approach.
+        \item Difficulty arises through the incidental parameter problem in the selection equation.
+        \item \cite{charbonneau2017multiple} estimator:
+        \begin{itemize}
+            \item Leads to estimates that are free of this problem in the first stage.
+            \item However, it does not deliver estimates of fixed effects essential to employ Heckman approach.
+        \end{itemize}
+        \item To bypass this problem, we proposed:
+        \begin{itemize}
+            \item To get the FE through a Hybrid estimation and further apply the Heckman procedure after a transformation is made in the selection equation. \\
+            $\xrightarrow{}$ it may not be well suited for sparse networks
+            \item A modification to the \cite{kyriazidou1997estimation} estimator. \\
+            $\xrightarrow{}$ no need for FE estimates.\\
+            $\xrightarrow{}$ estimates are sensitive to chosen bandwidth. \\
+            $\xrightarrow{}$ needs a variable that satisfies exclusion restriction
+        \end{itemize} 
+        \item Drawbacks: computational costs!
+        \item Simulations confirm the theoretical predictions that biases are reduced.
+    \end{itemize}
+\end{frame}

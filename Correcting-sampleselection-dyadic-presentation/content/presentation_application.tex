@@ -1,0 +1,108 @@
+\begin{frame}
+    \frametitle{Application to gravity model: Selection Equation}
+    \textbf{Aim:} estimate how trade barriers affect both the decision of country $i$ to export to country $j$, and the volume of trade. \pause
+    \\~\\ 
+    \textbf{Dataset:} provided by \cite{helpman2008estimating}. Information on directed trade flows and country characteristics for 158 countries in 1986. \\
+    Exclude Congo as exporter: avoid the problem of perfect prediction. \pause
+    \\~\\ 
+    \textbf{First stage equation:} Same equation estimated by \cite{helpman2008estimating}.
+    \begin{align*}
+        y_{2,i j}= \mathbbm{1}(x_{2,ij}'\beta_2^* +\xi_{i}^*+\zeta_{j}^* >\eta_{i j}^*)
+    \end{align*}
+    
+    \noindent where: \\
+    (i) $y_{2,i j}$ is a binary variable, being one if the $i$ exports to $j$ and zero otherwise \\
+    (ii) $\xi_{i}^*$ is the exporter fixed effect \\(iii) $\zeta_{j}^*$ is the importer fixed effect \\(iv) $x_{2,ij}$ is the vector that collects the variables \textit{Distance}$_{ij}$, \textit{Common Border}$_{ij}$, \textit{Colonial Ties}$_{ij}$, \textit{Currency Union}$_{ij}$, \textit{Common Legal System}$_{ij}$, \textit{FTA}$_{ij}$, \textit{Common Religion}$_{ij}$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Application to gravity model: Selection Equation}
+    \begin{table}
+        \fontsize{8}{8}\selectfont
+        \centering
+        \begin{threeparttable}
+        \captionsetup{font=scriptsize}
+        \begin{tabular}{p{4cm}p{1.8cm}p{1.8cm}}
+          \hline
+          \\[-0.5em]
+           \quad & Probit  & Charbonneau \\
+           \\[-0.5em]
+           \hline
+           \\[-0.5em]
+            \textit{Common Language}  &  $0.2903^{***}$ (0.0379) &  $0.4248^{***}$ (0.0732) \\
+            \\[-0.5em]
+            \textit{Common Legal System}  &  $0.0972^{**}$ (0.0296) &  $0.1822^{***}$ (0.0597)\\
+            \\[-0.5em]
+            \textit{Common Religion} & $0.2647^{***}$ (0.0585)&  $0.4979^{***}$ (0.1125)\\
+            \\[-0.5em]
+            \textit{Common Border} & $-0.3798^{***}$ (0.0946) &  $-0.5164^{**}$ (0.2300)\\
+            \\[-0.5em]
+            \textit{Currency Union} &  $0.4883^{***}$ (0.1306) &  $1.0459^{***}$ (0.2362)\\
+            \\[-0.5em]
+            \textit{Distance}  & $-0.6626^{***}$ (0.0208) &  $-1.0001^{***}$ (0.0541)\\
+            \\[-0.5em]
+            \textit{FTA} &  $2.0170^{***}$ (0.3085) & $3.5565^{***}$ (0.5237)\\
+            \\[-0.5em]
+            \textit{Colonial Ties} &  $0.3337$ (0.2852) &  $1.1432^{*}$ (0.6473)\\
+             & &  \\
+            \hline
+        \end{tabular}
+        \caption{{Estimates for the first stage. Standard errors are in parenthesis. \\
+        \textsuperscript{*} indicates that the coefficient is significant at the 10 \% level \\
+        \textsuperscript{**} indicates that it is significant at the 5 \% level \\ \textsuperscript{***} indicates that it is significant at the 1 \% level.}}
+    \end{threeparttable}
+        \label{tab:app1}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Application to gravity model: Observation Equation}  
+    \textbf{Second stage equation:} Difference to equation estimated by \cite{helpman2008estimating} is that we do not take into account $w_{ij}$.
+    \begin{align*}
+        y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + u_{ij,t}
+    \end{align*}
+    
+    \noindent where: \\
+    (i) $y_{1,ij}$ is the log of the value of the exports from $i$ to $j$ \\
+    (ii) $\vartheta_i$ is the exporter fixed effect \\ (iii) $\chi_j$ is the importer fixed effect \\
+    (iv) $x_{1,ij,t}$ is the vector that collects the same variables as $x_{2,ij}$, with the exception of \textit{Common Religion}$_{ij}$ (exclusion restriction) \\~\\ 
+    \textbf{Equation estimated using only observations with positive trade flows $\xrightarrow{}$ sample selection correction needed.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Application to gravity model: Observation Equation}  
+    \begin{table}
+        \fontsize{8}{8}\selectfont
+        \captionsetup{font=scriptsize}
+        \centering
+        \begin{tabular}{p{2.6cm}p{1.4cm}p{1.4cm}p{1cm}p{1cm}p{1cm}p{1cm}}
+          \hline
+          \\[-0.5em]
+           \quad  &Heckman (1) & Heckman (2) &Hybrid  & K (h=0.5)  & K (h=3)  & K (h=10)  \\
+           \\[-0.5em]
+           \hline
+           \\[-0.5em]
+            \textit{Common Language}  & $0.2090^{***}$ & $0.2333^{***}$& 0.3566 & 0.1094 & 0.1830& 0.1994\\
+            \\[-0.5em]
+            \textit{Legal System}  & $0.4797^{***}$ & $0.4914^{***}$& 0.4975 & 0.3805& 0.4206&0.4255\\
+            \\[-0.5em]
+            \textit{Common Border}  & $0.4031^{***}$ & $0.4318^{***}$ & 0.5836& 0.6114 &0.5673 & 0.5129\\
+            \\[-0.5em]
+            \textit{Currency Union}   & $1.3537^{***}$ & $1.3368^{***}$ & 1.4456 & 1.2315& 1.4164&1.4213\\
+            \\[-0.5em]
+            \textit{Distance}   & $-1.2087^{***}$ & $-1.2190^{***}$& -1.3470& -1.1371& -1.2503& -1.1721\\
+            \\[-0.5em]
+            \textit{FTA}  &  $0.7774^{***}$ & $0.7719^{***}$& 2.0569 & 1.2835& 1.2408& 0.2901\\
+            \\[-0.5em]
+            \textit{Colonial Ties}  & $1.3418^{***}$ & $1.3434^{***}$ & 1.4209 & 1.2594 & 1.3387 & 1.1945\\
+            \\[-0.5em]
+            \textit{Common Religion}  &  $0.2389^{**}$ &  &  &  &  & \\
+            \\[-0.5em]
+            \textit{Inverse Mills-Ratio}  & $0.2784^{***}$ & $0.2671^{***}$ & 0.7130& & & \\
+             &  & & & & & \\
+            \hline
+        \end{tabular}
+        \caption{\footnotesize{Estimates for the second stage equation. We denote by Kyriazidou by $K$. \newline \textsuperscript{*} indicates that the coefficient is significant at the 10 \% level \newline \textsuperscript{**} indicates that the coefficient is significant at the 5 \% level \newline \textsuperscript{***} indicates that the coefficient is significant at the 1 \% level.}}
+        \label{tab:app2}
+\end{table}
+\end{frame}

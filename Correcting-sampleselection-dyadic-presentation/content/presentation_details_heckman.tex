@@ -1,0 +1,16 @@
+\begin{frame}[label = Heckman]
+    \frametitle{The Heckman's steps}
+    The least squares estimators of $\beta_1$ and $\sigma_{u\eta^*}$ are unbiased but inefficient, due to the heteroskedasticity in $\mathbbm{E}[\nu_{ij,t}^2]$, as shown in \cite{heckman1979sample}:
+\begin{align*}
+    \mathbbm{E}[\nu_{ij,t}^2] = \sigma_u^2 \Big((1-\rho^2) + \rho^2(1+ z_{ij,t} \lambda_{ij,t} - \lambda_{ij,t}^2)\Big)
+\end{align*}
+
+\begin{itemize}
+    \item Step 1: Estimate the probability that $y^{**}_{2,ij,t} \geq 0$ using probit analysis on the sample, given by the selection equation.
+    \item Step 2: From this estimator (provided that it is consistent), one can obtain $\hat{z}_{ij,t}$ consistently.
+    \item Step 3: The estimated value of $\lambda_{ij,t}(z_{ij,t})$ is used as a regressor in the observation equation fit on the subsample. The regression estimators are then consistent for $\beta_1$ and $\sigma_{u\eta^*}$.
+    \item Step 4: One can then consistently estimate $\sigma_u^2$ from the following. From step (3), we consistently estimate $\sigma_{u\eta^*}$, through the estimator $\hat{\sigma}_{u\eta^*}$. Denote the residuals for each observation from step 3 as $\hat{\nu}_{ij,t}$. Then, using $\hat{z}_{ij,t}$ and $\hat{\lambda}_{ij,t}$ the estimated values from step (2), an estimator of  $\sigma_u^2$ is:
+    $$\hat{\sigma}_u^2 = \frac{\sum_{i=1}^{N_i}\sum_{j\neq i}\sum_{t=1}^T \hat{\nu}_{ij,t}^2}{N_i(N_i-1)T} - \frac{\hat{\sigma}_{u\eta^*}}{N_i(N_i-1)T}  \sum_{i=1}^{N_i}\sum_{j\neq i}\sum_{t=1}^T (\hat{\lambda}_{ij,t} \hat{z}_{ij,t} - \hat{\lambda}_{ij,t}^2)$$
+\end{itemize}
+
+\end{frame}

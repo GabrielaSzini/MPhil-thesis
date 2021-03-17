@@ -1,0 +1,57 @@
+
+
+\begin{frame}
+    \frametitle{Currently in the literature: Heckman's two-step approach}
+    \begin{block}{Assumption:} 
+        $$\mathbbm{E}[u_{ij,t} {\eta_{ij,t}^*}] = 
+        \begin{cases}
+            \sigma_{u\eta^*} \text{ if } i=i', j=j', t=t'\\
+            0 \text{ otherwise}\\
+            \end{cases}$$
+      \end{block}
+    We can rewrite the observation equation as:
+    \begin{align*} 
+        &\mathbbm{E}[y_{1,ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, y_{2,i j,t}= 1] \\ 
+        &=  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \mathbbm{E} [u_{ij,t} \rvert \eta^*_{i j,t} \geq \underbrace{-x_{2,ij,t}'{\beta_2^*}  -\xi_{i}^*-\zeta_{j}^*}_{z_{ij,t}}] \nonumber
+    \end{align*}  \pause
+    Further assuming that the conditional expectation in the last term is an unknown, smooth function $\varphi_{ij,t}$:
+    \begin{align*}
+        y_{1,ij,t} =  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \varphi_{ij,t}(z_{ij,t}) + \nu_{ij,t},
+    \end{align*}
+    \noindent by construction, $\mathbbm{E}[\nu_{ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, \varphi_{ij,t}(z_{ij,t}), y_{2,i j,t}^{**} > 0] = 0$. \pause
+    \\~\\
+    \textbf{Identification:} either the function $\varphi_{ij,t}$ is specified or additional variables that satisfy exclusion restriction from the observation equation are included in $x_{2,ij,t}$.   
+\end{frame}
+
+\begin{frame}
+    \frametitle{Currently in the literature: Heckman's two-step approach}
+    Introducing functional form for $\varphi_{ij,t}$ through additional distributional assumptions: 
+    \begin{block}{Assumption:}
+        The error term $u_{ij,t}$ is i.i.d. over $ij$ and $t$, such that $u_{ij,t} \sim N(0, \sigma_u^2)$. \\
+        The error term $\eta_{ij,t}^*$ is i.i.d. over $ij$ and $t$, such that $\eta_{ij,t}^* \sim N(0, 1)$.
+    \end{block} \pause
+    From the standard results of the bivariate normal distribution:
+    \begin{align*}
+        y_{1,ij,t} =  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \sigma_{u\eta^*} \lambda_{ij,t}(z_{ij,t}) + \nu_{ij,t}
+    \end{align*}
+    \noindent where: $\lambda_{ij,t}(z_{ij,t}) = \frac{\phi(z_{ij,t})}{1 - \Phi(z_{ij,t})} = \frac{\phi(z_{ij,t})}{\Phi(-z_{ij,t})}$ is the inverse Mills-ratio. 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Currently in the literature: Heckman's two-step approach}
+    \cite{heckman1979sample}'s approach in a nutshell:
+    \begin{itemize}
+        \item \textbf{Stage 1:} Estimate selection equation by MLE (probit).
+        \item \textbf{Stage 2:} Obtain inverse Mills-ratio and estimate observation equation by FGLS. \\~\\
+    \end{itemize}  \pause
+    Taking into account an \textbf{estimated value} of $\lambda_{ij,t}(z_{ij,t})$:
+    \begin{align*}
+        y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \sigma_{u\eta^*} \hat{\lambda}_{ij,t} + \sigma_{u\eta^*} ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) + \nu_{ij,t}
+    \end{align*}
+    We can interpretate $\sigma_{u\eta^*} ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) + \nu_{ij,t}$ as the error term of this equation. \pause
+    \begin{block}{Theorem 1:}
+        The estimator of $\beta_1$ will be an asymptotically unbiased estimator, i.e., will converge to a limiting distribution centered around its true value only if $\mathbbm{E} [ ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) ] = 0$.
+    \end{block} 
+
+    \hyperlink{Heckman}{\beamerbutton{Heckman's steps}}
+\end{frame}

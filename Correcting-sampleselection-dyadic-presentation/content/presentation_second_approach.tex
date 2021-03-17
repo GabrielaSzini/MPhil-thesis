@@ -1,0 +1,64 @@
+\begin{frame}
+    \frametitle{Our proposed methods: Outline}
+    \begin{enumerate}
+        \item First stage: conditional logit estimation of \cite{charbonneau2017multiple}.
+        \begin{itemize}
+            \item Differences out the fixed effects $\xrightarrow[]{}$ free of incidental parameter problem.\\~\\ 
+        \end{itemize}
+        \item \textbf{Second stage: given estimates of first stage, we propose two methods.}
+        \begin{itemize}
+            \item Hybrid approach to retrieve FE of first stage + Lee's transformation to apply Heckman even when errors are logistic distributed.
+            \item \textbf{A modification to the \cite{kyriazidou1997estimation} approach that relies on the idea of differencing out the selection effects.}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Second approach: modification to \cite{kyriazidou1997estimation}}
+Denote, for the quadruple $ij$, $ik$, $lj$, $lk$: 
+$$\varsigma_{ijlk} \equiv (x_{1,ij}, x_{2,ij}, x_{1,ik}, x_{2,ik}, x_{1,lj}, x_{2,lj}, x_{1,lk}, x_{2,lk},\xi_i^*, \xi_l^*,\zeta_j^*, \zeta_k^*, \vartheta_i, \vartheta_l, \chi_j, \chi_k)$$ 
+\\~\\
+Taking the differences defined by:
+\begin{align*}
+    \Delta_{ijlk} y_{1,ij} = (y_{1,ij} - y_{1,ik}) - (y_{1,lj} - y_{1,lk}) 
+\end{align*}
+\\~\\ \pause
+Fixed effects in observation can be easily differenced out:
+\begin{align*}
+    &\mathbbm{E}[\Delta_{ijlk} y_{1,ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk}] \\
+    &= \Delta_{ijlk} x_{1,ij}' \beta_1 + \mathbbm{E}(\Delta_{ijlk} u_{1,ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk})
+\end{align*} \\~\\ \pause
+\textbf{But, sample selection effects remain.} \\
+To be differenced out: $\mathbbm{E}(\Delta_{ijlk} u_{1,ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk}) = 0$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Second approach: modification to \cite{kyriazidou1997estimation}}
+\begin{itemize}
+    \item To be differenced out it boils down to:
+    $$ \mathbbm{E} ((u_{ij} - u_{ik}) - (u_{lj} - u_{lk}) ) \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk}) = 0$$ \pause
+    \item We can denote: $\varphi_{ijlk} = \mathbbm{E}(u_{ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk})$ \\~\\ \pause
+    \item For dyad $ij$, due to errors being i.i.d., it is a function of the single index : $z_{ij} = -x_{2,ij}'{\hat{\beta}_{CL,2}^*}  -\xi_{i}^*-\zeta_{j}^*$ \\~\\ \pause
+    \item If the difference between the single indices:
+    $$(z_{ij} - z_{ik}) - (z_{lj} - z_{lk})$$ 
+    is close to zero, if $\varphi_{ijlk}$ is a smooth enough function, then $ \Delta_{ijlk}\varphi_{ijlk}$ is also close to zero. \\~\\ \pause
+    \item The magnitude of the difference between single indices is free of fixed effects, and boils down to $\Delta_{ijlk} x_{2,ij}'{\hat{\beta}_{2,CL}^*}$. \pause
+\end{itemize}
+\textbf{Main idea:} assign weights for observations according to how close to zero $\rvert \Delta_{ijlk} x_{2,ij}'{\hat{\beta}_{2,CL}^*} \rvert$ is.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Second approach: modification to \cite{kyriazidou1997estimation}}
+The estimator becomes:
+\begin{align*}
+    \hat{\beta}_1 = &\Big[ \sum_{i=1}^N \sum_{j \neq i} \sum_{k \neq i,j} \sum_{l \neq i,j,k} \hat{\Psi}_{ijkl} \Delta_{ijkl} x_{1,ij}' \Delta_{ijkl} x_{1,ij} \Phi_{ijkl}\Big]^{-1} \\
+     &\Big[  \sum_{i=1}^N \sum_{j \neq i} \sum_{k \neq i,j} \sum_{l \neq i,j,k} \hat{\Psi}_{ijkl} \Delta_{ijkl} x_{1,ij}' \Delta_{ijkl} y_{1,ijkl} \Phi_{ijkl}\Big] \nonumber
+\end{align*}
+with $\Phi_{ijkl} = \mathbbm{1}(y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1)$, and weights:
+$$\hat{\Psi}_{ijkl} = \frac{1}{h_n} K \Big( \frac{\Delta_{ijkl} x_{2,ij}' \hat{\beta}_{2,CL}^*}{h_n} \Big)$$
+\noindent where $K$ is a kernel density function, and $h_n$ is a sequence of bandwidths which tends to zero as $N(N-1) \xrightarrow{} \infty$. \\~\\ \pause
+For a given order of differentiability $r$ of the expression $\mathbbm{E}(\Delta x_1' \bm{\varphi} \Phi \rvert \Delta x_2'\beta_2^*)$, $h_n=h (N(N-1))^{-\mu}$ should be chosen such that $\mu = 1/(2 (r+1) +1)$.\\ 
+\textbf{Problem of choosing a bandwith boils down to choosing a constant $h$.} \hyperlink{h choice}{\beamerbutton{Optimal $h$}}
+\end{frame}

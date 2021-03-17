@@ -1,0 +1,29 @@
+\begin{frame}
+    \frametitle{Model of dyadic interactions}
+    \begin{align*}
+        y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + u_{ij,t} \quad \text{(Observation equation)}
+    \end{align*}
+    \begin{align*}
+        y_{2,i j,t}= \mathbbm{1} (y_{2,i j,t}^{**} > 0)
+    \end{align*}
+    \begin{align*}
+        y_{2,i j,t}^{**}=x_{2,ij,t}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*+\eta^*_{i j,t} \quad \text{(Selection equation)}
+        \label{eq:model3}
+    \end{align*}
+    \begin{equation*}
+    \hspace{10000pt minus 1fil} (i = 1,...N; j=1,...N, t=1,...T, i \neq j)\hfilneg
+    \end{equation*}
+    \begin{itemize}
+        \item $y_{1,ij,t}$ is observed only when $y_{2,i j,t} = 1$. 
+        \item $x_{1,ij,t}$ and $x_{2,ij,t}$ are vectors  of $k$ and $q$ explanatory variables.
+        \item $\beta_1 \in \mathbbm{R}^k$ and $\beta_2^* \in \mathbbm{R}^q$
+        \item $\chi_j$, $\vartheta_i$, $\xi_i^*$ and $\zeta_j^*$ are fixed effects.
+    \end{itemize} \pause
+    \textbf{Main features:} 
+    \begin{itemize}
+        \item Unobserved individual effects may depend on other variables arbitrarily. 
+        \item Errors of equations might be correlated.
+        \item Directed links/outcomes.
+        \item Selection equation indicates a network formation model with degree heterogeneity.
+    \end{itemize}
+  \end{frame}

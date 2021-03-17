@@ -1,0 +1,40 @@
+\begin{frame}
+    \frametitle{Which is the problem? The incidental parameter problem}
+    \textbf{Fixed effects estimators in nonlinear models suffer from the \textbf{incidental parameter problem} (\cite{neyman1948consistent})}. \pause
+    \\~\\
+    \textbf{How does this problem arise?}\\
+    Denote:
+    $$\Bar{\beta}^*_2 = \argmax_{\beta^*_2 \in \mathbb{R}^{\text{dim} \beta^*_2}} \mathbb{E}_\omega \Big[\mathcal{L} (\beta^*_2, \hat{\omega}_{NN}^*(\beta^*_2)) \Big]$$
+    Using an asymptotic expansion for smooth likelihoods under appropriate regularity conditions (\cite{fernandez2016individual}) \hyperlink{Asymptotic}{\beamerbutton{Asymptotic expansion}}
+    :
+    \begin{align*} 
+        \Bar{\beta}_2^* = \beta_{2,0}^* + \frac{\Bar{B}_\infty}{(N-1)T} + \frac{\Bar{D}_\infty}{(N-1)T} + \text{o}_P(((N-1)T)^{-1})
+    \end{align*}
+    For some constants $\Bar{B}_\infty$ and $\Bar{D}_\infty$. \pause
+    By the properties of the maximum likelihood estimator:
+    \begin{align*}
+        \sqrt{N(N-1)T} (\hat{\beta}_2^* - \Bar{\beta}_2^*) \xrightarrow{d} N(0, \Bar{V_B}_\infty)
+    \end{align*}
+    For some $\Bar{V_B}_\infty$. By Slutsky Theorem:
+    \begin{align*} 
+        \sqrt{N(N-1)T} (\hat{\beta}_2^* - \beta_{2,0}^*) \xrightarrow{d} N\Big( \frac{\Bar{B}_\infty}{\sqrt{T}} + \frac{\Bar{D}_\infty}{\sqrt{T}}, \Bar{V_B}_\infty\Big) \nonumber
+    \end{align*}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Which is the problem? The incidental parameter problem}
+    As $N \xrightarrow{} \infty$ and considering fixed $T$:
+    \\~\\
+    \begin{itemize}
+        \item $\hat{\beta}_2^* \xrightarrow{p} \beta_{2,0}^*$ : estimates are consistent.
+        \item \textbf{But} the estimates converge to a distribution that is not centered at the true parameter value, which leads to incorrect asymptotic confidence intervals.
+        \\~\\
+    \end{itemize} \pause
+    The source of the problem is that the estimates of the nuisance parameters converge at a slower rate than the structural parameters. \pause
+    \begin{block}{Conjecture 1:}
+        The asymptotic bias in the estimates of $\beta_{2}^*$ carries over both to the estimates of the fixed effects, $\hat{\omega}_{NN}^*$ and to the estimates of the inverse Mills-ratio, $\hat{\lambda}_{ij,t}$.
+    \end{block}
+    \textbf{Conditions of Theorem 1 do not hold.}
+\end{frame}
+

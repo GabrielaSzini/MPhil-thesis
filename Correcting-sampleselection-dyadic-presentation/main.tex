@@ -1,0 +1,163 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[10pt]{beamer}
+%\PassOptionsToPackage{height=0.5cm}{beamerouterthemesidebar}
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla} %nice
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden} %nice
+%\usetheme{Frankfurt} %nice
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins} %nice
+%\usetheme{Luebeck}
+\usetheme{Madrid} %or this one
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+%\usecolortheme{spruce}
+%\useoutertheme{smoothtree} % smoothtree
+\useinnertheme{rounded}
+\definecolor{TIblue}{HTML}{153291} % UBC Blue (primary)
+\definecolor{UBCblue}{HTML}{8A9ACD}
+\usecolortheme[named=TIblue]{structure}
+\setbeamercolor{section in toc}{fg=TIblue} % TOC sections
+\setbeamercolor{subsection in head/foot}{bg=TIblue,fg=TIblue}
+\setbeamercolor{palette primary}{bg=TIblue,fg=white}
+\setbeamercolor{palette secondary}{bg=TIblue,fg=white}
+\setbeamercolor{palette tertiary}{bg=TIblue,fg=white}
+\setbeamercolor{palette quaternary}{bg=UBCblue,fg=white}
+\setbeamercolor{block title}{bg=UBCblue,fg=black}
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+\setbeamertemplate{footline}[frame number] % To replace the footer line in all slides with a simple slide count uncomment this line
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{natbib}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{siunitx,booktabs,threeparttable}
+\usepackage{appendixnumberbeamer}
+\captionsetup[table]{justification=raggedright,singlelinecheck=off}
+\sisetup{separate-uncertainty=true}
+\DeclareMathOperator*{\argmax}{arg\max}
+\setbeamertemplate{caption}[numbered]
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Sample Selection Bias in Dyadic Regressions] {Correcting for Sample Selection Bias in Dyadic Regressions} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle[]{An Application to Gravity Models}
+\author{Gabriela Mara Miyazato Szini \\ \small{\textit{g.m.m.szini@uva.nl}}} % Your name
+
+\titlegraphic{\includegraphics[width=0.25\textwidth]{ti_logoblok.jpg}\hspace{2em}\includegraphics[width=0.2\textwidth]{uvalogo.jpg}}
+
+
+\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Supervised by: Prof. Dr. Frank Kleibergen % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+% add here more packages or macros if needed
+
+\begin{document}
+\begin{frame}
+  \titlepage % Print the title page as the first slide
+\end{frame}
+
+\section{Introduction}
+\input{content/presentation_introduction.tex}
+\section{A generalized model of dyadic interactions}
+\input{content/presentation_model_dyadic.tex}
+\section{\cite{heckman1979sample}'s approach and the incidental parameter problem}
+\input{content/presentation_heckman.tex}
+\input{content/presentation_incidental.tex}
+\section{First stage: conditional logit estimation of \cite{charbonneau2017multiple}}
+\input{content/presentation_charbonneau.tex}
+\section{Second stage: new approaches}
+\input{content/presentation_first_approach.tex}
+\input{content/presentation_second_approach.tex}
+\section{Simulations}
+\input{content/presentation_simulations.tex}
+\section{Application to international trade flows}
+\input{content/presentation_application.tex}
+\section{Conclusion}
+\input{content/presentation_conclusion.tex}
+
+\appendix
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliographystyle{plainnat}
+  \bibliography{library.bib}
+\end{frame}
+\input{content/presentation_gravity_model.tex}
+\input{content/presentation_details_heckman.tex}
+\input{content/presentation_details_incidental.tex}
+\input{content/presentation_jochmans.tex}
+\input{content/presentation_choice_h.tex}
+\input{content/presentation_more_simulations.tex}
+
+\end{document}

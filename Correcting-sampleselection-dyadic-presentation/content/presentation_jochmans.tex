@@ -1,0 +1,72 @@
+\begin{frame}[label = Jochmans]
+    \frametitle{{Conditional logit estimation: Estimator}}
+    Denote: 
+    \begin{itemize}
+        \item $m_n$ distinct quadruples in the dataset. 
+        \item a function $\sigma$ that maps the possible quadruples to an index set $N_{m_n} = \{ 1,2,...,m_n\}$. \\~\\ 
+    \end{itemize} 
+    Define the variables:
+    \begin{align*}
+        &z(\sigma\{l,i;j,k\}) = \frac{(y_{2,lj} - y_{2,lk}) - (y_{2,ij} - y_{2,ik})}{2} \\
+        &r(\sigma\{l,i;j,k\}) = (x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))
+    \end{align*}
+    Event that $z \in \{-1,1\}$ corresponds to the condition that for any $ij$, $l$ and $k$ satisfies $ y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1$. \\~\\ 
+    \textbf{Conditional on $x_2$ and $z \in \{-1,1\}$, the distribution of $z$ is logistic and does not depend on the fixed effects.}
+    \begin{itemize}
+        \item When $z=1$, we have necessarily that $y_{2,lk} = 1$, and when $z=-1$, it is necessarily zero.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{{Conditional logit estimation: Estimator}}
+    The estimator is given by:
+    \begin{align*}
+        \hat{\beta}_2^* = \argmax_{\beta_2^* \in \Theta} \mathcal{L}_{CL}(\beta_2^*)
+    \end{align*}
+    \noindent $\Theta$ refers to the parameter space searched over, and $\mathcal{L}_{CL}$ is the objective function given by:
+\begin{align*}
+    \mathcal{L}_{CL}(\beta_2^*) &= \sum_{\sigma \in N_{m_n}} \mathbbm{1}\{ z(\sigma\{l,i;j,k\}) = 1\} \log (F(r(\sigma\{l,i;j,k\})'\beta_2^*)) \\ &+ \mathbbm{1}\{ z(\sigma\{l,i;j,k\}) = -1\} \log (1 - F(r(\sigma\{l,i;j,k\})'\beta_2^*))
+\end{align*}  \\~\\ 
+Denote:
+\begin{itemize}
+    \item $m_n^*$ the number of quadruples that contributes to the likelihood.
+    \item $p_n$ the expected fraction of such quadruples over the total quadruples.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{{Conditional logit estimation: Asymptotic Properties}}
+    \begin{block}{Assumption 9:}
+        $\beta_{2,0}^*$ is interior to $\Theta$, which is a compact subset of $\mathbbm{R}^{\text{dim} \beta_2^*}$.
+    \end{block}
+    
+    \begin{block}{Assumption 10:}
+        For all $(i,j) \in N \times N, \mathbbm{E}(\rvert \rvert x_{2,ij} \rvert \rvert^2) < c$, where $c$ is a finite constant.
+    \end{block}
+    
+    \begin{block}{Assumption 11:}
+        $Np_n \xrightarrow{} \infty$ as $N \xrightarrow{} \infty$ and the matrix
+        $$ \lim_{N \xrightarrow{} \infty} (m_n p_n)^{-1} \sum_{\sigma \in N_{m_n}} \mathbbm{E} (r(\sigma\{l,i;j,k\}) r(\sigma\{l,i;j,k\})' f(r(\sigma\{l,i;j,k\})' \beta_{2,0}^*) \mathbbm{1}\{ z \in \{-1,1\}\}) $$
+        has maximal rank, where $f$ is the density of the logistic function.
+    \end{block} 
+
+    \begin{block}{Theorem 2:}
+        Let Assumptions 8 - 11 hold. Then, $\hat{\beta}_2^* \xrightarrow{p} \beta_{2,0}^*$ as $N \xrightarrow{} \infty$.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{{Conditional logit estimation: Asymptotic Properties}}
+    To establish the limiting distribution, a stronger form of Assumption 10 is made, Then, as $N \xrightarrow{} \infty$:
+    \begin{block}{Theorem 3:}
+        Let Assumptions 8 - 12 hold. Then $\rvert \rvert \hat{\beta}_2^* - \beta_{2,0}^* \rvert \rvert = O_p (1/ \sqrt{N(N-1)p_n})$ and
+        $$\Omega^{-1/2} (\hat{\beta}_2^* - \beta_{2,0}^*) \xrightarrow[]{d} N(0,I)$$
+    \end{block}
+    where:
+    \begin{align*}
+        &s(\sigma; \beta_2^*) = r_\sigma \{ \mathbbm{1} \{ z_\sigma = 1\} (1 - F({r_\sigma}' \beta_2^*)) - \mathbbm{1} \{ z_\sigma = - 1\}  F({r_\sigma}' \beta_2^*)\}, \\
+    &\upsilon_{ij} (\beta_2^*) = \sum_{i \neq l,j} \sum_{k \neq i,l,j} s(\sigma\{l,i;j,k\}; \beta_2^*) \quad \quad \Upsilon (\beta_2^*) = \sum_{l=1}^N \sum_{j \neq l}  \upsilon_{ij} \upsilon_{ij}' \\
+        &H (\beta_2^*) = \frac{\partial^2 \mathcal{L}_{CL}(\beta_2^*)}{\partial \beta_2^* \partial {\beta_2^*}'} = \sum_{\sigma \in N_{m_n}} r_\sigma r_\sigma' f(r_\sigma' \beta_2^*) \mathbbm{1}\{ z \in \{-1,1\}\} \\
+        &\Omega = H {(\hat{\beta}_2^*)}^{-1} \Upsilon (\hat{\beta}_2^*) H {(\hat{\beta}_2^*)}^{-1}
+\end{align*}
+\end{frame}

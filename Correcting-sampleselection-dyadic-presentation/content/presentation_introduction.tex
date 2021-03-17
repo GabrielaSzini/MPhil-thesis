@@ -1,0 +1,28 @@
+\begin{frame}
+    \frametitle{Motivation}
+    \begin{itemize}
+        \item    \cite{tinbergen1962shaping} established gravity equations: used to estimate models of international trade flows. Particularly, to infer the effects of trade barriers on flows.\\~\\  \pause
+        \item \textbf{Before \cite{helpman2008estimating}:} studies only considered observations with positive trade flows when estimating the model, without imposing any special treatment on it. \\~\\ 
+        \item \textbf{\cite{helpman2008estimating}:} correct for sample selection using the standard \cite{heckman1979sample} approach. \hyperlink{Gravity model}{\beamerbutton{Gravity model}}\\~\\ \pause
+        \item \textbf{What is the remaining problem?} \\
+        The inclusion of two-way fixed effects when correcting for sample selection through \cite{heckman1979sample} approach leads to incidental parameter problem (\cite{neyman1948consistent})\\~\\  \pause
+        \item \textbf{Main aim:} propose estimators that are not contaminated by this problem.
+    \end{itemize}
+
+
+  \end{frame}
+
+  \begin{frame}
+      \frametitle{Aim of the study}
+      \begin{itemize}
+          \item<1->  Define a model to any dyadic data with sample selection. \\~\\ 
+          \item<2->  Outline the incidental parameter problem that arises when employing the standard \cite{heckman1979sample} aproach. \\~\\ 
+          \item<3->  First stage of sample selection correction: method based on conditional likelihood estimators of \cite{charbonneau2017multiple}. \\~\\ 
+          \item<4->  Propose new approaches to the second stage of sample selection correction: 
+          \begin{itemize}
+              \item Hybrid estimates of fixed effects + Lee's transformation.
+              \item Modification to \cite{kyriazidou1997estimation}. \\~\\ 
+          \end{itemize}
+          \item<5-> Simulation exercise indicates that new approaches reduces the biases in the estimates. 
+      \end{itemize}
+  \end{frame}

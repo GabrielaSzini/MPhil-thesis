@@ -1,0 +1,24 @@
+\begin{frame}[label = h choice]
+    \frametitle{Second approach: Choice of bandwidth}
+    For a given order of differentiability $r$ of the expression $\mathbbm{E}(\Delta x_1' \bm{\varphi} \Phi \rvert \Delta x_2'\beta_2^*)$ and a given sample size $N(N-1)$, $h_n=h (N(N-1))^{-\mu}$ should be chosen such that $\mu = 1/(2 (r+1) +1)$. 
+    \\~\\ 
+    Value for $\mu$ comes from:
+    \begin{itemize}
+        \item Rate of convergence of the distribution of $\hat{\beta}_1$ is maximized by setting $\mu$ as small as possible.
+        \item $\mu$ should be in the range $1-2p < \mu < p/2$, where $p$ is the rate of convergence of $\hat{\beta}_2^*$.
+        \item  $\hat{\beta}_2^*$ should  converge fast enough: at least at a rate $p> (r+1)/(2(r+1)+1)$. \\~\\
+    \end{itemize}  
+    \textbf{Problem of choosing a bandwith boils down to choosing a constant $h$.} \\
+    \cite{kyriazidou1997estimation}: for any positive initially chosen $h$, the distance between the estimator and the parameters' true values is minimized through a correction.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Second approach: Choice of bandwidth}
+    \begin{block}{Corollary 1:}
+        Let $\hat{\beta}_1$ be the estimator with window width $h_n = h  (N(N-1))^{-1/(2 (r+1) +1)}$, and $\hat{\beta}_{1,\delta}$ the estimator with window width $h_{n,\delta} = h  (N(N-1))^{-\delta/(2 (r+1) +1)}$ where $\delta \in (0,1)$. \\
+        Define:
+         $$\hat{\hat{\beta}}_1 = \frac{\hat{\beta}_1 - N(N-1)^{-(1-\delta)(r+1)/(2(r+1)+1)} \hat{\beta}_{1,\delta}}{1 - N(N-1)^{-(1-\delta)(r+1)/(2(r+1)+1)}}$$
+         Then, $(\hat{\hat{\beta}}_1 - \beta_1)$ will converge to a normal distribution centered around 0 at rate $(N(N-1))^{-(r+1)/(2(r+1)-1)}$.
+    \end{block}
+    \textbf{Given an appropriately chosen $h_n$, using an estimated value for $\beta_2^*$ does not affect the limiting distribution of the estimator for $\beta_1$.}
+\end{frame}

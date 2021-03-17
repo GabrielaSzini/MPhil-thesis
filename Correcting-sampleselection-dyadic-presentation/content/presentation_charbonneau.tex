@@ -1,0 +1,67 @@
+\begin{frame}
+    \frametitle{Our proposed methods: Outline}
+    \begin{enumerate}
+        \item \textbf{First stage: conditional logit estimation of \cite{charbonneau2017multiple}.}
+        \begin{itemize}
+            \item \textbf{Differences out the fixed effects $\xrightarrow[]{}$ free of incidental parameter problem.}\\~\\ 
+        \end{itemize}
+        \item Second stage: given estimates of first stage, we propose two methods.
+        \begin{itemize}
+            \item Hybrid approach to retrieve FE of first stage + Lee's transformation to apply Heckman even when errors are logistic distributed.
+            \item A modification to the \cite{kyriazidou1997estimation} approach that relies on the idea of differencing out the selection effects.
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+\begin{frame}
+    \frametitle{{Conditional logit estimation of \cite{charbonneau2017multiple}}}
+\textbf{Main idea:} difference out two-way fixed effects in selection equation. \\
+\textbf{Result:} obtain estimates of $\beta_2^*$ that are not contaminated by the incidental parameters problem. 
+\\~\\ \pause
+Modify Assumption on the distribution of $\eta_{ij}^*$ to: 
+\begin{block}{Assumption:}
+    The idiosyncratic terms $\eta_{ij}^*$ are i.i.d. across $ij$ and follow a standard logistic distribution conditional on the regressors and fixed effects.
+\end{block}
+For simplicity: consider only one period $t$. \\~\\ \pause
+Assumption implies that:
+\begin{align*}
+    \text{Pr}(y_{2,ij} = 1 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*) = \frac{\exp (x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*)}{1 + \exp (x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*)}
+\end{align*}
+\noindent where $x_{2}$ is the vector of observations $x_{2,ij}$ for all possible pairs $ij$.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{{Conditional logit estimation of \cite{charbonneau2017multiple}}}
+    Fix distinct indices $i$, $j$, $k$ and $l$ from the set formed by $i'= 1,...N$.
+    Then:
+    \begin{align*} 
+        &\text{Pr}(y_{2,lj} = 1 \rvert x_2, \xi^*, \zeta^*, \beta_2^*, y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1) \\
+        &= \frac{\exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)}{1+ \exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)} \nonumber
+    \end{align*} \\~\\ \pause
+    \textbf{Which no longer depends on fixed effects.} \\~\\ \pause
+    Define the variables:
+    \begin{align*}
+        &z = \frac{(y_{2,lj} - y_{2,lk}) - (y_{2,ij} - y_{2,ik})}{2} \\
+        &r = (x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))
+    \end{align*} \\~\\
+    Event that $z \in \{-1,1\}$ corresponds to the condition that for any $ij$, $l$ and $k$ satisfies $ y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1$. 
+\end{frame}
+
+\begin{frame}
+    \frametitle{{Conditional logit estimation: Estimator}}
+    \textbf{Conditional on $x_2$ and $z \in \{-1,1\}$, the distribution of $z$ is logistic and does not depend on the fixed effects.} \\
+    \begin{itemize}
+        \item When $z=1$, we have necessarily that $y_{2,lj} = 1$, and when $z=-1$, it is necessarily zero. \\~\\ \pause
+    \end{itemize}
+
+    \textbf{Main features:}
+\begin{itemize}
+    \item Objective function has the functional form of a standard logistic regression, but \textbf{asymptotic variance is of a sandwich form}.
+    \item Controls for degree heterogeneity.
+    \item Allows for \textbf{sparse networks} (fixed effects need not to be estimated).
+    \item Possible to \textbf{test for homophily}.
+    \item \textbf{Drawback :} not all quadruples are informative.
+
+\end{itemize}
+\hyperlink{Jochmans}{\beamerbutton{Asymptotic properties}}
+\end{frame}
