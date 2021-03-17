@@ -1,0 +1,32 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}The gravity model by \cite {helpman2008estimating}}{5}{section.2}
+\contentsline {section}{\numberline {3}Estimation method of \cite {helpman2008estimating}}{7}{section.3}
+\contentsline {section}{\numberline {4}A simplified model of dyadic interactions}{11}{section.4}
+\contentsline {section}{\numberline {5}The Heckman 2-stage approach for sample selection}{12}{section.5}
+\contentsline {section}{\numberline {6}The incidental parameter problem}{17}{section.6}
+\contentsline {section}{\numberline {7}The conditional logit estimation of \cite {charbonneau2017multiple}}{22}{section.7}
+\contentsline {section}{\numberline {8}The first approach: Hybrid estimates and Lee's transformation}{27}{section.8}
+\contentsline {subsection}{\numberline {8.1}The hybrid approach of \cite {martin2018bls}}{28}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Sample selection estimator based on \cite {lee1983generalized}}{29}{subsection.8.2}
+\contentsline {section}{\numberline {9}Second approach: a modification to \cite {kyriazidou1997estimation}}{31}{section.9}
+\contentsline {subsection}{\numberline {9.1}An outline of the approach proposed in \cite {kyriazidou1997estimation}}{31}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}The choice of the bandwidth $h_n$}{35}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}A modification to the approach}{38}{subsection.9.3}
+\contentsline {section}{\numberline {10}Simulations}{39}{section.10}
+\contentsline {subsection}{\numberline {10.1}Data generating process and different designs}{41}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}First stage (estimation of the selection equation)}{43}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Second stage (estimation of the observation equation)}{54}{subsection.10.3}
+\contentsline {section}{\numberline {11}An application to the gravity model for international trade}{60}{section.11}
+\contentsline {subsection}{\numberline {11.1}Estimation of selection equation (decision to trade)}{62}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Estimation of observation equation (directed trade flows)}{64}{subsection.11.2}
+\contentsline {section}{\numberline {12}Conclusion}{65}{section.12}
+\contentsline {section}{\numberline {A}Appendix: Derivations}{72}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Derivation of \cite {helpman2008estimating} gravity equation}{72}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}\cite {helpman2008estimating} estimation equations}{75}{subsection.A.2}
+\contentsline {subsubsection}{\numberline {A.2.1}Definitions of latent variable $Y_{2,ij,t}^*$ and $W_{ij,t}$}{75}{subsubsection.A.2.1}
+\contentsline {subsubsection}{\numberline {A.2.2}Sample selection as an omitted variable bias}{76}{subsubsection.A.2.2}
+\contentsline {subsection}{\numberline {A.3}Sketch of the derivation of the asymptotic expansion}{77}{subsection.A.3}
+\contentsline {subsection}{\numberline {A.4}A simple example for the perfect prediction problem}{78}{subsection.A.4}
+\contentsline {section}{\numberline {B}Appendix: Aditional figures and tables for simulations}{79}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}First stage estimates}{79}{subsection.B.1}
+\contentsline {subsection}{\numberline {B.2}Second stage estimates}{84}{subsection.B.2}

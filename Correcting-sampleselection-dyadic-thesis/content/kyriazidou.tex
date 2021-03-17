@@ -1,0 +1,188 @@
+\section{Second approach: a modification to \cite{kyriazidou1997estimation}} \label{sample_selection_alternative}
+
+\subsection{An outline of the approach proposed in \cite{kyriazidou1997estimation}}
+
+To outline the approach proposed by \cite{kyriazidou1997estimation} to estimate Equation (\ref{eq:model1}) correcting for a possible sample selection bias, for now we assume that we are back in a setting where $T \geq 2$. As the estimation proposed here relies on a consistent estimator\footnote{In her paper, \cite{kyriazidou1997estimation} imposes that only a consistent estimator for the first stage is needed. Therefore, in theory one could even estimate it by the unconditional MLE probit in this setting.} for $\beta_2^*$, we will take into account the estimator defined in section \ref{section_heckman}, denoted by $\hat{\beta}_{2,CL}^*$. We will then impose the strong assumption for now:
+
+\begin{assumption}
+    The true value $\beta_{2,0}^*$ does not vary over time.
+\end{assumption}
+
+Even if this is a strong assumption, our specified model given by Equations (\ref{eq:model1}) - (\ref{eq:model3}) accomodates it.
+In a general framework, we usually have that the exogenous regressors $x_{2,ij,t}$ in Equation (\ref{eq:model3}) are time-varying. However, suppose that they were constant in time, or that a linear combination of those variables, up to a finite number of estimable parameters $\beta_2^*$ is constant over time (${\beta_2^*}'x_{2,ij,1} = {\beta_2^*}'x_{2,ij,2}$). In this scenario, for a dyad $ij$ observed in two consecutive periods, it is expected that the magnitude of the selection effect in the observation equation to be the same in both periods. Therefore time differencing on the Equation (\ref{eq:model1}) would eliminate both the fixed effects $\vartheta_i$ and $\chi_j$ and the sample selection effect. While this is unfeasible in most settings, as the sample selection effect is most likely to vary over time, this remark is the basis for the estimator proposed in this section.
+
+We will follow a similar idea as the standard Heckman approach for sample selection. In the first step, the parameters $\beta_2^*$ are estimated by the approach defined by \cite{charbonneau2017multiple}, yielding $\hat{\beta}_{2,CL}^*$. In the second step, those estimates are used to estimate the time differenced observation equation by a weighted least squares regression. The weights given to each differenced dyad is such that, given the estimates $\hat{\beta}_{2,CL}^*$, observations for which the difference in the sample selection effects approaches zero, a higher weight is assigned, and vice-versa. Therefore, by considering that both the observation equation is differenced and that the weights depend on the difference of the sample selection effects, all fixed effects in the model given by Equations (\ref{eq:model1}) - (\ref{eq:model3}) are differenced out, and their estimates are no longer needed. \footnote{Therefore, in a standard panel data regression with fixed T, the fact that a possible estimator for the fixed effects in the selection equation is inconsistent does not harm this approach.}
+
+Besides the fact that estimators for the fixed effects are no longer needed, one key advantage of this approach compared to the standard Heckman approach is that while the latter requires a full specification of the distribution of the error terms, in general, this approach allows for distributions of both error terms to be unspecified, provided that a semiparametric estimator for the first stage is available. However, in our specified framework, we maintain the distributional assumptions of the error terms given by Assumptions \ref{assumption_heckman_1}, \ref{assumption_heckman_2} and \ref{modified_charbonneau}, and that such errors are independent of the fixed effects and the explanatory variables, given by Assumption \ref{assumption_lee}. We will provide a more rigorous treatment of the arguments presented up to now and the proposed estimator.
+
+In the following we will denote the vector of explanatory variables for both time periods $t=1,2$ and fixed effects by $\varsigma_{ij} \equiv (x_{1,ij,1}, x_{1,ij,2}, x_{2,ij,1}, x_{2,ij,2}, \\ \xi_i^*, \zeta_j^*, \vartheta_i, \chi_j)$. 
+
+The fixed-effects in the observation Equation (\ref{eq:model1}) could easily be differenced out (timewise) for equations that are observed in both periods (i.e., $y_{2,ij,1} = y_{2,ij,2} = 1$). However, the sample selection problem remains, as we can see  from the populational regression:
+\begin{align} \label{eq:kyri1}
+    &\mathbbm{E}(y_{1,ij,1} - y_{1,ij,2} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) \\
+    &= (x_{1,ij,1} - x_{1,ij,2})' \beta_1 + \mathbbm{E} (u_{ij,1} - u_{ij,2} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij} ) \nonumber
+\end{align}
+
+In a general framework, and also in our framework, there is no reason to expect that the last term is zero, which would be given by either $\mathbbm{E} (u_{ij,1} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) = \mathbbm{E} (u_{ij,2} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) = 0$, or simply  $\mathbbm{E} (u_{ij,1} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) = \mathbbm{E} (u_{ij,2} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij})$.
+
+For ease of exposition note that for each time period, given that an observation is observed in both $t=1,2$:
+\begin{align} \label{eq:kyri2}
+    &\mathbbm{E}(y_{1,ij,t} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) \\
+    &= x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \mathbbm{E} (u_{ij,t} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) \nonumber
+\end{align}
+
+Using the same definition as in Section \ref{section_heckman}, we can assume that the conditional expectation in the last term of Equation (\ref{eq:kyri2}) is a smooth function $\varphi_{ij,t}$ that depends on $\varsigma_{ij}$ and the joint conditional distribution of the error terms, denoted by $H_{ij,t}(u_{ij,t}, \eta_{ij,1}^*, \eta_{ij,2}^* \rvert \varsigma_{ij})$. 
+\begin{align} \label{eq:kyri3}
+    \varphi_{ij,t} &\equiv  \mathbbm{E} (u_{ij,t} \rvert y_{2,ij,1} = y_{2,ij,2} = 1, \varsigma_{ij}) \\
+    & = \mathbbm{E} (u_{ij,t} \rvert \eta^*_{i j,1} \leq x_{2,ij,1}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, \eta^*_{i j,2} \leq x_{2,ij,2}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*,\varsigma_{ij}) \nonumber\\
+    &= \bm{\varphi} (x_{2,ij,1}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, _{2,ij,2}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* ; H_{ij,t}(u_{ij,t}, \eta_{ij,1}^*, \eta_{ij,2}^* \rvert \varsigma_{ij})) \nonumber\\
+    &= \bm{\varphi_{ij,t}} (x_{2,ij,1}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, _{2,ij,2}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* ;\varsigma_{ij}) \nonumber
+\end{align}
+
+As we are considering that the errors are independent and identically distributed over dyads $ij$ and over time, and that they are independent of $\varsigma_{ij}$, this further reduces to:
+\begin{align} \label{eq:kyri4}
+    \varphi_{ij,t} &= \mathbbm{E} (u_{ij,t} \rvert y_{2,ij,t} = 1) \\
+    &= \mathbbm{E} (u_{ij,t} \rvert \eta^*_{i j,t} \leq x_{2,ij,t}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*) \nonumber \\
+    &= \bm{\varphi}(x_{2,ij,t}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*) \nonumber 
+\end{align}
+
+This translates to the smooth function given by $\bm{\varphi_{ij,t}}$, which is used to construct the inverse Mills-ratio as a function of the single index $x_{2,ij,t}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*$, becoming invariant over dyads and time. Moreover, this function depends on the joint distribution of the errors. If Assumption \ref{assumption_lee_2} is imposed and the according transformations of Section \ref{sample_selection} are made in the errors $\eta^*$, the function takes the form $\bm{\varphi}(x) = \frac{\phi(J(x))}{F(-x)}$ with $J$ defined as in Section \ref{sample_selection}, and $F$ the standard logistic distribution. However, this assumption is not needed and neither are the transformations since the functional form of $\bm{\varphi}$ is not needed in this approach as we will see later. 
+
+We can then rewrite the observation Equation (\ref{eq:model1}) with the sample selection correction as:
+\begin{align} \label{eq:kyri5}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \varphi_{ij,t} + \nu_{ij,t}
+\end{align}
+
+\noindent where, again, $\nu_{ij,t} = u_{ij,t} - \varphi_{ij,t}$. Therefore, by construction it satisfies that $\mathbbm{E}(\nu_{ij,t} \rvert y_{2,ij,1} = y_{2,ij,1} = 1, \varsigma) = 0$.
+
+As mentioned before, the main idea would be to difference out in Equation (\ref{eq:kyri5}) both the fixed effects $\vartheta_i$ and $\chi_j$ and the sample selection effect $\varphi_{ij,t}$. However, as pointed out before, in general, $\varphi_{ij,1} \neq \varphi_{ij,2}$ in the case that there is sample selection in the model. The equality would only hold if $x_{2,ij,1}'{\beta_2^*} = x_{2,ij,2}'{\beta_2^*}$. If that was the case for all the individuals observed in $t=1,2$ one could simply employ a first difference in the equation. In this case the possibility of differencing out the equation for consistent estimation would hold under weaker distributional assumptions: since the first differences over time is taken in the dyad level, the errors are not required to be i.i.d. across dyads and nor to be independent of $\varsigma_{ij}$. Then, the functional form of $\varphi_{ij,t}$ would be allowed to vary across individuals.
+
+In this scenario of a more flexible form of $\varsigma_{ij}$, it would be sufficient that the following assumption holds:
+\begin{assumption} \label{conditional_exch}
+    Consider that $(\eta^*_{ij,1}, \eta^*_{ij,2}, u_{ij,1},u_{ij,2})$ and $(\eta^*_{ij,2}, \eta^*_{ij,1}, u_{ij,2},u_{ij,1})$ are identically distributed conditional on $\varsigma_{ij}$, i.e.,
+    $$ H(\eta^*_{ij,1}, \eta^*_{ij,2}, u_{ij,1},u_{ij,2}) = H(\eta^*_{ij,2}, \eta^*_{ij,1}, u_{ij,2},u_{ij,1})$$
+\end{assumption}
+
+Then, for an individual that has $x_{2,ij,1}'{\beta_2^*} = x_{2,ij,2}'{\beta_2^*}$:
+\begin{align*}
+    \varphi_{ij,1} &= \mathbbm{E} (u_{ij,1} \rvert \eta^*_{i j,1} \leq x_{2,ij,1}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, \eta^*_{i j,2} \leq x_{2,ij,2}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, \varsigma_{ij}) \\
+    &= \mathbbm{E} (u_{ij,2} \rvert \eta^*_{i j,2} \leq x_{2,ij,1}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, \eta^*_{i j,1} \leq x_{2,ij,2}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*, \varsigma_{ij}) \\
+    &=\varphi_{ij,2}
+\end{align*}
+
+Thus, differencing would still be feasible under these weaker distributional assumptions. Defining:
+$$\Psi_{ij} = \mathbbm{1}(x_{2,ij,1}'{\beta_2^*} = x_{2,ij,2}'{\beta_2^*})$$ 
+$$ \Phi_{ij} = \mathbbm{1}(y_{2,ij,1} = y_{2,ij,2} = 1)$$
+
+Denoting $\Delta$ as the first differences operator, an OLS estimator for this case would be:
+\begin{align*}
+    \breve{\beta}_1 = \Big[ \sum_{i=1}^N \sum_{j \neq i} \Delta x_{1,ij}' \Delta x_{1,ij} \Psi_{ij} \Phi_{ij}\Big]^{-1} \Big[\sum_{i=1}^N \sum_{j \neq i} \Delta x_{1,ij}' \Delta y_{1,ij} \Psi_{ij} \Phi_{ij}\Big]
+\end{align*}
+
+Under appropriate regularity conditions, this estimator would be consistent and asymptotically unbiased. However, in most cases we will likely have that $\Psi_{ij} = 0$ for all dyads $ij$. The approach then is to assign weights for observations according to how close to zero $x_{2,ij,1}'{\beta_2^*} - x_{2,ij,2}'{\beta_2^*}$ is. If $\bm{\varphi}$ is a smooth function and provided that our estimator $\hat{\beta}_{2,CL}^*$ is consistent, observations that have this difference close to zero will also have that $\Delta\varphi_{ij}$ is close to zero, and therefore, the sample selection effects will be close to be differenced out.
+
+Therefore, given this argument, we can propose the estimator:
+\begin{align} \label{kyri_estimator}
+    \hat{\beta}_1 = \Big[ \sum_{i=1}^N \sum_{j \neq i} \hat{\Psi}_{ij} \Delta x_{1,ij}' \Delta x_{1,ij} \Phi_{ij}\Big]^{-1} \Big[ \sum_{i=1}^N \sum_{j \neq i} \hat{\Psi}_{ij} \Delta x_{1,ij}' \Delta y_{1,ij} \Phi_{ij}\Big]
+\end{align}
+
+\noindent where $\hat{\Psi}_{ij}$ is an estimated weight, based on $\hat{\beta}_{2,CL}^*$, that declines to zero as the magnitude of $\rvert x_{2,ij,1}'{\hat{\beta}_{2,CL}^*} - x_{2,ij,2}'{\hat{\beta}_{2,CL}^*} \rvert$ increases. Thus, we guarantee that a higher weight is attributed to observations where the sample selection effects almost cancel out. More precisely, these weights are given by:
+\begin{align} \label{kyri_weights}
+    \hat{\Psi}_{ij} = \frac{1}{h_n} K \Big( \frac{\Delta x_{2,ij}' \hat{\beta}_{2,CL}^*}{h_n} \Big)
+\end{align}
+
+\noindent where $K$ is a kernel density function, and $h_n$ is a sequence of bandwidths which tends to zero as $N(N-1) \xrightarrow{} \infty$. For a fixed magnitude of the difference $\rvert x_{2,ij,1}'{\hat{\beta}_{2,CL}^*} - x_{2,ij,2}'{\hat{\beta}_{2,CL}^*} \rvert$, the weight $\hat{\Psi}_{ij}$ shrinks as the sample size increases.
+
+Finally, note that this approach requires an exclusion restriction on the set of regressors, i.e., that at least one of the variables in the vector $x_2$ is not contained in the vector $x_1$. This is due to that, in cases where the differences $\rvert x_{2,ij,1}'{\hat{\beta}_{2,CL}^*} - x_{2,ij,2}'{\hat{\beta}_{2,CL}^*} \rvert$ shrinks to zero, if $x_1 = x_2$, the regressors in the observation equation will also shrink and the usual rank conditions for the weighted least squares will not hold.
+
+\subsection{The choice of the bandwidth $h_n$} \label{bandwidth}
+To compute the estimator, a kernel function $K$ and a bandwidth parameter $h_n$ need to be chosen. \cite{kyriazidou1997estimation} states that the asymptotic performance of the estimator is more influenced by the choice of the bandwidth than by the choice of the kernel. Therefore, she focuses on this choice, setting in most of her simulations the kernel to be a standard normal density function. The choice of $h_n$ relies on the asymptotic results presented in the paper, and intuitively consists on choosing it such that a measure of distance between the estimator and the parameters true values is minimized. For brevity, we now present only the main results and intuitive explanations. For a more formalized view, refer to \cite{kyriazidou1997estimation}.
+
+Using arguments provided by \cite{bierens1987kernel}, \cite{kyriazidou1997estimation} shows that for a given order of differentiability $r$ of the expression $\mathbbm{E}(\Delta x_1' \bm{\varphi} \Phi \rvert \Delta x_2'\beta_2^*)$ and a given sample size $N(N-1)$, $h_n=h (N(N-1))^{-\mu}$ should be chosen such that $\mu = 1/(2 (r+1) +1)$. This result follows from the rate of convergence of the distribution of the estimator $\hat{\beta}_1$, which is maximized by setting $\mu$ as small as possible. However, $\mu$ should be contained in the range $1-2p < \mu < p/2$, where $p$ is the rate of convergence of the estimator for $\beta_2^*$ for the asymptotic results derived by the author to hold. The estimator for $\beta_2^*$ should also converge fast enough for the results to hold, namely, at least at a rate $p> (r+1)/(2(r+1)+1)$. Therefore, combining the inequalities for $p$ and $\mu$, we arrive at the result that the minimum $\mu$ is achieved at $\mu = 1/(2 (r+1) +1)$. For this chosen parameter, the estimator $\hat{\beta}_1$ will converge at a rate $(N(N-1))^{-(r+1)/(2(r+1)-1)}$.
+
+Thus, the problem of choosing a bandwith boils down to choosing a constant $h$. \cite{kyriazidou1997estimation} shows that for any positive initially chosen $h$, the distance between the estimator and the parameters' true values is minimized through a correction given by the following corollary:
+
+\begin{corollary} \label{corollary}
+    Let $\hat{\beta}_1$ be the estimator with window width $h_n = h  (N(N-1))^{-1/(2 (r+1) +1)}$, and $\hat{\beta}_{1,\delta}$ the estimator with window width $h_{n,\delta} = h  (N(N-1))^{-\delta/(2 (r+1) +1)}$ where $\delta \in (0,1)$. \\
+    Define:
+     $$\hat{\hat{\beta}}_1 = \frac{\hat{\beta}_1 - N(N-1)^{-(1-\delta)(r+1)/(2(r+1)+1)} \hat{\beta}_{1,\delta}}{1 - N(N-1)^{-(1-\delta)(r+1)/(2(r+1)+1)}}$$
+     Then, $(\hat{\hat{\beta}}_1 - \beta_1)$ will converge to a normal distribution centered around 0 at rate $(N(N-1))^{-(r+1)/(2(r+1)-1)}$.
+\end{corollary}
+
+She shows that this Corollary results in obtaining an optimal bandwidth $h^*$, given an initial chosen value of $h$. While $h^*$ can be pinned down and it is necessary for the estimates of the asymptotic variance, one does not need to pin down its value for obtaining the asymptotically corrected estimates of $\beta_1$ (however the estimates of $\beta_1$ and the value of $h^*$ are tied down).
+
+The steps to implement this estimator are:
+\begin{itemize}
+    \item Step 1: For a given $r$ and $N(N-1)$, choose any $h_n = h  (N(N-1))^{-1/(2 (r+1) +1)}$ and any $h_{n,\delta} = h  (N(N-1))^{-\delta/(2 (r+1) +1)}$ with an arbitrary positive $h$ and $0<\delta<1$.
+    \item Step 2: Compute both $\hat{\beta}_1$ and $\hat{\beta}_{1,\delta}$.
+    \item Step 3: From the Corollary above, obtain the asymptotically unbiased estimator $\hat{\hat{\beta}}_1$.
+\end{itemize}
+
+Another interesting result obtained in \cite{kyriazidou1997estimation} is that given an appropriately chosen $h_n$ as mentioned above, using an estimated value for $\beta_2^*$ does not affect the limiting distribution of the estimator for $\beta_1$. This follows from the lower bound imposed on $\mu$, that guarantees that $\beta_1$ is estimated at a lower rate than $\beta_2^*$.
+
+More formally, defining the scalar index $X_{2,ij} = \Delta x_{2,ij} \beta_2^*$, its estimated counterpart $\hat{X}_{2,ij} = \Delta x_{2,ij} \hat{\beta}_{2,CL}^*$ and the following quantities:
+$$ S_{xx} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{X_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta x_{1,ij} \Phi_{ij}$$
+$$ \hat{S}_{xx} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{\hat{X}_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta x_{1,ij} \Phi_{ij}$$
+$$ S_{x\nu} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{X_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta \nu_{ij} \Phi_{ij}$$
+$$ \hat{S}_{x\nu} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{\hat{X}_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta \nu_{ij} \Phi_{ij}$$
+$$ S_{x\varphi} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{X_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta \varphi_{ij} \Phi_{ij}$$
+$$ \hat{S}_{x\varphi} = \frac{1}{N(N-1)} \sum_{i=1}^N \sum_{j \neq i} \frac{1}{h_n} K \Big( \frac{\hat{X}_{2,ij}}{h_n} \Big) \Delta x_{1,ij}'\Delta \varphi_{ij} \Phi_{ij}$$
+
+By choosing an appropriate $h_n$, \cite{kyriazidou1997estimation} shows that the quantities $\hat{S}_{xx}$, $\hat{S}_{x\nu}$ and $\hat{S}_{x\varphi}$ have the same probability limits as their infeasible counterparts ${S}_{xx}$, ${S}_{x\nu}$ and ${S}_{x\varphi}$ (which consider $\beta_2^*$ instead of its estimator).
+
+Then, (i) by taking the first differences of Equation (\ref{eq:kyri5}) and premultiplying it by $\hat{\Phi}_{ij} \Delta x_{1,ij}'$, (ii) considering the estimator $\hat{\beta}_1$, and (iii) defining $\tilde{\beta}_1$ to be the unfeasible estimator (i.e., evaluated at the true $\beta_2^*$), we can easily write:
+$$ \tilde{\beta}_1 - \beta_1 = S_{xx}^{-1}(S_{x\nu} + S_{x\varphi})$$
+$$ \hat{\beta}_1 - \beta_1 = \hat{S}_{xx}^{-1}(\hat{S}_{x\nu} + \hat{S}_{x\varphi})$$
+
+Therefore, it follows that if the quantities $\hat{S}_{xx}$, $\hat{S}_{x\nu}$ and $\hat{S}_{x\varphi}$ have the same probability limits as their infeasible counterparts, the estimators $\tilde{\beta}_1$ and $\hat{\beta}_1$ will also have the same limiting distributions.
+
+\subsection{A modification to the approach} \label{modified_kyri}
+
+Even though in most settings we have that the regressors $x_{1,ij,t}$ vary over time, in particular cases such as in trade applications, most of the explanatory variables in the observation equation do not have any variability over time. For instance, traditional variables used in trade applications are the distance between countries, whether they share the same currency, or have the same official language, etc. This implies that, in the delineated approach by \cite{kyriazidou1997estimation}, the coefficients of such regressors are not estimable, since the method relies on time differencing.
+
+We propose in this section a modification to the previous method, that is feasible due to the dyadic structure of our data. Instead of differencing over time, we propose that the variables are differenced over dyads, such that, fixing a single time period $t$, and for a quadruple given by the indices $i$, $j$, $k$ and $l$:
+\begin{align*}
+    \Delta_{ijlk} y_{1,ij} = (y_{1,ij} - y_{1,ik}) - (y_{1,lj} - y_{1,lk}) 
+\end{align*}
+
+Given this definition for the operator $\Delta_{ijlk}$, it is easy to see from Equation (\ref{eq:model1}) that such method would difference out the fixed effects $\vartheta_i$ and $\chi_j$. By redefining the vector $\varsigma_{ij}$ to collect the explanatory variables for the quadruple $ij$, $ik$, $lj$, $lk$, and their respective fixed effects, yielding:
+$$\varsigma_{ijlk} \equiv (x_{1,ij}, x_{2,ij}, x_{1,ik}, x_{2,ik}, x_{1,lj}, x_{2,lj}, x_{1,lk}, x_{2,lk},\xi_i^*, \xi_l^*,\zeta_j^*, \zeta_k^*, \vartheta_i, \vartheta_l, \chi_j, \chi_k)$$ 
+
+It follows that:
+\begin{align*}
+    &\mathbbm{E}[\Delta_{ijlk} y_{1,ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk}] \\
+    &= \Delta_{ijlk} x_{1,ij}' \beta_1 + \mathbbm{E}(\Delta_{ijlk} u_{1,ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk})
+\end{align*}
+
+Based on the previously outlined baseline approach of \cite{kyriazidou1997estimation}, if we then define:
+\begin{align*}
+    \varphi_{ijlk} = \mathbbm{E}(u_{ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk})
+\end{align*}
+
+We can write the equivalent of Equation (\ref{eq:kyri5}) for this modification:
+\begin{align*}
+    y_{1,ij} = \beta_1' x_{1,ij} + \vartheta_i + \chi_j + \varphi_{ijlk} + \nu_{ij}
+\end{align*}
+
+For a given dyad $ij$ there is more than one associated quadruple, as there are several combinations of $l$ and $k$ (the restriction being that all indices must be different). However, for all such quadruples, it follows that, as before, $\nu_{ij} = u_{ij} - \varphi_{ijlk}$. Therefore, by construction it is sufficient that $\mathbbm{E}(\nu_{ij} \rvert y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1, \varsigma_{ijlk}) = 0$.
+
+Moreover, under the Assumptions \ref{assumption_heckman_1}, \ref{assumption_heckman_2} and \ref{modified_charbonneau}, it follows that the equivalent of the conditional exchangeability Assumption \ref{conditional_exch} for this modification is satisfied.
+
+Therefore, following the same logic as in the previous subsection, we can construct an estimator for $\beta_1$ such that:
+\begin{align}
+    \hat{\beta}_1 = &\Big[ \sum_{i=1}^N \sum_{j \neq i} \sum_{k \neq i,j} \sum_{l \neq i,j,k} \hat{\Psi}_{ijkl} \Delta_{ijkl} x_{1,ij}' \Delta_{ijkl} x_{1,ij} \Phi_{ijkl}\Big]^{-1} \\
+     &\Big[  \sum_{i=1}^N \sum_{j \neq i} \sum_{k \neq i,j} \sum_{l \neq i,j,k} \hat{\Psi}_{ijkl} \Delta_{ijkl} x_{1,ij}' \Delta_{ijkl} y_{1,ijkl} \Phi_{ijkl}\Big] \nonumber
+\end{align}
+
+Accordingly, $\Phi_{ijkl}$ is defined as: $\Phi_{ijkl} = \mathbbm{1}(y_{2,ij} = y_{2,ik} = y_{2,lj} = y_{2,lk} =1)$. Also in this modification, $\hat{\Psi}_{ijkl}$ is an estimated weight, based on $\hat{\beta}_{2,CL}^*$ that declines to zero as the magnitude of $\rvert \Delta_{ijkl}x_{2,ij}'{\hat{\beta}_{2,CL}^*} \rvert$ increases. Thus, we continue to guarantee that a higher weight is attributed to observations where the sample selection effects almost cancel out. More precisely, in this modification these weights are given by:
+\begin{align} \label{kyri_weights}
+    \hat{\Psi}_{ijkl} = \frac{1}{h_n} K \Big( \frac{\Delta_{ijkl} x_{2,ij}' \hat{\beta}_{2,CL}^*}{h_n} \Big)
+\end{align}
+
+\noindent where $K$ is a kernel density function, and $h_n$ is a sequence of bandwidths. The remaining of the modification follows from the previous subsection. 
+
+The potential drawbacks of this method are that, as we need that all quadruples need to be observed for the differentiation to hold, the approach may not be well suited for sparse networks, where few links are formed given a number of units $N$.
+
+Moreover, even though \cite{kyriazidou1997estimation} has provided results for the asymptotic variance of the estimator defined in the previous subsection, we do not consider this here, since the same indices are present in several combinations of quadruples, and a correlation is introduced in the transformed error terms, such that the asymptotic variance should account for that. This was not an issue before, once the differentiation was over time for a given dyad and errors are i.i.d. over time and dyads.
+
+

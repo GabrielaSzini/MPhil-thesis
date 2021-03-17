@@ -1,0 +1,71 @@
+\documentclass[
+    % twosupervisors, % uncomment if two supervisors
+    11pt,
+    a4paper
+    ]{mphilthesis}
+% options other than twosupervisors are passed to \documentclass[titlepage]{article}
+% packages already loaded: amsmath, graphicx, hyperref, natbib, amsthm, thmtools, thm-restate, appendix 
+
+\usepackage{blindtext}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{chngpage}
+\usepackage{adjustbox}
+\usepackage{rotating}
+\usepackage{afterpage}
+
+
+
+
+\DeclareMathOperator{\argmax}{argmax}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+
+% add here more packages or macros if needed
+
+\author{Gabriela Mara Miyazato Szini}
+\title{Correcting for Sample Selection Bias in Dyadic Regressions \\ \large An Application to Gravity Models}
+\degree{Master of Philosophy in Economics (research)}
+\degreedate{Amsterdam, August 2020}
+\college{Tinbergen Institute}
+\university{University of Amsterdam}
+\supervisor{Prof. Dr. Frank Kleibergen}
+\affiliation{University of Amsterdam}
+\supervisorB{Dr. B}
+\affiliationB{University of B}
+\logourl{ti_logoblok.jpg}
+
+\begin{document}
+\maketitle
+\input{content/acknowledgement.tex}
+\begin{abstract}
+\input{content/abstract.tex}
+\end{abstract}
+\tableofcontents
+
+\newpage 
+\input{content/introduction.tex}
+\input{content/gravity_model.tex}
+\input{content/helpman_melitz.tex}
+\input{content/model_heckman.tex}
+\input{content/incidental_parameters.tex}
+\input{content/charbonneau.tex}
+\input{content/hybrid_lee_approach.tex}
+\input{content/kyriazidou.tex}
+\input{content/simulations.tex}
+\input{content/application.tex}
+\input{content/conclusion.tex}
+\bibliographystyle{ecta}
+  \bibliography{library.bib}
+\appendix
+\section{Appendix: Derivations}
+\input{content/appendix_derivation_gravity.tex}
+\input{content/appendix_derivation_estimation_helpman.tex}
+%\input{content/appendix_derivation_heckman.tex}
+\input{content/appendix_derivation_expansion.tex}
+\input{content/appendix_perfect_prediction.tex}
+\section{Appendix: Aditional figures and tables for simulations}
+\input{content/appendix_tables_figures.tex}
+
+\end{document}

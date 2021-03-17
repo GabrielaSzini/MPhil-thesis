@@ -1,0 +1,109 @@
+\subsection{Derivation of \cite{helpman2008estimating} gravity equation} \label{gravity_model_derivation}
+In this subsection we follow the derivations of \cite{helpman2008estimating} for their gravity model.
+We consider a model with an economy comprising $I$ countries, indexed by $i=1,2,...,I$. All countries consume and produce a continuum of products.
+
+Country $i$'s utility function is given by:
+\begin{align}
+    u_{i}=\left[\int_{l \in B_{i}} x_{i}(l)^{\alpha} d l\right]^{1 / \alpha}, 0<\alpha<1
+\end{align}
+\noindent where $x_i(l)$ is its consumption of product $i$, $B_i$ is the set of products available for consumption in country $i$ and $\alpha$ determines the elasticity of substitution across products, given by $\sigma = \frac{1}{1-\alpha}$.
+Denoting $Y_i$ the income of country $i$, which equals its expenditure levels, we can write country $i$'s demand for product $l$ as:
+\begin{align}
+x_{i}(l)=\frac{\breve{p}_{i}(l)^{-\sigma} Y_{i}}{P_{i}^{1-\sigma}}
+\end{align}
+Where $\breve{p}_{i}(l)$ is the price of product $l$ in country $i$, and $P_i$ is the country's price index, given by:
+\begin{align} \label{price_index}
+P_{i}=\left[\int_{l \in B_{i}} \check{p}_{i}(l)^{1-\sigma} d l\right]^{1 /(1-\sigma)}
+\end{align}
+Note here that $\sigma$ is not only constant across countries, but also across products. Some of the products in $B_i$ are domestically produced while others are imported. Remembering that a given country $i$ has a measure of $N_i$ firms, and that the products are differentiated by the origin country, we have that there are $\sum_i^I N_i$ products in the economy.
+
+As mentioned in Section \ref{gravity_model}, the firms of country $i$ produces one unit of output with a combination of inputs given by $c_i a$ that minimizes costs, where $a$ is firm-specific and denotes the number of bundles of inputs used per output, and $c_i$ is a country-specific cost of the bundle. Moreover, $1/a$ reflects the productivity of a firm, and $a$ follows a cumulative distribution function $G(a)$ with support $[a_L, a_H]$. The functional form of this distribution is the same across countries. 
+
+When a firm sells a product in the home market it bears only the production costs, but if the firm sells its product in country $j$, there are two additional costs: the fixed cost of serving $j$, and a transport (variable) cost that takes the form of a "melting iceberg" cost, as mentioned in Section \ref{gravity_model}. 
+
+By assuming monopolistic competition in the final goods, and given that every single firm has a measure zero, the demand function implies that a firm from country $i$ maximizes its profits by charging the mill-price, which is a standard mark-up pricing equation:
+
+\begin{align}
+    \breve{p}_{i}(l)=\tau_{i j} \frac{c_{i} a}{\alpha}
+\end{align}
+
+If this firm sells to consumers in country $j$, then it sets a delivered price equal to it.
+As a result, by combining the demand function, the prices and the associated costs, we have that the profits that a firm in country $i$ obtains by exporting to country $j$ is given by:
+
+\begin{align}
+    \pi_{i j}(a)=(1-\alpha)\left(\frac{\tau_{i j} c_{i} a}{\alpha P_{j}}\right)^{1-\sigma} Y_{j}-c_{i} f_{i j}
+\end{align}
+
+For a firm in country $i$, exporting to a country $j$ is only profitable for $a \leq a_{ij}$, where $a_{ij}$ can be defined by $\pi_{ij} (a_{ij}) = 0$, or:
+
+\begin{align} \label{final_1}
+    (1-\alpha)\left(\frac{\tau_{i j} c_{i} a_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j}=c_{i} f_{i j}
+\end{align}
+
+Which is equation \ref{eq:MHR1}. Therefore, this equation determines the fraction of firms in country $i$ that will export to country $j$, given by $G(a_{ij})$, which, as highlighted before, can be zero. Therefore, the set $B_j$ of products available in country $j$ will be smaller than the set of products in the economy.
+
+Then, the bilateral trade volumes is given by:
+
+\begin{align} \label{final_2}
+V_{i j}=\left\{\begin{array}{cc}
+\int_{a_{L}}^{a_{i j}} a^{1-\sigma} d G(a) & \text { for } a_{i j} \geq a_{L} \\
+0 & \text { otherwise }
+\end{array}\right.
+\end{align}
+
+Note that this equation is almost simply obtaining the fraction of firms exporting to country $j$. The difference is the term $1-\sigma$, which was included just to simplify the remaining derivations of the model. 
+
+From the demand function, the pricing equation and by taking into account that country $i$ has a measure of $N_i$ firms, we have that the value of country $i$'s exports to country $j$ is:
+
+\begin{align} \label{final_3}
+    Y_{1,i j}=\left(\frac{c_{i} \tau_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j} N_{i} V_{i j}
+\end{align}
+
+It is clear that this bilateral trade volume is equal to zero if $a_{ij} \leq a_L$, since in this case $V_{ij} = 0$.
+Moreover, using the equation of the price indices, Equation (\ref{price_index}), and the definition of $V_{ij}$, we finally obtain the last equation that characterizes the model:
+
+\begin{align} \label{final_4}
+    P_{j}^{1-\sigma}=\sum_{i=1}^{I}\left(\frac{c_{i} \tau_{i j}}{\alpha}\right)^{1-\sigma} N_{i} V_{i j}
+\end{align}
+
+Equations (\ref{final_1})-(\ref{final_4}) show that the bilateral trade flows $Y_{1,ij}$ can be obtained from the income levels $Y_j$, the number of firms $N_i$, the unit costs $c_i$, the fixed costs $f_{ij}$ and the variable costs $\tau_{ij}$.
+
+We now show that under the assumptions that the variable costs are symmetric ($\tau_{ij} = \tau_{ji}$) and that $V_{ij}$ can be multiplicatively decomposed as a deterministic function of three components (one that depends only on the exporter, one that depends only on the importer and one that depends on country-pair characteristics that are symmetric for every country-pair), we can obtain the gravity model detailed in \cite{anderson2003gravity}. This indicates that the model presented here is a generalization of the traditional gravity model, where such assumptions were relaxed.
+
+First, we use the equality of income and expenditures of country $i$, given by $Y_i = \sum_{j=1}^J Y_{1,ij}$ (note that this summation also takes into account the sales to home residents, $Y_{1,ii}$). Then, we can use Equation (\ref{final_3}) to write $Y_i$ as:
+
+\begin{align}  \label{implied1}
+    Y_{i}=\left(\frac{c_{i}}{\alpha}\right)^{1-\sigma} N_{i} \sum_{h}\left(\frac{\tau_{i h}}{P_{h}}\right)^{1-\sigma} Y_{h} V_{i h}
+\end{align}
+
+We can obtain an analogous expression for $Y_{j}$, and substitute in Equation (\ref{final_3}) to obtain:
+
+\begin{align} \label{mij_updated}
+    Y_{1,i j}=\frac{Y_{i} Y_{j}}{Y^W} \frac{\left(\frac{\tau_{i j}}{P_{j}}\right)^{1-\sigma} V_{i j}}{\sum_{h=1}^{J}\left(\frac{\tau_{i h}}{P_{h}}\right)^{1-\sigma} V_{i h} s_{h}}
+\end{align}
+where $Y^W = \sum_{j=1}^J Y_j$ is the world income and $s_h = Y_h/Y^W$ is the share of country $h$ in the world income.
+
+We now assume the following:
+
+\begin{assumption} The following restrictions should hold:\\
+    (i) The variable costs are symmetric $\tau_{ij} = \tau_{ji}$.\\
+    (ii) $V_{ij}$ is decomposable as follows
+        $$ V_{ij} = \left(\varphi_{I M, j} \varphi_{E X, i} \varphi_{i j}\right)^{1-\sigma} $$
+        where $\varphi_{I M, i}$ depends only on the parameters of the importing country, $\varphi_{E X, j}$ depends only on the parameters of the exporting country, and $\varphi_{i j} = \varphi_{j i}$ $\forall i,j$.
+\end{assumption}
+
+We can then use Equation (\ref{mij_updated}) to obtain:
+
+\begin{align} \label{HMR_vanW1}
+    \frac{Y_{1,i j}}{Y^W}=s_{i} s_{j}\left(\frac{\tau_{i j} \varphi_{i j}}{Q_{i} Q_{j}}\right)^{1-\sigma}
+\end{align}
+
+Where $Q_j = P_j / \varphi_{IM, j}$, and the values of $Q_i$ are solved from:
+
+\begin{align} \label{HMR_vanW2}
+    Q_{i}^{1-\sigma}=\sum_{h}\left(\frac{\tau_{i h} \varphi_{i h}}{Q_{h}}\right)^{1-\sigma} s_{h}
+\end{align}
+
+Which is implied by Equations (\ref{eq:MHR4}) and (\ref{implied1}).
+Therefore, we can see that Equations (\ref{HMR_vanW1}) and (\ref{HMR_vanW2}) are essentially the system of equations derived by \cite{anderson2003gravity}. Note that in this case, the heterogeneous productivity of firms do not play a role in the volume of trade flows, and neither the sample selection problem is explicitly stated in the equation.
+

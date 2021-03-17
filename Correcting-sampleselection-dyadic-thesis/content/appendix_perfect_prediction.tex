@@ -1,0 +1,54 @@
+\subsection{A simple example for the perfect prediction problem} \label{perfect_prediction}
+
+This Appendix outlines a simple example provided by \cite{kunz2017estimating} that demonstrates the perfect prediction problem.
+
+Consider a standard panel Probit model:
+\begin{align*}
+    \text{Pr} (y_{it} = 1 \rvert \alpha_i, x_{it}) = \Phi (\alpha_i + x_{it}' \beta)
+\end{align*}
+\begin{equation*}
+    \hspace{10000pt minus 1fil} (i = 1,...N; t=1,...T)\hfilneg
+\end{equation*}
+
+\noindent where $y_{it} \in \{0,1\}$, a binary variable, $\alpha_i$ is an individual fixed effect, $x_{it}$ is a vector of $K$ explanatory variables, $\beta \in \mathbbm{R}^K$ is a vector of coefficients, and $\Phi$ is the standard normal distribution function.
+
+The log-likelihood is given by:
+\begin{align*}
+    \mathcal{L}(\beta) = \sum_{i=1}^N \sum_{t=1}^T \{ y_{it} \ln \Phi (\alpha_i + x_{it}' \beta) + (1 - y_{it}) \ln (1 - \Phi (\alpha_i + x_{it}' \beta))\}
+\end{align*}
+
+We show that the first order conditions of this log-likelihood does not have a finite solution if $\sum_{t=1}^T y_{it} = 0$ or $\sum_{t=1}^T y_{it} = T$ for a given $i$. Thus, the estimates of $\alpha_i$ do not exist in those cases.
+
+The first order conditions are given by:
+\begin{align*}
+    \frac{\partial \mathcal{L}}{\partial \beta_k} = \sum_{i=1}^N \sum_{t=1}^T (y_{it} - \Phi(\alpha_i + x_{it}' \beta)) \frac{\phi (\alpha_i + x_{it}' \beta)}{\Phi(\alpha_i + x_{it}' \beta)(1-\Phi(\alpha_i + x_{it}' \beta))} x_{k,it} = 0 \\
+\end{align*}
+\begin{equation*}
+    \hspace{10000pt minus 1fil} \forall k = 1,...K\hfilneg
+\end{equation*}
+\begin{align} \label{eq:pp}
+    \frac{\partial \mathcal{L}}{\partial \alpha_i} = \sum_{t=1}^T (y_{it} - \Phi(\alpha_i + x_{it}' \beta)) \frac{\phi (\alpha_i + x_{it}' \beta)}{\Phi(\alpha_i + x_{it}' \beta)(1-\Phi(\alpha_i + x_{it}' \beta))}  = 0
+\end{align}
+\begin{equation*}
+    \hspace{10000pt minus 1fil} \forall i = 1,...N\hfilneg
+\end{equation*}
+
+In the first case, suppose that $\sum_{t=1}^T y_{it} = 0$ for some $i$. Then, from Equation (\ref{eq:pp}) it follows that:
+\begin{align*}
+    -\sum_{t=1}^T \frac{\phi (\alpha_i + x_{it}' \beta)}{(1-\Phi(\alpha_i + x_{it}' \beta))}  = 0
+\end{align*}
+
+From Section \ref{section_heckman} we see that this is a summation over inverse Mills-ratios. One of the properties of the inverse Mills ratio is that $\lambda_{it} = \frac{\phi (\alpha_i + x_{it}' \beta)}{(1-\Phi(\alpha_i + x_{it}' \beta))} > 0$ for a finite index $\alpha_i + x_{it}' \beta$. Then, this summation cannot be equal to zero, and this equation does not have a solution.
+
+In the second case, suppose that $\sum_{t=1}^T y_{it} = T$, for some $i$. Then, from Equation (\ref{eq:pp}) it follows that:
+\begin{align*}
+    -\sum_{t=1}^T \frac{\phi (\alpha_i + x_{it}' \beta)}{\Phi(\alpha_i + x_{it}' \beta)}  = 0
+\end{align*}
+
+This summation also cannot be equal to zero from the properties of the standard normal density function for a finite $\alpha_i + x_{it}' \beta$.
+
+
+
+
+
+

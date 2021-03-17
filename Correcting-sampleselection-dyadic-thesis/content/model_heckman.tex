@@ -1,0 +1,167 @@
+\section{A simplified model of dyadic interactions} \label{model}
+Taking the model proposed by \cite{helpman2008estimating} as a motivation, and simplifying it for now, focusing on a specification considering two-way fixed effects and a possible selection bias, we study the following model throughout the next sections:
+\begin{align}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + u_{ij,t}
+    \label{eq:model1}
+\end{align}
+\begin{align}
+    y_{2,i j,t}= \mathbbm{1} (y_{2,i j,t}^{**} > 0)
+    \label{eq:model2}
+\end{align}
+\begin{align}
+    y_{2,i j,t}^{**}=x_{2,ij,t}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*+\eta^*_{i j,t},
+    \label{eq:model3}
+\end{align}
+\begin{equation*}
+\hspace{10000pt minus 1fil} (i = 1,...N; j=1,...N, t=1,...T, i \neq j)\hfilneg
+\end{equation*}
+
+\noindent where $y_{1,ij,t}$ is observed only when $y_{2,i j,t} = 1$. However, all explanatory variables are assumed to be observed in all periods for all $i$ and $j$, being a typical case of a censored panel. Moreover, $\beta_1 \in \mathbbm{R}^k$ is a vector that collects the coefficients of the structural parameters, including a coefficient of an intercept ($\beta_0$), and of the explanatory variables; $x_{1,ij,t}$ is a vector that collects 1 and the vector of the explanatory variables; and $\chi_j$  and $\vartheta_i$ are fixed effects. Similarly, $\beta_2^* \in \mathbbm{R}^q$ is a vector that collects the coefficients of the structural parameters, including the coefficient of an intercept ($\beta_0^*$), and of the explanatory variables; $x_{2,ij,t}$ is a vector that collects 1 and the column vectors of the explanatory variables; and $\xi_i^*$  and $\zeta_j^*$ are fixed effects. In both equations, the unobservable individual-specific effects may depend on the observable explanatory variables in an arbitrary way, and are, therefore, considered as nuisance parameters to be estimated. Moreover, the errors of the equations might be correlated.
+
+Note that also in this generalized framework we can have directed links and directed outcomes, meaning that $y_{2,i j,t}$ does not necessarily have the same value of $y_{2,j i,t}$ and vice versa. The same holds for $y_{1,i j,t}$ and $y_{1,j i,t}$.
+
+This model is simplified compared to the estimated equations of \cite{helpman2008estimating} because it does not take into account the variable $w_{ij}$. This variable, in the setting of international trade, refers to the fraction of exporting firms in a country. It is obtained from the estimation of the single index in the inverse Mills-ratio, and it introduces a further non-linearity in the model, which requires the observation equation to be estimated through NLS.
+
+Note that this is a so-called type 2 tobit model, in which the sample selectivity (in the case of correlated errors) introduces non-linearity in the equation of interest with respect to the unobserved characteristics. Moreover, such fixed effects in Equation (\ref{eq:model3}), unlike in linear models, cannot be easily differenced away. 
+
+In order to estimate such a model by MLE, one would need not only to specify the distribution of underlying time-varing errors, but also to specify a functional form for how the fixed effects depend on observed variables. Besides being non-robust to distributional misspecification, this fully parametric "random effects" approach involves multiple numerical integrations, becoming computationally intensive.
+
+Even though the motivation for this model comes from the trade literature, this specification is general enough to cover any possible case of dyadic data. As defined by \cite{graham2020dyadic}, dyadic data reflects situations where the outcome of interest is determined by pairwise interactions between units. Other fields where such data is analysed includes international financial flows, development economics and anthropology. Moreover, the selection model given by Equations (\ref{eq:model2}) and (\ref{eq:model3}) is a typical model of network formation, where links between units are formed or not. In this model, we consider a directed network - where, as expected, the direction of the links and the resulting outcome matters, while an unit $i$ may form a link with an $j$, the opposite may not be true. In this setting, the link formation given by the variable $y_{2,ij,t}$ determines the observation of an outcome, given by the variable $y_{1,ij,t}$.  More specifically, our framework is very similar to that of a network formation under dyadic interaction with degree heterogeneity (captured by the fixed effects) \footnote{Degree heterogeneity is defined, in the networks literature, as the fact that the number of links (degree) across nodes (units) varies.}, a framework embedded in the so called $\beta$-models in the network literature. 
+
+\section{The Heckman 2-stage approach for sample selection} \label{section_heckman}
+In this section we will present the standard approach presented by \cite{heckman1979sample} to correct for the sample selection bias in this analysed model. It is important to mention beforehand that such bias arises from a possible correlation between the errors $u_{ij,t}$ and $\eta^*_{ij,t}$. We start with some standard assumptions:
+\begin{assumption} \label{assumption_heckman_1}
+    The errors $u_{ij,t}$ and $\eta^*_{i j,t}$ satisfy: \\
+    $$\mathbbm{E}[u_{ij,t}] = 0$$
+    $$\mathbbm{E}[\eta^*_{i j,t}] = 0$$
+    $$\mathbbm{E}[u_{ij,t} u_{i'j',t'}] = \begin{cases}
+        \sigma_u^2 \text{ if } i=i', j=j', t=t'\\
+        0 \text{ otherwise}\\
+        \end{cases}$$
+    $$\mathbbm{E}[\eta_{ij,t}^* {\eta_{ij,t}^*}] = 
+    \begin{cases}
+        \sigma_{\eta^*}^2 = 1 \text{ if } i=i', j=j', t=t'\\
+        0 \text{ otherwise}\\
+        \end{cases}$$
+    $$\mathbbm{E}[u_{ij,t} {\eta_{ij,t}^*}] = 
+    \begin{cases}
+        \sigma_{u\eta^*} \text{ if } i=i', j=j', t=t'\\
+        0 \text{ otherwise}\\
+        \end{cases}$$
+\end{assumption}
+
+If we seek to estimate Equation (\ref{eq:model1}), we need to take into account that the estimation will only consider a selected sample, which is given by Equations (\ref{eq:model2}) and (\ref{eq:model3}). We also assume, without loss of generality, that we observe $y_{1,ij,t}$ for the first $N_i$ observations related to the index $i$ and the first $N_j$ observations related to the index $j$. Moreover, all the links between the observations $N_i$ of $i$ are formed with all observations $N_j$ of $j$ and vice-versa, and therefore, ultimatelly $N_i = N_j$. Thus, conditioning on observing the outcomes of $y_{1,ij,t}$ only for the pairs that form links, we can rewrite Equation (\ref{eq:model1}) as:
+\begin{align} \label{eq:heckman1}
+    &\mathbbm{E}[y_{1,ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, y_{2,i j,t}= 1] \\ 
+    &=  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \mathbbm{E} [u_{ij,t} \rvert \eta^*_{i j,t} \geq x_{2,ij,t}'-{\beta_2^*}  -\xi_{i}^*-\zeta_{j}^*] \nonumber
+\end{align}
+
+If we had that $u_{ij,t}$ is independent of $\eta^*_{i j,t}$, and therefore, the conditional expectation of $u_{ij,t}$ is zero, the regression function for the selected subsample would be the same as the populational regression function. However, in the general case given by Assumption \ref{assumption_heckman_1}, we have that there is correlation between these errors. Then, the conditional mean of the error $\eta^*_{i j,t}$ in the incomplete sample is a function of the explanatory variables  $x_{2,ij,t}$ and the fixed effects $\xi_{i}^*$ and $\zeta_{j}^*$. Therefore, the sample selection bias arises because this last term is not taken into account.
+
+More generally, we can denote the single index:
+$$z_{ij,t} = \frac{-{x_{2,ij,t}'{\beta_2^*}-\xi_{i}^*-\zeta_{j}^*}}{\sigma_{\eta^*}^2} = -x_{2,ij,t}'{\beta_2^*} -\xi_{i}^*-\zeta_{j}^*.$$ 
+
+We can also assume that the conditional expectation in the last term of Equation (\ref{eq:heckman1}) is an unknown, smooth function $\varphi_{ij,t}$ of the scalar index $z_{ij,t}$ and other distributional parameters in the parametric case, or a function only of the scalar index in a nonparametric case. Therefore, we can write:
+\begin{align}
+    y_{1,ij,t} =  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \varphi_{ij,t}(z_{ij,t}) + \nu_{ij,t},
+    \label{eq:heckman2}
+\end{align}
+
+\noindent where, by construction, $\mathbbm{E}[\nu_{ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, \varphi_{ij,t}(z_{ij,t}), y_{2,i j,t}^{**} > 0] = 0$.
+
+For the identification of the regression coefficients of (\ref{eq:model1}), we need that either the function $\varphi_{ij,t}$, which ultimately is a function of the regressors in (\ref{eq:model3}), is specified, otherwise, we need strong exclusion restrictions. As pointed out by \cite{ahn1993semiparametric}, for example, taking any nontrivial linear combination $ x_{1,ij,t}'\alpha$ of the regressors $x_{1,ij,t}$, then Equation (\ref{eq:heckman2}) can be rewritten:
+\begin{align}
+    y_{1,ij,t} &=  x_{1,ij,t}'(\beta_1 + \alpha) + \vartheta_i + \chi_j + [ \varphi_{ij,t}(z_{ij,t}) - x_{1,ij,t}'\alpha] + \nu_{ij,t} \\
+    &=  x_{1,ij,t}'{\beta_1^*}  + \vartheta_i + \chi_j +  \varphi_{ij,t}^*(z_{ij,t}) + \nu_{ij,t}^* \nonumber
+    \label{eq:heckman3}
+\end{align}
+
+\noindent where: $\varphi_{ij,t}^*(z_{ij,t}) = \varphi_{ij,t}(z_{ij,t}) - \mathbbm{E}[ x_{1,ij,t}'\alpha \rvert z_{ij,t}, y_{2,i j,t}^{**} > 0]$; and $\nu_{ij,t}^* = \nu_{ij,t} - x_{1,ij,t}'\alpha + \mathbbm{E}[\alpha' x_{1,ij,t} \rvert z_{ij,t}, y_{2,i j,t}^{**} > 0]$.
+
+Therefore, we have that this model still satisfies that $\mathbbm{E}[\nu_{ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, \\ \varphi_{ij,t}(z_{ij,t}), y_{2,i j,t}^{**} > 0] = 0$, but $\beta_1^*$ is not distinguishable from $\beta_1$ without further restrictions on the functional form of $\varphi_{ij,t}(\cdot)$. This can be done either through additional variables that satisfies exclusion restrictions from the equation of interest (meaning that they affect the link formation, and thus, are included in the regressors $x_{2,ij,t}$, but they are not included in the regressors $x_{1,ij,t}$ and are uncorrelated with the errors of equation \ref{eq:model1}), or through specifying a functional form of $\varphi_{ij,t}(\cdot)$.  
+
+To introduce a functional form for $\varphi_{ij,t}(\cdot)$, additional distributional assumptions are made:
+\begin{assumption} \label{assumption_heckman_2}
+    The error term $u_{ij,t}$ is identically and independently distributed over $ij$ and $t$, such that $u_{ij,t} \sim N(0, \sigma_u^2)$.
+\end{assumption}
+\begin{assumption} \label{assumption_heckman_3}
+    The error term $\eta_{ij,t}^*$ is identically and independently distributed over $ij$ and $t$, such that $\eta_{ij,t}^* \sim N(0, 1)$.
+\end{assumption}
+\begin{assumption} \label{assumption_heckman_4}
+    The errors $u_{ij,t}$ and $\eta_{ij,t}^*$ are correlated such that:
+    \begin{align*}
+    \mathbbm{E} [u_{ij,t} \eta^*_{i' j',t'}] =\left\{\begin{array}{cc}
+\sigma_{u\eta^*} & \text { if } i=i', \quad j=j', \quad t=t' \\
+0 & \text { otherwise }
+\end{array}\right.
+\end{align*}
+\end{assumption}
+
+Under these assumptions, and supposing that $B(u_{ij,t}, \eta^*_{ij,t}; \rho)$ is the joint bivariate normal density of $u_{ij,t}$ and $\eta^*_{ij,t}$, with correlation coefficient $\rho = \frac{\sigma_{u\eta^*}}{\sigma_u \sigma_{\eta^*}}$, we then have from standard results of the bivariate normal distribution that:
+\begin{align}
+    \mathbbm{E} [u_{ij,t} \rvert \eta^*_{i j,t} \geq -x_{2,ij,t}'{\beta_2^*}  -\xi_{i}^*-\zeta_{j}^*] = \frac{\sigma_{u\eta^*}}{\sigma_{\eta^*}} \lambda_{ij,t}(z_{ij,t}) = \sigma_{u\eta^*} \lambda_{ij,t}(z_{ij,t})
+\end{align}
+
+\noindent where:
+\begin{align} \label{inverse_mills_heckman}
+    \lambda_{ij,t}(z_{ij,t}) = \frac{\phi(z_{ij,t})}{1 - \Phi(z_{ij,t})} = \frac{\phi(z_{ij,t})}{\Phi(-z_{ij,t})}
+\end{align}
+
+\noindent where $\phi$ is the density function for a standard normal variable and $\Phi$ is its distribution function. Note that $\lambda_{ij,t}(z_{ij,t})$ is the inverse Mills-ratio, which is a monotone decreasing function of the probability of observing $y_{1,i,j,t}$. Some of its properties are: $\lim_{\Phi(-z_{ij,t}) \xrightarrow{} 1} \lambda_{ij,t} = 0$, $\lim_{\Phi(-z_{ij,t}) \xrightarrow{} 0} \lambda_{ij,t} = \infty$, and $\partial\lambda_{ij,t}/\partial \Phi(-z_{ij,t}) < 0$.
+
+At this point, it is interesting to note that under the distributional Assumptions \ref{assumption_heckman_2} - \ref{assumption_heckman_4}, the previously given function $\varphi_{ij,t}(z_{ij,t})$ takes the form $\varphi_{ij,t}(z_{ij,t}) = \sigma_{u\eta^*} \lambda_{ij,t}(z_{ij,t})$. Thus, in general, we will obtain inconsistent coefficient estimates for the observation equation if there is misspecification of the parametric form of the index function and of errors.
+
+We can rewrite Equation (\ref{eq:heckman2}) as:
+\begin{align}
+    y_{1,ij,t} =  x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \sigma_{u\eta^*} \lambda_{ij,t}(z_{ij,t}) + \nu_{ij,t}
+    \label{eq:heckman2_revised}
+\end{align}
+
+Therefore, if one knew $z_{ij,t}$, one could enter $\lambda_{ij,t}(z_{ij,t})$ as a regressor in Equation (\ref{eq:heckman2}) and estimate it by OLS (note that, in our specification, the two-way fixed effects could be estimated by the inclusion of dummy variables). In that case, the least squares estimators of $\beta_1$ and $\sigma_{u\eta^*}$ are unbiased but inefficient, due to the heteroskedasticity in $\mathbbm{E}[\nu_{ij,t}^2]$, as shown in \cite{heckman1979sample}:
+\begin{align*}
+    \mathbbm{E}[\nu_{ij,t}^2] = \sigma_u^2 \Big((1-\rho^2) + \rho^2(1+ z_{ij,t} \lambda_{ij,t} - \lambda_{ij,t}^2)\Big)
+\end{align*}
+
+As $0 \leq 1+ z_{ij,t} \lambda_{ij,t} - \lambda_{ij,t}^2 \leq 1$, the usual estimator of the covariances is downward biased. The standard GLS procedure could be employed to obtain appropriate standard errors for estimated coefficients of the first equation.
+
+In practice, as we do not know $z_{ij,t}$, \cite{heckman1979sample} suggests the following procedure:
+
+\begin{itemize}
+    \item Step 1: Estimate the probability that $y^{**}_{2,ij,t} \geq 0$ using probit analysis on the sample, given by Equations (\ref{eq:model2}) and (\ref{eq:model3}).
+    \item Step 2: From this estimator (provided that it is consistent), one can obtain $\hat{z}_{ij,t}$ consistently.
+    \item Step 3: The estimated value of $\lambda_{ij,t}(z_{ij,t})$ is used as a regressor in Equation (\ref{eq:heckman2_revised}) fit on the subsample. The regression estimators are then consistent for $\beta_1$ and $\sigma_{u\eta^*}$.
+    \item Step 4: One can then consistently estimate $\sigma_u^2$ from the following. From step (3), we consistently estimate $\sigma_{u\eta^*}$, through the estimator $\hat{\sigma}_{u\eta^*}$. Denote the residuals for each observation from step 3 as $\hat{\nu}_{ij,t}$. Then, using $\hat{z}_{ij,t}$ and $\hat{\lambda}_{ij,t}$ the estimated values from step (2), an estimator of  $\sigma_u^2$ is:
+    $$\hat{\sigma}_u^2 = \frac{\sum_{i=1}^{N_i}\sum_{j\neq i}\sum_{t=1}^T \hat{\nu}_{ij,t}^2}{N_i(N_i-1)T} - \frac{\hat{\sigma}_{u\eta^*}}{N_i(N_i-1)T}  \sum_{i=1}^{N_i}\sum_{j\neq i}\sum_{t=1}^T (\hat{\lambda}_{ij,t} \hat{z}_{ij,t} - \hat{\lambda}_{ij,t}^2)$$
+\end{itemize}
+
+Finally, to obtain the limiting distribution of the estimates of $\beta_1$ to conduct inference, \cite{heckman1979sample} proposes to first look at Equation (\ref{eq:heckman2_revised}) with an estimated value of $\lambda_{ij,t}$ used in place of its true value.
+
+\begin{align}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + \sigma_{u\eta^*} \hat{\lambda}_{ij,t} + \sigma_{u\eta^*} ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) + \nu_{ij,t}
+    \label{eq:heckman_asy1}
+\end{align}
+
+We can interpretate $\sigma_{u\eta^*} ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) + \nu_{ij,t}$ as the error term of this equation. From this, the following theorem arises:
+\begin{theorem} \label{theorem_heckman}
+    The estimator of $\beta_1$ will be an asymptotically unbiased estimator, i.e., will converge to a limiting distribution centered around its true value only if $\mathbbm{E} [ ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) ] = 0$.
+\end{theorem}
+\textit{Proof.} From standard properties of OLS/FGLS estimators, we have that one of the conditions for $\hat{\beta}_1$ to be asymptotically unbiased \footnote{Here, we use the formal definition of an asymptotically unbiased estimator $\hat{\theta}_n$ for a parameter $\theta$ to be: 
+\begin{align}
+    r_n (\hat{\theta}_n - \theta) \xrightarrow{d} H
+\end{align}
+Where $r_n$ is some sequence and where the expected value of H is 0} is that:
+$$ \mathbbm{E} [\sigma_{u\eta^*} ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) + \nu_{ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j] = 0 $$
+
+By linearity of expectations, this translates to:
+$$ \sigma_{u\eta^*} \mathbbm{E} [ ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) \rvert x_{1,ij,t}, \vartheta_i, \chi_j] + \sigma_{u\eta^*} \mathbbm{E} [\nu_{ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j] = 0 $$
+
+We know that by construction, the last term of this expression equals to zero. Moreover, in the case where sample selection is present, we have that $\sigma_{u\eta^*} > 0$. Therefore, the condition simplies to:
+$$\mathbbm{E} [ ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) \rvert x_{1,ij,t}, \vartheta_i, \chi_j] = 0$$
+
+If this condition holds, we have by the Law of Iterated Expectations that:
+$$\mathbbm{E} [ ({\lambda}_{ij,t} - \hat{\lambda}_{ij,t}) ] =  \mathbbm{E} [\mathbbm{E}[({\lambda}_{ij,t} - \hat{\lambda}_{ij,t})\rvert x_{1,ij,t}, \vartheta_i, \chi_j]] = 0$$ \qed
+
+The limiting distribution of the standard Heckman estimator for a simple linear regression without fixed effects can be found in \cite{helpman2008estimating}. 
+
+In the next section, I discuss that in our framework, the incidental parameters problem will imply a the condition of Theorem \ref{theorem_heckman} is not satisfied.
+

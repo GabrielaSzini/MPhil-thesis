@@ -1,0 +1,148 @@
+\section{An application to the gravity model for international trade} \label{application}
+
+In this section we apply the proposed methods for estimating gravity models to international trade flows. We aim to estimate how trade barriers affect both the decision of country $i$ to export to country $j$, and the volume of trade. We will estimate the model outlined in Section \ref{estimating_helpman}, with the only difference being that we do not include $w_{ij}$ as a regressor in the second stage estimation. This variable accounts for the fraction of firms that export from country $i$ to country $j$ in country $i$, being related to the extensive margins of trade. When this variable is omitted, the estimation confounds the effects of trade barriers on the intensity  of trade (intensive margin) with the effects on the proportion of exporting firms (extensive margin). The sample selection effect is introduced in this model when only countries with positive trade flows are taken into account in the observation equation.
+
+Therefore, while the estimation proposed by \cite{helpman2008estimating} corrects both for the effect of this variable $w_{ij}$ and the sample selection effect in the observation equation, we will focus here on the latter effect. 
+
+The reason to not take into account $w_{ij}$ for now is that this is an estimated variable, that is obtained through the estimated inverse Mills-ratio. As demonstrated in \cite{helpman2008estimating}, it introduces a further non-linearity in the observation equation. This non-linearity needs to be taken into account by employing a non-linear least squares (NLS) estimator when applying the standard Heckman approach. Therefore, for simplicity, and to clearly explore the differences between our proposed estimators and the standard Heckman procedure, we will focus only on correcting for the sample selection bias.
+
+We use the dataset provided by \cite{helpman2008estimating}, which is the same used by \cite{charbonneau2017multiple} in her application to estimate the parameters for the first stage estimation, that refers to the decision of countries to trade (the probability that country $i$ exports to country $j$). Therefore, we can compare our results in the first stage estimation with both results obtained by \cite{helpman2008estimating} and \cite{charbonneau2017multiple}, determining if we have a successfull replication of their studies.
+
+The dataset provides information on directed trade flows and country characteristics for 158 countries in 1986. The country characteristics boil down to attributes on the country pairs (dyads). The variables used are, as described by \cite{helpman2008estimating}:
+
+\begin{itemize}
+    \item \textit{Distance}$_{ij}$: the distance (km) between the exporter's $i$ and importer's $j$ capitals in logs.
+    \item \textit{Common Border}$_{ij}$: a binary variable that equals one if the exporter $i$ and importer $j$ share borders (are neighbors).
+    \item \textit{Colonial ties}$_{ij}$: a binary variable that equals one if importing  country $j$ ever colonized in the history the exporting country $i$ or vice versa, and zero otherwise.
+    \item \textit{Currency Union}$_{ij}$: a binary variable that equals one if the exporter $i$ and the importer $j$ have a common currency or if their own currencies had a 1:1 exchange rate for an extended period of time, and zero otherwise.
+    \item \textit{Common Legal system}$_{ij}$: a binary variable that equals one if the exporting country $i$ and importing country $j$ have the same legal origin, and zero otherwise.
+    \item \textit{Common Religion}$_{ij}$: $(\%$ Protestants in country $i$. \% Protestants in country $j$ ) $+(\%$ Catholics in country $i \cdot \%$ Catholics in country $j$ ) $+(\%$ Muslims in country $i$. \% Muslims in country $j$ ).
+    \item \textit{FTA}$_{ij}$: a binary variable that equals one if the exporter $i$ and the importer $j$ belong to a common regional trade agreement, and zero otherwise.
+\end{itemize}
+
+In our estimation of the first stage equation we disconsider the observations with Congo as an exporter, as for those, the decision of trade does not change (Congo never exports to any country). This is done to avoid the problem of perfect predictability.
+
+Both \cite{helpman2008estimating} and \cite{charbonneau2017multiple} take into account variables related to whether both countries are islands or if both do not have direct access to the sea. However, when we implement the Charbonneau approach in this application, such transformed variables lack of variation for the identification of the parameters. For obtaining the coefficients, we apply a standard logit estimation to the transformed variable (note that the standard errors have a more involved estimation, obtained as \cite{jochmans2018semiparametric} proposes). The reason why \cite{charbonneau2017multiple} is able to incorporate such variables might come from two sources: (i) instead of applying a standard logit, the author maximizes numerically the Equation (\ref{max_charb}), or (ii) the author takes into account the observations with Congo as exporter. However, this is not a crucial issue, once other studies also disregarded such variables (for instance, \cite{jochmans2018semiparametric}).
+
+For more details on the construction of the variables in the dataset, refer to Appendix I in \cite{helpman2008estimating}.
+
+We estimate the parameters $\beta_2^*$ of the following equation in the first stage (selection equation):
+\begin{align}
+    y_{2,i j}= \mathbbm{1}(x_{2,ij}'\beta_2^* +\xi_{i}^*+\zeta_{j}^* >\eta_{i j}^*)
+    \label{eq:app1}
+\end{align}
+
+\noindent where: (i) $y_{2,i j}$ is a binary variable, being one if the $i$ exports to $j$ and zero otherwise, (ii) $\xi_{i}^*$ is the exporter fixed effect, (iii) $\zeta_{j}^*$ is the importer fixed effect, (iv) $x_{2,ij}$ is the vector that collects the variables \textit{Distance}$_{ij}$, \textit{Common Border}$_{ij}$, \textit{Colonial Ties}$_{ij}$, \textit{Currency Union}$_{ij}$, \textit{Common Legal System}$_{ij}$, \textit{FTA}$_{ij}$, \textit{Common Religion}$_{ij}$.
+
+The following is the specified model for the second stage (observation equation):
+\begin{align}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + u_{ij,t}
+    \label{eq:app2}
+\end{align}
+
+\noindent where: (i) $y_{1,ij}$ is the log of the value of the exports from $i$ to $j$, (ii) $\vartheta_i$ is the exporter fixed effect, (iii) $\chi_j$ is the importer fixed effect, (iii) $x_{1,ij,t}$ is the vector that collects the same variables as $x_{2,ij}$, with the exception of \textit{Common Religion}$_{ij}$ which is taken into account only in the first estimates of the standard Heckman approach as we will explain later. We only use dyads with positive exports to estimate this second stage equation. Therefore, a sample selection correction must be employed.
+
+\subsection{Estimation of selection equation (decision to trade)}
+
+We estimate the selection equation using a standard Probit with dummies for the fixed effects (which here boils down to the Probit (PP) in our simulations, as we excluded Congo as an exporter) and the Charbonneau estimator. The results can be seen in Table \ref{tab:app1}.
+\begin{table}
+    \small
+    \centering
+    \begin{tabular}{p{5cm}p{2cm}p{2cm}}
+      \hline
+       \quad & Probit  & Charbonneau \\
+       \hline
+        \textit{Common language}  &  $0.2903^{***}$ (0.0379) &  $0.4248^{***}$ (0.0732) \\
+        \textit{Common legal system}  &  $0.0972^{**}$ (0.0296) &  $0.1822^{***}$ (0.0597)\\
+        \textit{Common Religion} & $0.2647^{***}$ (0.0585)&  $0.4979^{***}$ (0.1125)\\
+        \textit{Common Border} & $-0.3798^{***}$ (0.0946) &  $-0.5164^{**}$ (0.2300)\\
+        \textit{Currency Union} &  $0.4883^{***}$ (0.1306) &  $1.0459^{***}$ (0.2362)\\
+        \textit{Distance}  & $-0.6626^{***}$ (0.0208) &  $-1.0001^{***}$ (0.0541)\\
+        \textit{FTA} &  $2.0170^{***}$ (0.3085) & $3.5565^{***}$ (0.5237)\\
+        \textit{Colonial Ties} &  $0.3337$ (0.2852) &  $1.1432^{*}$ (0.6473)\\
+         & &  \\
+        \hline
+    \end{tabular}
+    \caption{\footnotesize{Estimates for the first stage Equation \ref{eq:app1}. For the Probit estimates we consider importer and exporter fixed effects, correcting for the perfect prediction problem. Standard errors are in parenthesis. \newline \textsuperscript{*} indicates that the coefficient is significant at the 10 \% level \newline \textsuperscript{**} indicates that the coefficient is significant at the 5 \% level \newline \textsuperscript{***} indicates that the coefficient is significant at the 1 \% level.}}
+    \label{tab:app1}
+\end{table}
+
+Even though we do not take into account two variables considered by \cite{charbonneau2017multiple}, our estimates for the remaining parameters are remarkably similar for both estimators and for all remaining coefficients, when comparing to the results she presents in her paper.
+
+We can see that our Charbonneau estimates have a higher magnitude for all the coefficients when compared to our Probit estimates. Thus, the proposed correction for the asymptotic biases in the standard Probit model plays a practical role in this application.
+
+All the estimates also have the same sign as the ones obtained by \cite{helpman2008estimating} (where the Probit estimator is applied in the first stage). As expected, geographic distance decreases the probability of countries to trade, while the coefficients for the other characteristics that reflect how similar countries $i$ and $j$ are in general positive (\textit{Common Language}, \textit{Common Religion}, \textit{Colonial Ties}, \textit{Currency Union}, \textit{Common Legal System}), indicating that there is homophily in how trade networks are formed (similar countries have a higher propensity to trade). Countries that belong to a common regional trade agreement also have a higher probability of trading, as expected.
+
+The estimates for both methods point out that countries with a common border are likely to trade less. As explained by \cite{helpman2008estimating}, this negative effect might be due to territorial border conflicts that harms trade between countries that are neighbors.
+
+For the Charbonneau method, we estimate the standard errors as proposed by \cite{jochmans2018semiparametric}. Even though \cite{charbonneau2017multiple} does not clearly state how the estimates of the standard errors are obtained in her paper, when comparing, we find that our estimates are similar to hers. The exceptions are only for the variables \textit{Colonial Ties} and \textit{FTA}. In terms of significance levels, the variable \textit{FTA} is significant at the 1\% level both in our application and in hers, while the variable \textit{Colonial Ties} is not significant even at the 10\% level in her application and here it is significant at this level.
+
+When comparing our Charbonneau estimates to our Probit estimates, the levels of significance of the variables are also very similar, with the exceptions of (i) \textit{Common legal system}, which in these estimations it is significant at the 5\% level, while in our Charbonneau estimation is significant at the 1\% level; and (ii) \textit{Colonial Ties}, which is not significant even at the 10\% level in the Probit estimations, but it is significant at this level for the Charbonneau estimator, as mentioned before.
+
+\subsection{Estimation of observation equation (directed trade flows)}
+
+Once the estimates of the first stage are obtained, we follow to the estimation of the second stage, which measures the effects of these variables on the volumes of exports from country $i$ to $j$. 
+
+We apply the same methods outlined in Section \ref{simulations}. Namely, given the Probit estimates we employ the standard Heckman approach, and given the Charbonneau estimates, we employ the Hybrid and modified Kyriazidou approaches (with and without the asymptotic corrections). All the methods propose to correct for sample selectivity, and thus, allow for correlation between the errors of Equations (\ref{eq:app1}) and (\ref{eq:app2}).
+
+For the modified Kyriazidou approach, we follow the parameters chosen in Section \ref{simulations}, setting $r=1$, $\delta = 0.1$, and experimenting throughout a range of possible values of the initial bandwidth $h$. Moreover, this approach requires a variable that satisfies an exclusion restriction in the sense that it affects the decisions to trade (affects the fixed costs of trading), but it does not affect the volume of trade flows (does not affect the variable costs). We follow \cite{helpman2008estimating} and use \textit{Common Religion} as such variable. That \textit{Common Religion} affects the decision of trade is clear from the estimates of the first stage. For the second requirement, the authors argue that when including variables related to regulation costs of firm entry, the coefficient of the variable \textit{Common Religion} becomes not significant in the second stage. Note that variables related to regulation costs satisfy the exclusion restriction, since by construction they do not affect the variable costs.
+
+In this study, we deliberately chose not to include the variables that refer to the regulation costs, since they reduce the sample size drastically. In our case, this is aggravated since both the Charbonneau and the modified Kyriazidou estimators already reduce the amount of information used from the dataset due to all the conditions that must be met on quadruples.
+
+However, as it is evident on the results presented in Table \ref{tab:app2}, the variable \textit{Common Religion} does not completely satisfy the conditions of exclusion restriction, since its coefficient in the estimates of the standard Heckman approach is still significant at the 5\% level. Thus, one should be careful when looking at the estimates of the modified Kyriazidou approach. We could not verify the significance level in the new proposed approaches since the estimates of the standard errors are still not available.
+\begin{sidewaystable}
+        \small
+        \centering
+        \begin{tabular}{p{4cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}}
+          \hline
+           \quad  &Heckman (1) & Heckman (2) &Hybrid  & K (h=0.5)  & K,corrected (h=0.5)  & K (h=1)  & K,corrected (h=1)\\
+           \hline
+            \textit{Common Language}  & $0.2090^{***}$ & $0.2333^{***}$& 0.3566 & 0.1094 & 0.1069&  0.1465& 0.1448\\
+            \textit{Common Legal System}  & $0.4797^{***}$ & $0.4914^{***}$& 0.4975 & 0.3805& 0.3791& 0.4054& 0.4047\\
+            \textit{Common Border}  & $0.4031^{***}$ & $0.4318^{***}$ & 0.5836& 0.6114 & 0.6127& 0.6106& 0.6131\\
+            \textit{Currency Union}   & $1.3537^{***}$ & $1.3368^{***}$ & 1.4456 & 1.2315& 1.2248& 1.3186& 1.3158\\
+            \textit{Distance}   & $-1.2087^{***}$ & $-1.2190^{***}$& -1.3470& -1.1371& -1.1329& -1.2185& -1.2187\\
+            \textit{FTA}  &  $0.7774^{***}$ & $0.7719^{***}$& 2.0569 & 1.2835& 1.2835& 1.2475& 1.2636\\
+            \textit{Colonial Ties}  & $1.3418^{***}$ & $1.3434^{***}$ & 1.4209 & 1.2594 &1.2560 & 1.3524& 1.3563\\
+            \textit{Common Religion}  &  $0.2389^{**}$ &  &  &  &  &  & \\
+            \textit{Inverse Mills-Ratio}  & $0.2784^{***}$ & $0.2671^{***}$ & 0.7130& & & &\\
+             &  & & & & & &\\
+            \hline
+        \end{tabular}
+        \caption{\footnotesize{Estimates for the second stage Equation \ref{eq:app2}. For the Heckman and Hybrid estimates we consider importer and exporter fixed effects, correcting for the perfect prediction problem. We denote by Kyriazidou by $K$. \newline \textsuperscript{*} indicates that the coefficient is significant at the 10 \% level \newline \textsuperscript{**} indicates that the coefficient is significant at the 5 \% level \newline \textsuperscript{***} indicates that the coefficient is significant at the 1 \% level.}}
+        \label{tab:app2}
+\end{sidewaystable}
+\begin{sidewaystable}
+    \begin{adjustwidth}{-.5in}{-.5in}
+        \small
+        \centering
+        \begin{tabular}{p{4cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}p{1.8cm}}
+          \hline
+           \quad & K(h=2)  & K,corrected (h=2)  & K(h=3)  & K,corrected (h=3)  & K(h=5)  & K,corrected (h=5)  & K(h=10)  & K,corrected (h=10)\\
+           \hline
+            \textit{Common Language}  & 0.1696 & 0.1685 & 0.1830 & 0.1822& 0.1933& 0.1926& 0.1994& 0.1987\\
+            \textit{Common Legal System}   & 0.4154 & 0.4151 & 0.4206 & 0.4204& 0.4242& 0.4240 & 0.4255& 0.4252\\
+            \textit{Common Border}  & 0.5920 & 0.5950 & 0.5673 & 0.5708& 0.5436& 0.5486& 0.5129& 0.5193\\
+            \textit{Currency Union}  & 1.4043 & 1.4035 & 1.4164& 1.4159& 1.3955& 1.3941& 1.4213& 1.4208\\
+            \textit{Distance}  &  -1.2525& -1.2555 & -1.2503& -1.2538& -1.2172& -1.2198& -1.1721& -1.1730\\
+            \textit{FTA} & 1.3033 & 1.3415 & 1.2408& 1.2826& 0.8675& 0.8972& 0.2901& 0.2981\\
+            \textit{Colonial Ties} & 1.3729 & 1.3794 & 1.3387 & 1.3441& 1.2552& 1.2576& 1.1945& 1.1947\\
+            &  &  &  & & & & & \\
+            \hline
+        \end{tabular}
+        \caption{\footnotesize{Estimates for the second stage Equation \ref{eq:app2}. We denote by Kyriazidou by $K$. }}
+        \label{tab:app3}
+    \end{adjustwidth}
+\end{sidewaystable}
+
+From Tables \ref{tab:app2} and \ref{tab:app3}, we can see that regardless of the employed method, all coefficients except for \textit{Distance} are positive. In the case of the variable \textit{Common Border} this means that, while being neighbors reduces the probability of trading, when trade is made, being neighbors increases the volume of trade. 
+
+The estimates obtained with the Hybrid and the modified Kyriazidou approach are different from the ones obtained with the standard Heckman approach. Thus, there is evidence that the latter is biased. However, we should point out that in order to properly claim that there are biases in the estimates, we would need to test whether the estimated coefficients are significantly different. As we still do not have estimates for the standard errors in the proposed approaches, this test cannot be done.
+
+Moreover, while for some variables these possible biases have a clear direction when looking at the estimates provided by the two proposed methods, for others it does not have. 
+
+The coefficient of \textit{Common Border} is higher for all estimates obtained from the Hybrid and the Kyriazidou approach. For the \textit{FTA} variable, the same holds, except for the estimator obtained with the Kyriazidou approach when setting the initial $h$ to be ten. Finally, for \textit{Currency Union} the coefficients are also higher for the Hybrid approach and for the Kyriazidou with higher levels of the initial $h$. For the remaining variables, the two proposed methods would imply various directions for the bias.
+
+As in the results obtained in the simulation exercise, the asymptotic correction for the estimates of the modified Kyriazidou approach does not deliver different estimates compared to the initial estimation. Finally, it is evidenced in this application that the estimates for this approach are sensitive to the initial chosen level of $h$.
+
+

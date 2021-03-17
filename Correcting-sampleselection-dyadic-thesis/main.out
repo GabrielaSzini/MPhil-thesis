@@ -1,0 +1,32 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{The gravity model by helpman2008estimating}{}% 2
+\BOOKMARK [1][-]{section.3}{Estimation method of helpman2008estimating}{}% 3
+\BOOKMARK [1][-]{section.4}{A simplified model of dyadic interactions}{}% 4
+\BOOKMARK [1][-]{section.5}{The Heckman 2-stage approach for sample selection}{}% 5
+\BOOKMARK [1][-]{section.6}{The incidental parameter problem}{}% 6
+\BOOKMARK [1][-]{section.7}{The conditional logit estimation of charbonneau2017multiple}{}% 7
+\BOOKMARK [1][-]{section.8}{The first approach: Hybrid estimates and Lee's transformation}{}% 8
+\BOOKMARK [2][-]{subsection.8.1}{The hybrid approach of martin2018bls}{section.8}% 9
+\BOOKMARK [2][-]{subsection.8.2}{Sample selection estimator based on lee1983generalized}{section.8}% 10
+\BOOKMARK [1][-]{section.9}{Second approach: a modification to kyriazidou1997estimation}{}% 11
+\BOOKMARK [2][-]{subsection.9.1}{An outline of the approach proposed in kyriazidou1997estimation}{section.9}% 12
+\BOOKMARK [2][-]{subsection.9.2}{The choice of the bandwidth hn}{section.9}% 13
+\BOOKMARK [2][-]{subsection.9.3}{A modification to the approach}{section.9}% 14
+\BOOKMARK [1][-]{section.10}{Simulations}{}% 15
+\BOOKMARK [2][-]{subsection.10.1}{Data generating process and different designs}{section.10}% 16
+\BOOKMARK [2][-]{subsection.10.2}{First stage \(estimation of the selection equation\)}{section.10}% 17
+\BOOKMARK [2][-]{subsection.10.3}{Second stage \(estimation of the observation equation\)}{section.10}% 18
+\BOOKMARK [1][-]{section.11}{An application to the gravity model for international trade}{}% 19
+\BOOKMARK [2][-]{subsection.11.1}{Estimation of selection equation \(decision to trade\)}{section.11}% 20
+\BOOKMARK [2][-]{subsection.11.2}{Estimation of observation equation \(directed trade flows\)}{section.11}% 21
+\BOOKMARK [1][-]{section.12}{Conclusion}{}% 22
+\BOOKMARK [1][-]{appendix.A}{Appendix: Derivations}{}% 23
+\BOOKMARK [2][-]{subsection.A.1}{Derivation of helpman2008estimating gravity equation}{appendix.A}% 24
+\BOOKMARK [2][-]{subsection.A.2}{helpman2008estimating estimation equations}{appendix.A}% 25
+\BOOKMARK [3][-]{subsubsection.A.2.1}{Definitions of latent variable Y2,ij,t* and Wij,t}{subsection.A.2}% 26
+\BOOKMARK [3][-]{subsubsection.A.2.2}{Sample selection as an omitted variable bias}{subsection.A.2}% 27
+\BOOKMARK [2][-]{subsection.A.3}{Sketch of the derivation of the asymptotic expansion}{appendix.A}% 28
+\BOOKMARK [2][-]{subsection.A.4}{A simple example for the perfect prediction problem}{appendix.A}% 29
+\BOOKMARK [1][-]{appendix.B}{Appendix: Aditional figures and tables for simulations}{}% 30
+\BOOKMARK [2][-]{subsection.B.1}{First stage estimates}{appendix.B}% 31
+\BOOKMARK [2][-]{subsection.B.2}{Second stage estimates}{appendix.B}% 32

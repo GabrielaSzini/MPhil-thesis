@@ -1,0 +1,61 @@
+\subsection{\cite{helpman2008estimating} estimation equations} \label{estimation_equations_derivation}
+
+\subsubsection{Definitions of latent variable $Y_{2,ij,t}^*$ and $W_{ij,t}$}
+
+We define the latent variable $Y_{2,ij,t}^*$ as:
+\begin{align}
+    Y_{2,ij,t}^*=\frac{(1-\alpha)\left(P_{j} \frac{\alpha}{c_{i} \tau_{i j}}\right)^{\sigma-1} Y_{j} a_{L}^{1-\sigma}}{c_{i} f_{i j}}
+    \label{eq:MHR_app1}
+\end{align}
+
+Which represents the ratio of variable export profits for the most productive firm (with productivity $1/a_L$) to the fixed export costs (common to all exporters) for exports from $i$ to $j$. Then, in this case, positive exports are observed if $Y_{2,ij,t}^* \geq 1$, and one can verify that $W_{ij}$ is a monotonic function of $Y_{2,ij,t}^*$ in the case of positive exports: $W_{ij} = {Y_{2,ij,t}^*}^{(k-\sigma +1)/(\sigma-1)}-1$.
+
+To see this last equality, by isolating $a_{ij}$ from equation \ref{eq:MHR1}, we have that:
+\begin{align}
+    a_{ij} = \Big( \frac{1-\alpha}{c_i f_{ij}} Y_j\Big)^{1/\sigma-1} \Big( \frac{\tau_{ij} c_i}{\alpha P_j}\Big)^{\frac{1 - \sigma}{\sigma-1}}
+    \label{eq:MHR_app2}
+\end{align}
+
+In case of positive exports, we have that:
+\begin{align}
+    W_{ij} = \Big( \frac{a_ij}{a_L} \Big)^{k - \sigma +1} -1
+\end{align}
+
+Then, by substituting Equation (\ref{eq:MHR_app2}) in this later expression, we find that $W_{ij} = {Y_{2,ij,t}^*}^{(k-\sigma +1)/(\sigma-1)} -1$.
+
+\subsubsection{Sample selection as an omitted variable bias}
+
+Now, following \cite{heckman1979sample}, we can formulate how the sample selection bias arises in this framework for the gravity model. Recording the form of the equation for trade flows (\ref{eq:est_MHR_wage}), if we consider the its population regression function, we can write:
+\begin{align}
+\mathbbm{E} [y_{1,ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j,  w_{i j}]   = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j +  w_{i j} 
+\label{eq:heckman_app1}
+\end{align}
+
+However, the regression function for the subsample of the data that is self-selected into trade is given by:
+\begin{align}
+&\mathbbm{E} [y_{1,ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j,  w_{i j}, \text{sample selection rule}]   \\
+&= x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j +  w_{i j} + \mathbbm{E} [u_{ij} \rvert \text{sample selection rule}] \nonumber
+\label{eq:heckman_app2}
+\end{align}
+
+Therefore, the assumption that $\mathbbm{E}[u_{ij}] = 0$ holds for the population, but not necessarily for the subsample. Only if the conditional expectation of $u_{ij}$ is zero, then the assumption also holds for the subsample. However, we will see that in our framework it does not hold. As we know, we observe trade flows if and only if ${y_{2,ij,t}}^* > 0$. Therefore, we have that:
+\begin{align}
+&\mathbbm{E} [u_{ij} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, w_{ij},\text{sample selection rule}] \\
+ &= \mathbbm{E} [u_{ij} \rvert x_{1,ij,t}, \vartheta_i, \chi_j,  w_{ij}, {y_{2,ij,t}}^* > 0] \nonumber
+\end{align}
+
+Given equation \ref{eq:heckman_app2}, and the definition of $y_{2,ij,t}$, we refine it down to:
+\begin{align}
+&\mathbbm{E} [u_{ij} \rvert x_{1,ij,t}, \vartheta_i, \chi_j, w_{ij},\text{sample selection rule}]  \\
+&= \mathbbm{E} [u_{ij} \rvert x_{1,ij,t}, \vartheta_i, \chi_j,  w_{ij}, \eta_{ij} > -  x_{2,ij,t}'{\beta_2} -\xi_{i}-\zeta_{j}] \nonumber
+\end{align}
+
+This highlights the fact that in case of independence between $u_{ij}$ and $\eta_{ij}$, data on $x_{ij}$ is missing randomly, and the conditional mean of $u_{ij}$ is zero. However, this is not the case since they are correlated, as mentioned before. Therefore, the subsample regression function translates to:
+\begin{align}
+    &\mathbbm{E} [y_{1,ij,t} \rvert x_{1,ij,t}, \vartheta_i, \chi_j,  w_{i j}, y_{2,ij,t}^* > 0] \\
+    &= x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j +  w_{i j} + \mathbbm{E} [u_{ij} \rvert  \eta_{i j} > - x_{2,ij,t}'\beta_2 -\xi_{i}-\zeta_{j}]  \nonumber
+\label{eq:heckman_app3}
+\end{align}
+
+One can see that the sample selection function depends not only on the variable trade costs, but also on the fixed trade costs. Therefore, the regression estimators of the parameters of Equation (\ref{eq:est_MHR_wage}) fitted on the selected sample omit the final term of Equation (\ref{eq:heckman_app3}) as a regressor. Thus, essentially, the bias that results from using nonrandomly selected samples arise from a problem of omitted variables. 
+

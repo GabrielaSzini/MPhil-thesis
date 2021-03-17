@@ -1,0 +1,104 @@
+\section{The first approach: Hybrid estimates and Lee's transformation} \label{first_approach}
+
+In this section we introduce a method to retrieve the estimates for the fixed-effects in Equation (\ref{eq:model3}) once consistent and asymptotically unbiased estimates of the parameter $\beta_2^*$ are given. In this context, we use the estimates that the previously outlined approach delivers, given by $\hat{\beta}_{2,CL}^*$. 
+
+Once the fixed effects estimates are available, we then introduce the method described by \cite{lee1983generalized}. It essentially consists of the standard Heckman approach, with the only difference being that some transformations are made to the selection equation, once estimators are now coming from a logistic regression instead of a probit.
+
+\subsection{The hybrid approach of \cite{martin2018bls}}
+The conditional logit approach defined above delivers $\sqrt{N(N-1)p_n}$-consistent and asymptotically unbiased estimators of the parameters $\beta_2^*$ as long as the covariates are strictly exogenous. However, this approach alone does not yield average partial effects estimates or the predicted probabilities of the outcome $y_{2,ij,t}$ as the distribution of the unobserved heterogeneity is not specified such that it can be integrated out. In our setting, the predicted probabilities play a role in the correction for sample selection bias, and therefore, are needed. Such estimates can be obtained with the conditional logit approach by inserting as well an estimate of the unobserved fixed effects. This hybrid approach consists of obtaining such estimates.
+
+According to \cite{martin2018bls}, the fixed effects $\xi^*$ and $\zeta^*$ can be estimated from the unconditional maximum likelihood when the slope parameters are restricted to be equal to their conditional logit estimates. Then, the estimated slope parameters and the first stage estimated fixed effects are combined to form both APE estimates and predicted probabilities.
+
+We can obtain the estimates of the fixed effects from:
+\begin{align*}
+  \hat{\omega}_{NN}^*(\beta_2^*) = \argmax_{\omega_{NN}^* \in \mathbb{R}^{\text{dim} \omega_{NN}^*}} \mathcal{L} (\hat{\beta}_{2,CL}^*, \omega_{NN}^*)   
+\end{align*}
+
+Where the unconditional log-likelihood $\mathcal{L}$ is given by Equations (\ref{eq:unconditional}) and (\ref{eq:fy}). The adjustment here is that we consider a single period $t$, and according to Assumption \ref{modified_charbonneau}, F is now a standard logistic distribution function. Also, likewise in Section \ref{section_incidental_parameters}, we collect all the fixed effects to be estimated in the vector $\omega_{NN}^* = {(\xi_1^*, ... \xi_N^*, \zeta_1^*, ... \zeta_N^*)}'$.
+
+This approach was also proposed in other papers such as \cite{bartolucci2019partial}. However, in both papers (\cite{martin2018bls} and \cite{bartolucci2019partial}), additional bias corrections are proposed, given that in their setting one of the dimensions of the panel data is fixed (and therefore, fixed effects estimates are inconsistent). In our framework, as both dimensions go to infinity, it is expected that given an asymptotically unbiased and consistent estimate of the structural parameters, the fixed effects should also share those properties.
+
+When retrieving the fixed effects, we also take into account only units for which the outcome presents variability. This means that, for a given fixed index $i$, there are $N-1$ observations available such that $i$ refers to the first index in the dyad, i.e. $y_{ij}$ for all $j \neq i$. Those $N-1$ observations are only taken into account if $y_{ij}$ varies over the different indices $j$. The other way round is also taken into account, i.e., for fixing an index $j$ and considering the $N-1$ observations $y_{ij}$ for all $i \neq j$. This is done because, as explained by \cite{kunz2017estimating}, the fixed effects related to the fixed index do not exist in cases where there is no variability in the outcome, a problem known in the literature as the perfect prediction problem (\cite{maddala1983qualitative}). As it is demonstrated in \cite{kunz2017estimating}, the perfect prediction means that for such observations, the maximum-likelihood estimator for the fixed effects will not have a finite solution. This will lead to fixed effects tending to minus infinity or plus infinity. This problem is formally illustrated through a simple example in Appendix \ref{perfect_prediction}. 
+
+Note that this hybrid framework is not well-suited for sparse networks, once we are proposing to estimate the fixed effects.
+
+Finally, for now we will focus on analysing only the finite sample properties of the estimates given by this hybrid approach through a simulation exercise. While in frameworks where only one of the fixed effects in Equation (\ref{eq:model3}) is present relies on partitioning the log-likelihood in the sum of the individual log-likelihoods that depend on the structural parameters and on the fixed effect for a given individual, in this case, this strategy is not feasible, since no partition of the dataset depends on only one fixed effect. Therefore, a more careful analysis of the asymptotic properties is left for further research. 
+
+\subsection{Sample selection estimator based on \cite{lee1983generalized}} \label{sample_selection}
+
+Once the estimates for both $\beta^*_2$ and the fixed effects $\omega_{NN}^*$ are obtained, it is possible to take into account in the estimation of Equation (\ref{eq:model1}) the sample selection, even if we use a logistic model for the first stage of the \cite{heckman1979sample} approach. The method is delineated in \cite{lee1983generalized}. 
+
+The idea is, rewriting Equation (\ref{eq:model1}) as:
+\begin{align}
+y_{1,ij,t} = x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + \sigma_u u_{ij}^*
+\label{eq:lee1}
+\end{align}
+
+\noindent where $u_{i j}^* \sim N(0,1)$ and $\sigma_u > 0$. Considering the selection Equation (\ref{eq:model3}), under Assumptions \ref{assumption_heckman_1}, \ref{assumption_heckman_2}, \ref{modified_charbonneau}, and assuming that $x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*$ are exogenous variables, which essentially already follows from previously defined assumptions: 
+
+\begin{assumption} \label{assumption_lee}
+  The errors are such that, given the covariates $x_1$, $x_2$ and the fixed effects: 
+  $$\mathbb{E} (u^* \rvert x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*) = 0$$ 
+  $$\mathbb{E} (\eta^* \rvert  x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*) = 0$$
+  $$\text{Var} (\eta^* \rvert  x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*) = 1$$
+\end{assumption}
+
+We now denote that the disturbances $u^*$ and $\eta^*$ conditional on $x_1, x_2, \vartheta_i, \\ \chi_j, \xi_i^*, \zeta_j^*$ have continuous distribution functions $\Phi(u^*)$ and $F(\eta^*)$, that are completely specified, according to the previous assumptions, as a standard normal distrubution and a standard logistic distribution, respectively.
+
+As denoted before already, the dependent variable $y_{1,ij}$ conditional on $x_1, x_2, \vartheta_i, \chi_j, \xi_i^*, \zeta_j^*$ has a well defined marginal distribution but it is not observed unless $y_{2,ij}^{**} \geq 0$. The observed samples of $y_{1,ij}$ are thus censored and follow $y_{1,ij} =  x_{1,ij}'{\beta_1} + \vartheta_i + \chi_j + \sigma_u u_{ij}^*$ if and only if $x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* \geq - \eta^*_{i j}$.
+
+The distributions of $u^*$ and $\eta^*$ are allowed to be correlated (supposing a correlation of $\rho$, as denoted before in Section \ref{section_heckman}). Moreover, only the marginal distributions are specified but not the joint bivariate distribution of $u^*$ and $\eta^*$. Therefore, the idea of Lee's transformation is to suggest a proper bivariate distribution that can be applied to the Heckman sample selection method with the specified marginal distributions.
+
+We start by applying the following transformation to the error term:
+\begin{align*}
+\eta^{**} = J(\eta^*) = \Phi^{-1} (F (\eta^*)) 
+\end{align*}
+
+This transformation guarantees that the transformed variables is distributed as a standard normal with zero mean and unit variance. A bivariate distribution having the required marginal distributions $F(\eta^*)$ of $\eta^*$ and $\Phi(u^*)$ of $u^*$ can be specified, from the following assumption.
+
+\begin{assumption} \label{assumption_lee_2}
+  The transformed random variables $\eta^{**}$ and $u^{*}$ are jointly normally distributed with zero means, unit variances and correlation of $\rho$.
+\end{assumption}
+
+Denoting by $B(\cdot, \cdot, \rho)$ a bivariate normal distribution $N(0,0,1,1,\rho)$, a proper bivariate distribution of $(\eta^*, u^*)$, denoted by $H$, is derived such that:
+\begin{align*}
+H(\eta^*, u^*, \rho) = B ( J(\eta^*), u^*; \rho)
+\end{align*}
+
+From the model specification, recall that $y_{2,ij}=1$ if and only if $x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* \geq - \eta^*_{i j}$. Given the logistic distribution, which is absolutely continuous, $F(\cdot)$, the transformation $J(\cdot) = \Phi^{-1}(F(\cdot))$ is strictly increasing, such that $y_{2,ij}=1$ if and only if $J(x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* ) \geq J(- \eta^*_{i j})$, or, equivalently, $J(-x_{2,ij}'{\beta_2^*}  -\xi_{i}^*-\zeta_{j}^* ) < J(\eta^*_{i j})$
+
+Therefore, the previously censored regression model given by Equations (\ref{eq:lee1}) and (\ref{eq:model3}), with given standard normal and logistic marginal distributions $\Phi(u^*)$ and $F(\eta^*)$ and the previously defined bivariate distribution, is statistically equivalent to the model:
+\begin{align}
+y_{1,ij,t} =  x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + \sigma_u u_{ij}^*
+\label{eq:lee2}
+\end{align}
+\begin{align}
+    y_{2,i j}^{***}= J(x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* )+\eta^{**}_{i j}
+    \label{eq:lee3}
+\end{align}
+
+\noindent where $y_{2,i j}^{***}=J(y_{2,i j}^{**})$. 
+
+We are now in a setting where the standard Heckman approach from Section \ref{section_heckman} can be applied. It follows from this specification that the inverse Mills-ratio is now of the form:
+\begin{align}
+  y_{2,i j}^{***}= J(x_{2,ij}'{\beta_2^*}'  +\xi_{i}^*+\zeta_{j}^* )+\eta^{**}_{i j}
+  \label{eq:lee3}
+\end{align}
+
+Defining as before, $z_{ij} = -x_{2,ij}'\beta_2^* - \xi_{i}^* - \zeta_{j}^*$, we have that the inverse Mills-ratio can be written now as:
+\begin{align*}
+  \lambda_{ij} (z_{ij}) = \frac{\phi(J(z_{ij}))}{1 - \Phi(J(z_{ij}))} = \frac{\phi(J(z_{ij}))}{1 - \Phi(\Phi^{-1}(F(z_{ij})))} = \frac{\phi(J(z_{ij}))}{1 - F(z_{ij})} = \frac{\phi(J(z_{ij}))}{F(-z_{ij})}
+\end{align*}
+
+\noindent where for the last equality we used the symmetry of the logistic distribution. Given the form of the inverse Mills-ratio one can correct Equation (\ref{eq:lee1}) for the sample selection bias by including the term:
+\begin{align}
+  y_{1,ij} = x_{1,ij}'\beta_1 + \vartheta_i + \chi_j + (\sigma_u\rho) \lambda_{ij} (z_{ij}) + \nu_{ij}
+  \label{eq:lee2}
+  \end{align}
+
+Again, by construction, $\mathbbm{E}[\nu_{ij} \rvert x_{1,ij}, \vartheta_i, \chi_j, \lambda_{ij} (z_{ij}), y_{2,i j}^{***} > 0] = 0$. Thus, as before, we can include the inverse Mills-ratio as a regressor in the equation, and treat $(\sigma_u\rho)$ as a parameter to be estimated. 
+
+If we had the limiting distribution of the fixed effects and thus, the joint distribution of the fixed effects and the structural parameters of (\ref{eq:lee3}), the asymptotic properties of the parameters of this regression would follow easily from the proof of the limiting distribution of the Heckman approach provided in \cite{heckman1979sample}. The only adjustment to be made is to account for the fixed effects $\vartheta_i$ and $\chi_j$ in the derivation. We expect that, once the estimates $\hat{\beta}_{2,CL}^*$ are not asymptotically biased, the estimates for the fixed effects of the selection equation provided by the hybrid approach not to be asymptotically biased as well. Moreover, they should also be consistent once we have that $(N-1) \xrightarrow{} \infty$. Therefore, the estimated inverse-Mills ratio should satisfy Theorem \ref{theorem_heckman}, even if they will likely converge only at a slower rate than $\sqrt{N(N-1)}$, as the fixed effects converge at a slower rate.
+
+
+

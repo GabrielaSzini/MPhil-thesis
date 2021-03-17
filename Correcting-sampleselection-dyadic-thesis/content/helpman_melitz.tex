@@ -1,0 +1,81 @@
+\section{Estimation method of \cite{helpman2008estimating}} \label{estimating_helpman}
+Given the theoretical gravity model defined in the previous section, we now focus on the assumptions imposed by \cite{helpman2008estimating} on some variables in order to further pin down the model to be estimated.
+
+The aim of the paper by \cite{helpman2008estimating} is to estimate Equation (\ref{eq:MHR3}), the gravity equation, subject to countries that self-select into trading (i.e., the trading decision that introduces a sample selection). The estimated model is then used to understand the magnitude and to make inference on the coefficients of trade barriers. 
+
+First, the authors assume, as mentioned before:
+
+\begin{assumption} \label{assumption1}
+    The firm productivity $1/a$ is Pareto distributed, with support $[a_L, a_H]$. We assume then that the distribution function of $a$ follows $G(a) = (a^k - a_L^k)/(a_H^k - a_L^k)$, with $k > (\sigma -1)$.
+\end{assumption}
+
+This framework allows for asymmetric trade flows $Y_{1,ij} \neq Y_{1,ji}$, once we can have that $a_{ij} < a_L$ for some pairs $ij$, while $a_{ji} > a_L$, leading to zero exports from $i$ to $j$, but not the other way round. Therefore, if the productivity is drawn from a truncated Pareto distribution, asymmetric trade frictions are not necessary to generate asymmetric trade flows.
+
+Assumption \ref{assumption1} implies that $V_{ij}$ can be expressed as a function of a new variable $W_{ij}$ defined below. Moreover, both variables are monotonic functions of the proportion of exporters from $i$ to $j$, $G(a_{ij})$, once all parameters in those equations are fixed, with only $a_{ij}$ varying:
+\begin{align*}
+    V_{ij} = \frac{k a_L^{k-\sigma + 1}}{(k - \sigma +1)(a_H^k - a_L^k)} W_{ij} 
+\end{align*}
+
+\begin{align*}
+    W_{ij} = \max \Big(\Big(\frac{a_{ij}}{a_L}\Big)^{k-\sigma +1} -1, 0 \Big)
+\end{align*}
+
+From now on, we will allow the model to be extended to several periods $t= 1,...T$, since trade datasets are available for several periods. Two additional assumptions are imposed on the structure of the variable and fixed trade costs, where the first affects the volume of firm-level exports and the second the decision to trade:
+
+\begin{assumption} \label{assumption2}
+    There are i.i.d. unmeasured country-pair specific trade frictions $u_{ij,t} \sim N(0, \sigma_u^2)$. These affect the variable trade costs $\tau_{ij,t}$, since this variable takes the form:
+    $$ \tau_{i j,t}^{\sigma-1} \equiv D_{i j,t}^{\gamma} e^{-u_{i j,t}} $$
+    where $D_{ij,t}$ is the symmetric distance between $i$ and $j$. 
+\end{assumption}
+
+\begin{assumption} \label{assumption3}
+    There are i.i.d. unmeasured country-pair specific trade fictions $\nu_{ij,t}\sim N(0, \sigma_\nu^2)$ that may be correlated with $u_{ij,t}$. These affect only the fixed export costs $f_{ij,t}$, given by:
+    $$f_{i j,t} \equiv \exp \left(\phi_{E X, i}+\phi_{I M, j}+\kappa \phi_{i j,t}-\nu_{i j,t}\right)$$
+    where $\phi_{I M, j}$ is a fixed trade barrier imposed by the importing country on all exporters, $\phi_{E X, i}$ is a measure of fixed export costs common across all export destinations, and $\phi_{i j,t}$ is an observed measure of any additional country-pair specific fixed trade costs.
+\end{assumption}
+
+Given Assumption \ref{assumption2}, and by log-linearizing Equation (\ref{eq:MHR3}), which defines the export volume from country $i$ to $j$, the authors arrive at the following equation to be estimated:
+\begin{align}
+    y_{1,ij,t} = x_{1,ij,t}'\beta_1 + \vartheta_i + \chi_j + w_{ij,t} + u_{ij,t},
+    \label{eq:est_MHR_wage}
+\end{align}
+
+\noindent where: (i) $y_{1,ij,t} = \ln Y_{1,ij,t}$; (ii) $w_{ij,t} = \ln W_{ij,t}$; (iii) $\beta_1$ is a vector that collects the coefficients of the remaining structural parameters, $\beta_1 = (\beta_0, \gamma_1')'$; (iv) $x_{1,ij,t}$ is a vector that collects 1 and the vector $ d_{ij,t} = \ln D_{ij,t}$; (v) $\chi_j = (\sigma -1) \ln P_j + \ln Y_j$, which is an importer fixed effects; and finally, (vi) $\vartheta_i = -(\sigma - 1) \ln c_i + \ln N_i$, which is an exporter fixed effects.
+
+One of the most important differences to the equation derived in previous studies, for instance, in the model of \cite{anderson2003gravity}, is the new variable $w_{ij,t}$, which controls for the fraction of firms exporting. If such term is not included in the RHS, the coefficients on any potential trade barrier can no longer be interpreted as the elasticity of a firm's trade with respect to distance, once trade barriers affect both $y_{1,ij,t}$ and $w_{ij,t}$ (through the proportion of exporters from $i$ to $j$), leading to an omitted variable bias, as the latter is also correlated with $y_{1,ij,t}$.
+
+Another bias in the estimation of (\ref{eq:est_MHR_wage}) arises when country pairs of zero trade flows are excluded, yielding a sample selection bias. From a macroeconomic modelling perspective, such bias is due to the fact that country pairs with large observed trade barriers (high $d_{ij,t}$) that trade with each other are likely to have low unobserved trade barriers (high $u_{ij,t}$), otherwise it would not be profitable to trade. 
+
+Therefore, another important difference in comparison to previous studies, is that such selection bias is taken into account. To do so, a latent variable $Y_{2,ij,t}^*$ is defined, which is given by the ratio of variable export profits for the most productive firm (with productivity $1/a_L$) to the fixed export costs for exports from $i$ to $j$ (expressions that are given by the zero profit condition). Then, in this case, positive exports are observed if $Y_{2,ij,t}^* > 1$, and one can verify in the Appendix \ref{gravity_model_derivation} the expressions for $Y_{2,ij,t}^*$ and that $W_{ij,t}$ is a monotonic function of $Y_{2,ij,t}^*$: in the case of positive exports, $W_{ij,t} = {Y_{2,ij,t}^*}^{(k-\sigma +1)/(\sigma-1)} - 1$.
+
+By log-linearizing the equation for the latent variable $Y_{2,ij,t}^*$, and given Assumption \ref{assumption3}, we have that:
+\begin{align}
+    y_{2,i j,t}^*= x_{2,ij,t}'\beta_2 +\xi_{i}+\zeta_{j} +\eta_{i j,t},
+    \label{eq:est_MHR_sampleselection}
+\end{align}
+
+\noindent where: (i) $\eta_{ij,t} \equiv u_{ij,t} + \nu_{ij,t} \sim N(0, \sigma_u^2 + \sigma_\nu^2)$ is i.i.d., but correlated with the error term $u_{ij,t}$ in Equation (\ref{eq:est_MHR_wage}); (ii) $\xi_{i}=-\sigma \ln c_{i}+\phi_{E X, i}$ is an exporter fixed effect; (iii) $\zeta_{j}=(\sigma-1) \ln P_{j}+ \ln Y_{j}-\phi_{I M, j}$ is an importer fixed effect; (iv) $\beta_2$ is a vector that collects the coefficients of the remaining structural parameters, $\beta_2 = (\gamma_0, \gamma_2')'$; (iv) $x_{2,ij,t}$ is a vector that collects 1, and the vectors $ d_{ij,t} = \ln D_{ij,t}$, and $\phi_{ij,t}$. Note that $x_{2,ij,t}$ includes both the regressors in $x_{1,ij,t}$ and additional regressors that affect only the decision to export, but not the volume of exports (satisfying then an exclusion restriction). 
+
+From an econometric perspective, the fact that $u_{ij,t}$ and $\eta_{ij,t}$ are correlated indicates that the data on $x_{1,ij,t}$ is not randomly missing, which points out to a sample selection problem. The Appendix \ref{estimation_equations_derivation} demonstrates how the bias in the estimators of Equation (\ref{eq:est_MHR_wage}) arises in the form of an omitted variable bias when this sample selection is not accounted for. The intuition for the existence of this bias is that the estimates for the effects of the trade barriers based on the sample of countries that do trade amongst themselves do not deliver a reliable estimate of these effects for countries that do not trade, had they traded. More specifically, the fitted regressions confound the behavior of such parameters for the volume of trade with the parameters of the equation determining the probability of two countries trading.
+
+In order to estimate the coefficients on trade barriers in Equation (\ref{eq:est_MHR_wage}) in an unbiased manner, \cite{helpman2008estimating} follow the procedure proposed by \cite{heckman1979sample}. The first step of such procedure is to obtain estimates of the selection equation, given in this case by Equation (\ref{eq:est_MHR_sampleselection}).
+
+Although $y_{2,i j,t}^*$ is unobserved, we observe whether countries decide or not to trade, and we know that $Y_{2,ij,t}^* > 1$ and,  therefore, $ln(Y_{2,ij,t}^* ) = y_{2,i j,t}^* > 0$ when $i$ exports to $j$ (setting an indicator variable $y_{2,ij,t} = 1$), and $y_{2,i j,t}^* \leq 0$ when it does not (setting an indicator variable $y_{2,ij,t} = 0$). Thus, Equation (\ref{eq:est_MHR_sampleselection}) can be estimated as a discrete choice model, such as a probit model, given that the errors are normally distributed.
+
+Finally, as we do not want to impose that $\sigma_\eta^2 = \sigma_u^2 + \sigma_\nu^2 = 1$, we can divide the equation above by the standard deviation $\sigma_\eta$, yielding:
+\begin{align}
+    y_{2,ij,t}^{**}= x_{2,ij,t}'\beta_2^* +\xi_{i}^*+\zeta_{j}^*+\eta_{ij,t}^*
+    \label{eq:est_MHR_sampleselection2}
+\end{align}
+
+Therefore, given Assumption \ref{assumption3} and Equation (\ref{eq:est_MHR_sampleselection2}), the authors start by specifying the Probit equation:
+\begin{align}
+\begin{aligned}
+\mu_{i j,t} &=\operatorname{Pr}\left(y_{2,i j,t}=1 | \text { observed variables }\right) =\Phi\left(x_{2,ij,t}'\beta_2^*  +\xi_{i}^*+\zeta_{j}^*\right),
+\end{aligned}
+\label{eq:est_MHR_sampleselection2_probit}  
+\end{align}
+
+\noindent where $\Phi(\cdot)$ is the cdf of the standard normal distribution. This probit equation not only allows for an estimate of the inverse Mills-ratio, used for taking into account the sample selection in the Equation (\ref{eq:est_MHR_wage}), but also allows for obtaining a consistent estimate of $\mathbbm{E} [ w_{ij} \rvert \cdot, y_{2,ij,t} = 1]$ \footnote{It is noteworthy that the distributional assumptions on joint normality of the unobserved trade costs and the Pareto distribution of firm-level productivity affect the functional form of the trade flow equation via the functional form of the controls for firm heterogeneity ($w_{ij,t}$) and the sample selection.}, which is then incorporated in the estimation of Equation (\ref{eq:est_MHR_wage}). Note that, we use an estimate for the variable conditional on the population of countries that do trade amongst themselves, as this is the sample considered in the estimation of Equation (\ref{eq:est_MHR_wage}).
+
+In the following sections a more simplified model will be defined, together with a more detailed explanation of the standard Heckman procedure for correcting for sample selection. We will then motivate why this procedure may not yield unbiased coefficients for the observation equation (the gravity equation) and the correct inference due to the incidental parameters problem (\cite{neyman1948consistent}). 

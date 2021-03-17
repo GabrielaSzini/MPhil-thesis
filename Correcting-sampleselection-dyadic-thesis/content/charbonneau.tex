@@ -1,0 +1,171 @@
+\section{The conditional logit estimation of \cite{charbonneau2017multiple}} \label{section_charbonneau}
+The method displayed in this section relies on eliminating the two-way fixed effects of the model in order to obtain estimates of the parameters $\beta_2^*$ that are not contaminated by the incidental parameter problem. This approach is proposed by \cite{charbonneau2017multiple} and is inspired on a well-known method to eliminate fixed effects in single fixed effects model. The author shows that it is possible to generalize the conditional maximum likelihood approach to include two-way fixed effects only for logit models. Therefore, in order to estimate the model given by Equations (\ref{eq:model2}) and (\ref{eq:model3}), we modify the previous Assumption \ref{assumption_heckman_3} to:
+
+\begin{assumption} \label{modified_charbonneau}
+    The idiosyncratic terms $\eta_{ij}^*$ are i.i.d. across $ij$ and follow a standard logistic distribution conditional on the regressors and fixed effects.
+\end{assumption}
+
+To adopt this method, we consider only one period $t$ for now. In the following we will follow closely the exposition of \cite{arellano2001panel} for the approach to eliminate a single fixed effects from the model. Supposing that the observations are given by:
+\begin{align*}
+    y_{2,ij} = \mathbbm{1} \{ x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^* + \eta_{ij}^* \geq 0\} \text{ for } i=1,...N \quad j=1,...N \quad i \neq j
+\end{align*}
+
+\noindent which, given Assumption \ref{modified_charbonneau} implies that: 
+\begin{align*}
+\text{Pr}(y_{2,ij} = 1 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*) = \frac{\exp (x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*))}{1 + \exp (x_{2,ij}'{\beta_2^*}  +\xi_{i}^*+\zeta_{j}^*))}
+\end{align*}
+
+\noindent where $x_{2}$ denotes the vectors of observations $x_{2,ij}$ for all possible pairs $ij$. Fixing distinct indices $i$, $j$, $k$ and $l$ from the set form by individuals in $i'=1,...,N$, it is straightforward to show that the conditional likelihood can be written such that it eliminates the fixed effects $\xi$:
+\begin{align*}
+    &\text{Pr}(y_{2,lj} = 1 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*, y_{2,lk} + y_{2,lj} = 1) \\
+    &=\frac{\text{Pr} (y_{2,lj} = 1 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*) \quad \text{Pr} (y_{2,lk} = 0 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*)}{\text{Pr} (y_{2,lj} = 1, y_{2,lk} = 0 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*) + \text{Pr} (y_{2,lj} = 0, y_{2,lk} = 1 \rvert x_{2}, \xi^*, \zeta^*, \beta_2^*)} \\
+    &= \frac{\exp((x_{2,lj} - x_{2,lk})'\beta_2^* + \zeta_j^* - \zeta_k^*)}{1 + \exp((x_{2,lj} - x_{2,lk})'\beta_2^* + \zeta_j^* - \zeta_k^*)}
+\end{align*}
+
+\noindent which is again the specification of a logit model, with $x_{2,lj,t} - x_{2,lk,t}$ as explanatory variables and $\zeta_j^* - \zeta_k^*$ as a fixed effect. We can also apply the same procedure to another pair of observations $ij$, $ik$:
+\begin{align*}
+    &\text{Pr}(y_{2,ij} = 1 \rvert x_2, \xi^*, \zeta^*, \beta_2^*, y_{2,ij} + y_{2,ik} = 1) \\
+    &=\frac{\text{Pr} (y_{2,ij} = 1 \rvert x_2, \xi^*, \zeta^*, \beta_2^*) \quad \text{Pr} (y_{2,ik} = 0 \rvert x_2, \xi^*, \zeta^*, \beta_2^*)}{\text{Pr} (y_{2,ij} = 1, y_{2,ik} = 0 \rvert x_2, \xi^*, \zeta^*, \beta_2^*) + \text{Pr} (y_{2,ij} = 0, y_{2,ik} = 1 \rvert x_2, \xi^*, \zeta^*, \beta_2^*)} \\
+    &= \frac{\exp((x_{2,ij} - x_{2,ik})'\beta_2^* + \zeta_j^* - \zeta_k^*)}{1 + \exp((x_{2,ij} - x_{2,ik})'\beta_2^* + \zeta_j^* - \zeta_k^*)}
+\end{align*}
+
+These conditional likelihoods are free of the fixed effects $\xi^*$, but are still dependent on the fixed effects $\zeta^*$. The idea now is to combine the above two expressions, by adding a condition on $y_{2,ij,t} + y_{2,lj,t} = 1$.
+
+Defining : $C \equiv \{ y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1 \}$, we can now write:
+\begin{align} \label{charbonneau_final}
+    &\text{Pr}(y_{2,lj} = 1 \rvert x_2, \xi^*, \zeta^*, \beta_2^*, y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1) \\
+    &=\frac{\text{Pr} (y_{2,lj} = 1, y_{2,ij} + y_{2,lj} = 1 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C)}{\text{Pr}(y_{2,ij} + y_{2,lj} = 1 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C)} \nonumber\\
+    &= \frac{\text{Pr}(y_{2,lj} = 1 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C) \quad \text{Pr}(y_{2,ij} = 0 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C)} {\text{Pr}(y_{2,lj} = 1, y_{2,ij} = 0 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C) + \text{Pr}(y_{2,lj} = 0, y_{2,ij} = 1 \rvert  x_2, \xi^*, \zeta^*, \beta_2^*, C)} \nonumber\\
+    &= \frac{\exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)}{1+ \exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)} \nonumber
+\end{align}
+
+This final probability no longer depends on fixed effects, allowing to solve the incidental parameters problem in the presence of two-way fixed effects. It is now possible to either write a conditional maximum likelihood function or to apply the last equation to all quadruples of observations. \cite{charbonneau2017multiple} argues that the latter is easier to implement, with a function to maximize:
+\begin{align} \label{max_charb}
+    \sum_{i=1}^N \sum_{j \neq i} \sum_{l,k \in Z_{ij}} \log \Big( \frac{\exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)}{1+ \exp(((x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))'\beta_2^*)} \Big)
+\end{align}
+
+\noindent where $Z_{ij}$ is the set of all potential $k$ and $l$ that satisfy: $ y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1$ for a given pair $ij$. If we would instead use the conditional maximum likelihood function, we would have that the sufficient statistics for the fixed effects are given by $\sum_{j=1}^N y_{2,ij}$, $\sum_{i=1}^N y_{2,ij}$. 
+
+Even though \cite{charbonneau2017multiple} does not provide the asymptotic properties of this estimator, the later study by \cite{jochmans2018semiparametric} provides such results. To demonstrate them, we first define some variables for an easier understanding:
+\begin{align*}
+    z = \frac{(y_{2,lj} - y_{2,lk}) - (y_{2,ij} - y_{2,ik})}{2}
+\end{align*}
+\begin{align*}
+    r = (x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik})
+\end{align*}
+
+Given that $y_{2,ij}$ for any $ij$ is a binary variables, $z$ can take values from the set $\{ -1, -1/2, 0, 1/2, 1\}$. The event $z \in \{-1,1\}$ corresponds to the condition that for any $ij$, $l$ and $k$ satisfies $ y_{2,lk} + y_{2,lj} = 1, y_{2,ij} + y_{2,ik} = 1, y_{2,ij} + y_{2,lj} = 1$. From Equation (\ref{charbonneau_final}) it follows that conditional on $x_2$ and $z \in \{-1,1\}$, the distribution of $z$ is logistic and does not depend on the fixed effects. Note that when $z=1$, we have necessarily that $y_{2,lk} = 1$, and when $z=-1$, it is necessarily zero.
+
+Thus, the conditional log-likelihood of a given quadruple is:
+\begin{align*}
+    \mathbbm{1} \{ z = 1 \} \log (F(r'\beta_2^*)) + \mathbbm{1} \{ z = -1 \} \log (1 - F(r'\beta_2^*))
+\end{align*}
+
+\noindent where $F$ is the standard logistic distribution. This indicates that the approach by \cite{charbonneau2017multiple} boils down to a standard logistic regression with the transformed variables $z$ and $r$, and considering only a subset of the sample. This can also be seen in the objective function $\mathcal{L}_{CL}$ defined later in this section. Conditioning on the event $z \in \{-1,1\}$ means that not all quadruples will be used to estimate $\beta_2^*$, which is a possible drawback of this approach. Intuitively, conditioning on this event means that for an unit $i$, if a link is formed with another unit $j$, such that $y_{2,ij} = 1$, then a link must not be formed with the unit $k$, such that $y_{2,ik} = 0$. The same holds for the other units in the quadruples considered. In the terminology of \cite{rasch1960studies} those units are refered to as movers.
+
+In the entire dataset, there are $m_n$ distinct quadruples:
+\begin{align*}
+    m_n = \begin{pmatrix}
+        N \\ 2
+    \end{pmatrix}
+    \begin{pmatrix}
+        N - 2 \\ 2
+    \end{pmatrix} = \frac{N(N-1)(N-2)(N-3)}{4}
+\end{align*}
+
+\cite{jochmans2018semiparametric} introduces further a function $\sigma$ that maps the possible quadruples in the dataset to an index set $N_{m_n} = \{ 1, 2, ... m_n\}$, such that it is possible to write the objective function in a comprehensible manner. Based on this, we extend the notation by defining the following random variables:
+\begin{align*}
+    z(\sigma\{l,i;j,k\}) = \frac{(y_{2,lj} - y_{2,lk}) - (y_{2,ij} - y_{2,ik})}{2}
+\end{align*}
+\begin{align*}
+    r(\sigma\{l,i;j,k\}) = (x_{2,lj} - x_{2,lk}) - (x_{2,ij} - x_{2,ik}))
+\end{align*}
+
+With this extended notation, the estimator can be written as:
+\begin{align*}
+    \hat{\beta}_2^* = \argmax_{\beta_2^* \in \Theta} \mathcal{L}_{CL}(\beta_2^*)
+\end{align*}
+
+\noindent where $\Theta$ refers to the parameter space searched over, and $\mathcal{L}_{CL}$ is the objective function given by:
+\begin{align*}
+    \mathcal{L}_{CL}(\beta_2^*) &= \sum_{\sigma \in N_{m_n}} \mathbbm{1}\{ z(\sigma\{l,i;j,k\}) = 1\} \log (F(r(\sigma\{l,i;j,k\})'\beta_2^*)) \\ &+ \mathbbm{1}\{ z(\sigma\{l,i;j,k\}) = -1\} \log (1 - F(r(\sigma\{l,i;j,k\})'\beta_2^*))
+\end{align*}
+
+Even though the objective function sums over all possible quadruples, only the quadruples that are in the set given by the event $z \in \{-1,1\}$ are incorporated into the sum. Therefore, we can denote that the number of such quadruples is given by:
+\begin{align*}
+    m_n^* = \sum_{\sigma \in N_{m_n}} \mathbbm{1}\{ z \in \{-1,1\}\}
+\end{align*}
+
+We can further write the expected fraction of quadruples in the dataset that contributes to the log-likelihood as a function of the random variable $m_n^*$:
+\begin{align*}
+    p_n = \frac{\mathbbm{E}(m_n^*)}{m_n} = \frac{\sum_{\sigma \in N_{m_n}} \text{Pr}\{ z \in \{-1,1\}\}}{m_n}
+\end{align*}
+
+Now we turn to the assumptions needed for both the consistency and asymptotic normality and unbiasedness of the estimator, provided by \cite{jochmans2018semiparametric}.
+
+\begin{assumption} \label{ass_jochmans1}
+    $\beta_{2,0}^*$ is interior to $\Theta$, which is a compact subset of $\mathbbm{R}^{\text{dim} \beta_2^*}$.
+\end{assumption}
+
+\begin{assumption} \label{ass_jochmans2}
+    For all $(i,j) \in N \times N, \mathbbm{E}(\rvert \rvert x_{2,ij} \rvert \rvert^2) < c$, where $c$ is a finite constant.
+\end{assumption}
+
+\begin{assumption} \label{ass_jochmans3}
+    $Np_n \xrightarrow{} \infty$ as $N \xrightarrow{} \infty$ and the matrix
+    $$ \lim_{N \xrightarrow{} \infty} (m_n p_n)^{-1} \sum_{\sigma \in N_{m_n}} \mathbbm{E} (r(\sigma\{l,i;j,k\}) r(\sigma\{l,i;j,k\})' f(r(\sigma\{l,i;j,k\})' \beta_{2,0}^*) \mathbbm{1}\{ z \in \{-1,1\}\}) $$
+    has maximal rank, where $f$ is the density of the logistic function.
+\end{assumption}
+
+Assumptions \ref{ass_jochmans1} and \ref{ass_jochmans2} are standard to establish consistency in nonlinear models. Assumption \ref{ass_jochmans3} is made to guarantee identifiability of the parameter. Note that it allows the expected fraction of quadruples to enter the log-likelihood, and be informative in this context, to go to zero as N grows. The requirement that $p_n$ does not shrink faster than $N^{-1}$ is needed for the uniform convergence of $\mathcal{L}_{CL}(\beta_2^*)$. As $m_n$ is of order $O(N^4)$, this condition implies that $\mathbbm{E}(m_n^*) = m_n p_n \xrightarrow{} \infty$. Thus, even if the expected fraction of quadruples to enter the log-likelihood is allowed to go to zero as $N$ grows, it is still needed that the accumulation of informative quadruples does not cease as $N$ grows. In practice, this translates to the fact that even if a lower percentage of the quadruples enter the log-likelihood when new individuals are added to the dataset, the total number of observations considered in the estimation should continue to grow. The second part of Assumption \ref{ass_jochmans3} is a standard identification condition. Then, the following theorem arises:
+
+\begin{theorem}
+    Let assumptions \ref{modified_charbonneau} - \ref{ass_jochmans3} hold. Then, $\hat{\beta}_2^* \xrightarrow{p} \beta_{2,0}^*$ as $N \xrightarrow{} \infty$.
+\end{theorem}
+
+The proof of this theorem is provided in the online Appendix of \cite{jochmans2018semiparametric}. In order to establish the limiting distribution of the estimator, a stronger form of Assumption \ref{ass_jochmans2} is made:
+
+\begin{assumption}
+    For all $(i,j) \in N \times N, \mathbbm{E}(\rvert \rvert x_{2,ij} \rvert \rvert^6) < c$, where $c$ is a finite constant.
+\end{assumption}
+
+Defining:
+\begin{align*}
+    s(\sigma; \beta_2^*) = r_\sigma \{ \mathbbm{1} \{ z_\sigma = 1\} (1 - F({r_\sigma}' \beta_2^*)) - \mathbbm{1} \{ z_\sigma = - 1\}  F({r_\sigma}' \beta_2^*)\},
+\end{align*}
+
+\noindent where $r_\sigma = r(\sigma\{l,i;j,k\})$ and $z_\sigma = z(\sigma\{l,i;j,k\})$. Then, further defining:
+\begin{align*}
+    \upsilon_{ij} (\beta_2^*) = \sum_{i \neq l,j} \sum_{k \neq i,l,j} s(\sigma\{l,i;j,k\}; \beta_2^*)
+\end{align*}
+\begin{align*}
+    \Upsilon (\beta_2^*) = \sum_{l=1}^N \sum_{j \neq l}  \upsilon_{ij} \upsilon_{ij}'
+\end{align*}
+
+Denoting $S$ the score vector, we have that $\Upsilon (\beta_{2,0}^*)^{-1/2} S(\beta_{2,0}^*) \xrightarrow{d} N(0,I)$, where $I$ is the identity matrix of dimension of $\beta_2^*$.
+The Hessian matrix is given by:
+\begin{align*}
+    H (\beta_2^*) = \frac{\partial^2 \mathcal{L}_{CL}(\beta_2^*)}{\partial \beta_2^* \partial {\beta_2^*}'} = \sum_{\sigma \in N_{m_n}} r_\sigma r_\sigma' f(r_\sigma' \beta_2^*) \mathbbm{1}\{ z \in \{-1,1\}\}
+\end{align*}
+
+Finally, defining:
+\begin{align*}
+    \Omega = H {(\hat{\beta}_2^*)}^{-1} \Upsilon (\hat{\beta}_2^*) H {(\hat{\beta}_2^*)}^{-1}
+\end{align*}
+\cite{jochmans2018semiparametric} arrives at the following result:
+\begin{theorem}
+    Let Assumptions \ref{modified_charbonneau} - \ref{ass_jochmans3} hold. Then $\rvert \rvert \hat{\beta}_2^* - \beta_{2,0}^* \rvert \rvert = O_p (1/ \sqrt{N(N-1)p_n})$ and
+    $$\Omega^{-1/2} (\hat{\beta}_2^* - \beta_{2,0}^*) \xrightarrow[]{d} N(0,I)$$
+    as $N \xrightarrow{} \infty$
+\end{theorem}
+
+The proof of this theorem is also provided in the online Appendix of \cite{jochmans2018semiparametric}.
+The intuition behind this result is relatively simple. Even though the objective function has the functional form of a standard logistic regression, the asymptotic variance of the estimator is not the usual textbook formula, where the information matrix equality holds, but a sandwich form of it. This is due to the fact that the transformed variables are functions of quadruples of units, with the same units appearing in several combinations of quadruples. Therefore, this introduces cross-sectional dependences that must be corrected.
+
+There are also several aspects of network theory embedded in this model and respective estimators. When studying network formation, this framework allows to control for degree heterogeneity, which is given by the fixed-effects (that even though are not estimated, are controlled for). While previous studies that relied on asymptotic bias corrections (for instance, \cite{dzemski2019empirical}) allowed it only for dense networks, this framework allows it also for sparse networks. This difference comes from the fact that in asymptotic bias corrections approaches, the fixed-effects need to be estimated. In the case of sparse networks, those estimates may not be consistent or converge only at a very slow rate. On the other hand, in this method, the fixed-effects need not be estimated, and the probability of link formation is allowed to shrink towards zero. 
+
+This estimation method also permits to test for homophily in network formation, once, given the limiting distribution, it is possible to conduct inference on variables that reflect how similar the characteristics of units $i$ and $j$ in a dyad are.
+
+The drawback of this approach is that the independence of the error terms in Assumption \ref{modified_charbonneau} results in links being conditionally independently formed. Therefore, it is a not well-suited estimator in cases where the link decisions made by a given unit (node) is dependent on the decisions of other units. Evidently, it also rules out cases where a high degree of transitivity is present in the network \footnote{A high degree of transitivity arises in situations where two units are more likely to be linked if there is a higher overlap between the sets of units that they are already linked to \cite{graham2020dyadic}.}.
+
+In the next sections, we will provide two approaches to estimate the parameters of the observation Equation (\ref{eq:model1}) given these estimates for the selection equation, denoted from now on $\beta_{2,CL}^*$. The first approach relies on retrieving estimates of the fixed-effects in the selection equation, and applying the Heckman methodolody to control for the sample selection. The second approach relies on differencing out both the fixed-effects and the regressor that corrects for the sample selection bias in the observation equation.

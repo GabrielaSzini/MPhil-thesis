@@ -1,0 +1,49 @@
+\subsection{Sketch of the derivation of the asymptotic expansion} \label{derivation_expansion}
+
+In this section we provide a more formalized version of the argument provided for the derivation of the asymptotic expansion given by Equation (\ref{eq:val2}). The basis for it is found in Remark 2 in \cite{fernandez2016individual}.
+
+Taking a first-order Taylor expansion of the first order conditions of Equation (\ref{eq:taylor}) around $\beta_{2,0}^*$, gives:
+\begin{align} 
+ 0 &= \frac{\partial \mathcal{L} (\hat{\beta}_2^*, \hat{\omega}_{NN}^*(\beta_2^*))}{\partial_{\beta_2^*}}  \approx \frac{\partial \mathcal{L} ({\beta}_{2,0}^*, \hat{\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_2^*}} \nonumber \\
+ &- \Bar{W}_\infty \sqrt{N(N-1)T} (\hat{\beta}_2^* - \beta_{2,0}^*)
+\end{align}
+
+Then, we apply a second-order Taylor expansion to approximate the above term $\frac{\partial  \mathcal{L} ({\beta}_{2,0}^*, \hat{\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_2^*}}$ around $\omega_{NN}^*(\beta_{2,0}^*)$, such that the estimates of the fixed effects are taken into account.
+\begin{align}
+    &\frac{\partial \mathcal{L} ({\beta}_{2,0}^*, \hat{\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*}}  \approx \frac{\partial \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*} } \\
+    &+ \frac{\partial^2 \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*)) }{\partial_{\beta_{2}^*} \partial_{\omega_{NN}'} }[ \hat{\omega}_{NN}^* (\beta_{2,0}^*) - \omega_{NN}^* (\beta_{2,0}^*)]  \nonumber\\
+    &+ \sum_{k = 1}^{\text{dim } \omega_{NN}} \frac{\partial^3 \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*} \partial_{\omega_{NN}'} \partial_{\omega_{NN,k}}}[ \hat{\omega}_{NN}^* (\beta_{2,0}^*) - \omega_{NN}^* (\beta_{2,0}^*)] [ \hat{\omega}_{NN,k}^* (\beta_{2,0}^*) - \omega_{NN,k}^* (\beta_{2,0}^*)] / 2 \nonumber
+\end{align}
+
+Under regularity conditions, since the first term in this expression is the score vector, it has mean zero and it generates the asymptotic variance. By the information matrix equality and the Central Limit Theorem, we have:
+\begin{align} \label{eq:exp_1}
+    \frac{\partial \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*} }  \xrightarrow{d} N(0, \bar{W}_\infty)
+\end{align}
+
+For some variance $\bar{W}_\infty$. According \cite{fernandez2016individual}, the second and the third term satisfies:
+\begin{align} \label{eq:exp_2}
+    &\frac{\partial^2 \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*)) }{\partial_{\beta_{2}^*}\partial_{\omega_{NN}'} }[ \hat{\omega}_{NN}^* (\beta_{2,0}^*) - \omega_{NN}^* (\beta_{2,0}^*)]  \nonumber\\
+    &+ \sum_{k = 1}^{\text{dim } \omega_{NN}} \frac{\partial^3 \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*}\partial_{\omega_{NN}'}\partial_{\omega_{NN,k}}}[ \hat{\omega}_{NN}^* (\beta_{2,0}^*) - \omega_{NN}^* (\beta_{2,0}^*)] [ \hat{\omega}_{NN,k}^* (\beta_{2,0}^*) - \omega_{NN,k}^* (\beta_{2,0}^*)] / 2 \nonumber \\
+    & \approx \sqrt{N(N-1)T} \Big( \frac{\bar{B}^\beta_\infty}{(N-1)T} + \frac{\bar{D}^\beta_\infty}{(N-1)T} \Big)
+\end{align}
+
+The analytical form of terms $\bar{B}^\beta_\infty$ and $\bar{D}^\beta_\infty$ can be obtained from the second-order Taylor expansion as shown in \cite{fernandez2016individual}. However, as mentioned before, in this study we do not aim to do so. Those terms originate from elements corresponding to the two-way fixed effects.
+
+Plugging in the expression (\ref{eq:exp_2}) into the equation for the first-order Taylor expansion, we have, as $N \xrightarrow{} \infty$:
+\begin{align}
+    \Bar{W}_\infty \sqrt{N(N-1)T} (\hat{\beta}_2^* - \beta_{2,0}^*) = \frac{\partial \mathcal{L} ({\beta}_{2,0}^*, {\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_{2}^*} }  + \frac{\bar{B}^\beta_\infty}{\sqrt{T}} + \frac{\bar{D}^\beta_\infty}{\sqrt{T}} 
+\end{align}
+
+By Slutsky Theorem, we have, given (\ref{eq:exp_1}):
+\begin{align}
+    \sqrt{N(N-1)T} (\hat{\beta}_2^* - \beta_{2,0}^*) \xrightarrow{d} \Bar{W}_\infty^{-1} N \Big(\frac{\bar{B}^\beta_\infty}{\sqrt{T}} + \frac{\bar{D}^\beta_\infty}{\sqrt{T}} , \Bar{W}_\infty \Big)
+\end{align}
+
+Therefore, compared to the expression given by (\ref{eq:val3}) in Section \ref{section_incidental_parameters}, we have that:
+$$ \Bar{W}_\infty^{-1} \bar{B}^\beta_\infty = \bar{B}_\infty  $$
+$$ \Bar{W}_\infty^{-1} \bar{D}^\beta_\infty =  \bar{D}_\infty  $$
+
+The main point of this sketch of the derivation is to show that the score $\frac{\partial \mathcal{L} ({\beta}_{2,0}^*, \hat{\omega}_{NN}^*(\beta_{2,0}^*))}{\partial_{\beta_2^*}} $ is not centered around zero when $\beta_2^* = \beta_{2,0}^*$, which originates the asymptotic biases. Moreover, the score not being centered around zero comes from the introduction of the nuisance parameters, which converge only at a slower rate compared to $\beta_2^*$.
+
+
+

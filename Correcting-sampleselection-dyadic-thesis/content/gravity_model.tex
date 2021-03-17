@@ -1,0 +1,46 @@
+\section{The gravity model by \cite{helpman2008estimating}} \label{gravity_model}
+One of the baseline models for the gravity equation is the model derived by \cite{anderson2003gravity}, as this was one of the first studies to apply the theory of the gravity equations seriously to international trade flows. Specifically, the way the constant elasticity of substitution (CES) expenditure system is manipulated in the model allows for considering multilateral resistance terms for both countries involved in the trade flow in a tractable way. As \cite{anderson2003gravity} explains, these terms are defined as a country's average trade barrier with all its trading partners, being invariant to the country. It is expected that in a pairwise trading relationship the multilateral resistance terms of both involved countries affect the outcome. This follows from, after controlling for the size of the economy of the countries, the more resistant a country is to trade with all other trading partners, the more the country is likely to trade with a given bilateral partner. Thus, bilateral trade is related to size, bilateral trade barriers and the multilateral resistance terms of both countries. 
+
+However, in this study, we use as a baseline the model specified by \cite{helpman2008estimating}. Both models take into account the equation for trade flows for a country $i$ that exports a positive quantity for a given country $j$. Therefore, observations related to pairs of countries that do not trade amongst themselves are not taken into account in the estimation of the equation for trade flows, which generates a sample selection problem. One advantage of the paper by \cite{helpman2008estimating} is that it provides a sound theoretical framework that takes into account sample selection and also accommodates asymmetric trade flows whereas the model by \cite{anderson2003gravity} does not. 
+
+The sample selection is accounted for by considering that it is likely that only a fraction of firms in a country $i$ decides to export to country $j$ (such fraction is allowed to be zero), and that those firms have individual heterogeneous productivity and face both variable and fixed costs of exportation. Therefore, the model is able to predict one of the stylized features of the data, which is that a number of pair of countries displays zero trade flows. Also, it allows for the decomposition of the impact of trade frictions into intensive and extensive margins (the first refers to the trade volume per exporter and the latter to the number of exporters).
+
+We consider that a country $i$ has a measure $N_i$ of heterogeneous firms that differ in terms of productivity, which is measured by $\frac{1}{a}$, where $a$ follows a cumulative distribution function, $G(a)$, with support $[a_L, a_H]$. In this model only the more productive firms decide to export, and the fraction of firms exporting is given by a zero-profit condition - this profitability varies by destination, according to the demand levels of the importing countries, the variable and the fixed costs.
+
+It is further assumed that a firm in country $i$ produces one unit of output with inputs that cost $c_i a$, where $a$ is defined as above and measures the number of bundles of inputs used for production of a unit of output, and $c_i$ measures the cost of the bundle (which is country-specific). If a producer sells its product in country $j$, then it faces additional costs. Those costs are split into a fixed cost, $c_i f_{ij}$, and a variable cost that takes the form of a "melting iceberg" specification \footnote{Which, as defined by \cite{krugman1991increasing}, is modeled according to the fact that for each unit of goods shipped from one region to the other, only a fraction of it arrives.}, assuming that $\tau_{ij}$ units of a product needs to be shipped from country $i$ to $j$ for a unit to arrive. \footnote{Note that those additional costs are country-specific but not firm-specific, nor depending on the firm productivity level.} 
+
+By also assuming CES preferences, that products are differentiated according to their country of origin, and that there is monopolistic competition in the final products, the model delivers the following system of equations:
+\begin{align}
+    (1-\alpha)\left(\frac{\tau_{i j} c_{i} a_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j}=c_{i} f_{i j}
+    \label{eq:MHR1}
+\end{align}
+
+This Equation (\ref{eq:MHR1}) comes from the above mentioned zero-profit condition, where $a_{ij}$ is defined such that at this point profits are exactly zero. We denote by $P_j$ the price index of the economy of country $j$, and $Y_j$ the size of its economy. This equation determines the fraction of country $i$'s $N_i$ firms that export to country $j$, given by $G(a_{ij})$. The fraction of firms exporting can be zero once $a_{ij} \leq a_L$. Note that here we denote that $\sigma = 1/(1-\alpha)$ is the elasticity of substitution across products, that remains the same across countries (as in \cite{anderson1979theoretical}).
+\begin{align}
+    V_{i j}=\left\{\begin{array}{cc}
+\int_{a_{L}}^{a_{i j}} a^{1-\sigma} d G(a) & \text { for } a_{i j} \geq a_{L} \\
+0 & \text { otherwise }
+\end{array}\right.
+\label{eq:MHR2}
+\end{align}
+
+Where $V_{ij}$ determines the bilateral trade volume.
+\begin{align}
+    Y_{1,i j}=\left(\frac{c_{i} \tau_{i j}}{\alpha P_{j}}\right)^{1-\sigma} Y_{j} N_{i} V_{i j}
+    \label{eq:MHR3}
+\end{align}
+
+Equation (\ref{eq:MHR3}) defines the value of country $j$'s imports from $i$ ($Y_{1,ij}$). It can thus be defined as the gravity equation obtained from this model. One can note that when $a_{ij} \leq a_L$, $V_{ij}$ will be equal to zero, and so will $Y_{1,ij}$. Moreover, from Equation (\ref{eq:MHR3}) it is clear how the fraction of firms exporting plays a role in the trade flows defined by $Y_{1,ij}$. 
+\begin{align} \label{eq:MHR4}
+    P_{j}^{1-\sigma}=\sum_{i=1}^{I}\left(\frac{c_{i} \tau_{i j}}{\alpha}\right)^{1-\sigma} N_{i} V_{i j}
+\end{align}
+
+Finally, this Equation (\ref{eq:MHR4}) defines the price indices of country $j$. One can note from these equations that not only trade flows can be explained, but also asymmetries can be explained, as $Y_{1,ij}$ can be different from $Y_{1,ji}$.
+
+The derivations of this model can be found in the Appendix \ref{gravity_model_derivation}. It is also shown that this model can be used to derive the model given by \cite{anderson2003gravity} (which does not account for sample selection and asymmetric trade flows) under the assumptions of symmetric variable costs ($\tau_{ij} = \tau_{ji}$) and that $V_{ij}$ can be decomposed into a deterministic function of terms that depend only on the importer, the exporter, and country-pair characteristics. For more details, I provide the equivalence between both models also in Appendix \ref{gravity_model_derivation}.
+
+%###################
+%- decomposition of the trade resistance into three elements: (i) the bilateral trade barrier between region $i$ and region $j$, (ii) $i$'s resistance to trade with all regions and (iii) $j$'s resistance to trade with all regions.
+
+%Mention this in the estimation part: Finally, this equation leads to a interpretative form on how multilateral resistance terms influence trade flows, when assuming that $\sigma >1$ (which is consistent with empirical results) \textcolor{red}{[provide examples?]}: a higher multilateral resistance of the importer $j$ raises its trade with $i$, as for a given bilateral barrier between $i$ and $j$, higher barriers between $j$ and its other trading partners will reduce the relative price of goods from $i$ and raise imports from $i$. Also, higher multilateral resistance of the exporter $i$ raises trade as well, since it leads to a lower supply price $p_i$.Note that, the multilateral resistance terms are either estimated structurally, as, for instance, in the estimation proposed by \cite{anderson2003gravity}, or, other subsequent studies estimate them in a reduced form, by assuming fixed effects for both the importer and the exporter regions. 
+

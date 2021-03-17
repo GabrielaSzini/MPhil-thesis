@@ -1,0 +1,134 @@
+\begin{thebibliography}{25}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[\protect\citeauthoryear{Ahn and Powell}{Ahn and
+  Powell}{1993}]{ahn1993semiparametric}
+\textsc{Ahn, H. and J.~L. Powell} (1993): \enquote{Semiparametric estimation of
+  censored selection models with a nonparametric selection mechanism,}
+  \emph{Journal of Econometrics}, 58, 3--29.
+
+\bibitem[\protect\citeauthoryear{Anderson}{Anderson}{1979}]{anderson1979theoretical}
+\textsc{Anderson, J.~E.} (1979): \enquote{A theoretical foundation for the
+  gravity equation,} \emph{The American economic review}, 69, 106--116.
+
+\bibitem[\protect\citeauthoryear{Anderson and Van~Wincoop}{Anderson and
+  Van~Wincoop}{2003}]{anderson2003gravity}
+\textsc{Anderson, J.~E. and E.~Van~Wincoop} (2003): \enquote{Gravity with
+  gravitas: A solution to the border puzzle,} \emph{American economic review},
+  93, 170--192.
+
+\bibitem[\protect\citeauthoryear{Arellano and Hahn}{Arellano and
+  Hahn}{2007}]{arellano2007understanding}
+\textsc{Arellano, M. and J.~Hahn} (2007): \enquote{Understanding bias in
+  nonlinear panel models: Some recent developments,} \emph{Econometric Society
+  Monographs}, 43, 381.
+
+\bibitem[\protect\citeauthoryear{Arellano and Honor{\'e}}{Arellano and
+  Honor{\'e}}{2001}]{arellano2001panel}
+\textsc{Arellano, M. and B.~Honor{\'e}} (2001): \enquote{Panel data models:
+  some recent developments,} in \emph{Handbook of econometrics}, Elsevier,
+  vol.~5, 3229--3296.
+
+\bibitem[\protect\citeauthoryear{Bartolucci and Pigini}{Bartolucci and
+  Pigini}{2019}]{bartolucci2019partial}
+\textsc{Bartolucci, F. and C.~Pigini} (2019): \enquote{Partial effects
+  estimation for fixed-effects logit panel data models,} \emph{Working Papers
+  431, Universita' Politecnica delle Marche (I), Dipartimento di Scienze
+  Economiche e Sociali.}
+
+\bibitem[\protect\citeauthoryear{Bierens}{Bierens}{1987}]{bierens1987kernel}
+\textsc{Bierens, H.~J.} (1987): \enquote{Kernel estimators of regression
+  functions,} in \emph{Advances in econometrics: Fifth world congress},
+  Cambridge University Press New York, vol.~1, 99--144.
+
+\bibitem[\protect\citeauthoryear{Charbonneau}{Charbonneau}{2017}]{charbonneau2017multiple}
+\textsc{Charbonneau, K.~B.} (2017): \enquote{Multiple fixed effects in binary
+  response panel data models,} \emph{The Econometrics Journal}, 20, S1--S13.
+
+\bibitem[\protect\citeauthoryear{Dzemski}{Dzemski}{2019}]{dzemski2019empirical}
+\textsc{Dzemski, A.} (2019): \enquote{An empirical model of dyadic link
+  formation in a network with unobserved heterogeneity,} \emph{Review of
+  Economics and Statistics}, 101, 763--776.
+
+\bibitem[\protect\citeauthoryear{Fern{\'a}ndez-Val and
+  Weidner}{Fern{\'a}ndez-Val and Weidner}{2016}]{fernandez2016individual}
+\textsc{Fern{\'a}ndez-Val, I. and M.~Weidner} (2016): \enquote{Individual and
+  time effects in nonlinear panel models with large N, T,} \emph{Journal of
+  Econometrics}, 192, 291--312.
+
+\bibitem[\protect\citeauthoryear{Graham}{Graham}{2017}]{graham2017econometric}
+\textsc{Graham, B.~S.} (2017): \enquote{An econometric model of network
+  formation with degree heterogeneity,} \emph{Econometrica}, 85, 1033--1063.
+
+\bibitem[\protect\citeauthoryear{Graham}{Graham}{2020}]{graham2020dyadic}
+---\hspace{-.1pt}---\hspace{-.1pt}--- (2020): \enquote{Dyadic regression,} in
+  \emph{The Econometric Analysis of Network Data}, Elsevier, 23--40.
+
+\bibitem[\protect\citeauthoryear{Heckman}{Heckman}{1979}]{heckman1979sample}
+\textsc{Heckman, J.~J.} (1979): \enquote{Sample selection as a specification
+  error,} \emph{Econometrica}, 47, 153--161.
+
+\bibitem[\protect\citeauthoryear{Helpman, Melitz, and Rubinstein}{Helpman
+  et~al.}{2008}]{helpman2008estimating}
+\textsc{Helpman, E., M.~Melitz, and Y.~Rubinstein} (2008): \enquote{Estimating
+  trade flows: Trading partners and trading volumes,} \emph{The quarterly
+  journal of economics}, 123, 441--487.
+
+\bibitem[\protect\citeauthoryear{Jochmans}{Jochmans}{2018}]{jochmans2018semiparametric}
+\textsc{Jochmans, K.} (2018): \enquote{Semiparametric analysis of network
+  formation,} \emph{Journal of Business \& Economic Statistics}, 36, 705--713.
+
+\bibitem[\protect\citeauthoryear{Jochmans}{Jochmans}{2019}]{jochmans2019modified}
+---\hspace{-.1pt}---\hspace{-.1pt}--- (2019): \enquote{Modified-likelihood
+  estimation of fixed-effect models for dyadic data,} \emph{Cambridge Working
+  Papers in Economics}.
+
+\bibitem[\protect\citeauthoryear{Krugman}{Krugman}{1991}]{krugman1991increasing}
+\textsc{Krugman, P.} (1991): \enquote{Increasing returns and economic
+  geography,} \emph{Journal of political economy}, 99, 483--499.
+
+\bibitem[\protect\citeauthoryear{Kunz, Staub, and Winkelmann}{Kunz
+  et~al.}{2017}]{kunz2017estimating}
+\textsc{Kunz, J., K.~E. Staub, and R.~Winkelmann} (2017): \enquote{Estimating
+  Fixed Effects: Perfect Prediction and Bias in Binary Response Panel Models,
+  with an Application to the Hospital Readmissions Reduction Program,}
+  \emph{Available at SSRN 3074193}.
+
+\bibitem[\protect\citeauthoryear{Kyriazidou}{Kyriazidou}{1997}]{kyriazidou1997estimation}
+\textsc{Kyriazidou, E.} (1997): \enquote{Estimation of a panel data sample
+  selection model,} \emph{Econometrica: Journal of the Econometric Society},
+  1335--1364.
+
+\bibitem[\protect\citeauthoryear{Lee}{Lee}{1983}]{lee1983generalized}
+\textsc{Lee, L.-F.} (1983): \enquote{Generalized econometric models with
+  selectivity,} \emph{Econometrica: Journal of the Econometric Society},
+  507--512.
+
+\bibitem[\protect\citeauthoryear{Maddala}{Maddala}{1983}]{maddala1983qualitative}
+\textsc{Maddala, G.~S.} (1983): \enquote{Qualitative and limited dependent
+  variable models in econometrics,} \emph{Cambridge: Cambridge}, 498.
+
+\bibitem[\protect\citeauthoryear{Neyman and Scott}{Neyman and
+  Scott}{1948}]{neyman1948consistent}
+\textsc{Neyman, J. and E.~L. Scott} (1948): \enquote{Consistent estimates based
+  on partially consistent observations,} \emph{Econometrica: Journal of the
+  Econometric Society}, 1--32.
+
+\bibitem[\protect\citeauthoryear{Rasch}{Rasch}{1960}]{rasch1960studies}
+\textsc{Rasch, G.} (1960): \emph{Studies in mathematical psychology: I.
+  Probabilistic models for some intelligence and attainment tests.}, Nielsen \&
+  Lydiche.
+
+\bibitem[\protect\citeauthoryear{Tinbergen}{Tinbergen}{1962}]{tinbergen1962shaping}
+\textsc{Tinbergen, J.} (1962): \emph{Shaping the World Economy; Suggestions for
+  an International Economic Policy}, Twentieth Century Fund, New York.
+
+\bibitem[\protect\citeauthoryear{Wooldridge, Kwak, and Martin}{Wooldridge
+  et~al.}{2018}]{martin2018bls}
+\textsc{Wooldridge, J.~M., D.~W. Kwak, and R.~S. Martin} (2018): \enquote{The
+  robustness of conditional logit for binary response panel data models with
+  serial correlation,} \emph{August. US Bureau of Labor Statistics Working
+  Paper}, 502.
+
+\end{thebibliography}
